@@ -6,3 +6,6 @@
 
 # Class Diagram
 ![Capture d'écran 2024-07-26 165151](https://github.com/user-attachments/assets/ffe90310-2dea-48ef-bdbb-03309cbd67d3)
+
+# Séquence Diagram
+![image](https://github.com/user-attachments/assets/89c0873a-51c5-454b-bab3-267e635dad90)
