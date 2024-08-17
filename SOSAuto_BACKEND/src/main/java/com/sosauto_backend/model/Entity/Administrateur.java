@@ -1,4 +1,4 @@
-package com.itsupport.itsupport_backend.model.Entity;
+package com.sosauto_backend.model.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

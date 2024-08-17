@@ -1,4 +1,4 @@
-package com.itsupport.sosauto_backend;
+package com.sosauto_backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
