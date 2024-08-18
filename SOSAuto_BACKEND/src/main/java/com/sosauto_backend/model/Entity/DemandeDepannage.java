@@ -37,5 +37,7 @@ public class DemandeDepannage {
     @JoinColumn(name = "mécanicien_id")
     private Mécanicien mécanicien;
 
-
+    @ManyToOne
+    @JoinColumn(name = "panne_id")
+    private Panne panne;
 }
