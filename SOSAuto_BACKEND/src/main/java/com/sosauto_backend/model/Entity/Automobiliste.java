@@ -16,11 +16,11 @@ import java.util.List;
 @DiscriminatorValue(value = "AUTOM")
 public class Automobiliste extends Personne{
 
-    @OneToMany(mappedBy = "Automobiliste",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "automobiliste",cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Véhicule> Automobiliste;
+    private List<Véhicule> véhicules;
 
-    @OneToMany(mappedBy = "Automobiliste",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "automobiliste",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<DemandeDepannage> demandeDepannage;
 

@@ -16,7 +16,7 @@ import java.util.List;
 @DiscriminatorValue(value = "MECA")
 public class Mécanicien extends Personne{
 
-    @OneToMany(mappedBy = "Mécanicien",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "mécanicien",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<DemandeDepannage> demandeDepannage;
 }
