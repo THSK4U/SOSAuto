@@ -13,7 +13,7 @@ public class Véhicule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int véhiculeid;
+    private Long véhiculeid;
     private String marque;
     private String modele;
     private int année;

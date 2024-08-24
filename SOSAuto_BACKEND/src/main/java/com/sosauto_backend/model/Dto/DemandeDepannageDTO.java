@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Data
 public class DemandeDepannageDTO {
 
-    private int panneid;
+    private Long panneid;
     private LocalDateTime dateTime;
     private Double latitude;
     private Double longitude;

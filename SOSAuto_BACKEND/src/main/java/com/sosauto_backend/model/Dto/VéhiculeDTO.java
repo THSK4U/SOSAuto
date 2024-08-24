@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class VéhiculeDTO {
 
-    private int véhiculeid;
+    private Long véhiculeid;
     private String marque;
     private String modele;
     private int année;
