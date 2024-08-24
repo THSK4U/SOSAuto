@@ -1,8 +1,10 @@
 package com.sosauto_backend.respository;
 
 
-import com.sosauto_backend.model.Dto.VéhiculeDTO;
+import com.sosauto_backend.model.Entity.Véhicule;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface VéhiculeRepository extends JpaRepository<VéhiculeDTO, Long> {
+@Repository
+public interface VéhiculeRepository extends JpaRepository<Véhicule, Long> {
 }
