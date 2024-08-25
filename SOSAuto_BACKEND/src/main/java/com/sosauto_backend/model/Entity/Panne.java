@@ -17,7 +17,7 @@ public class Panne {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Panneid;
+    private Long panneid;
 
     private String nom;
     private String description;
