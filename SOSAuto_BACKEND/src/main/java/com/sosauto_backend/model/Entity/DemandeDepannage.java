@@ -16,7 +16,7 @@ public class DemandeDepannage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long panneid;
+    private Long demandeid;
     @Column(updatable = false)
     private LocalDateTime dateTime;
     private Double latitude;
