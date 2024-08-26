@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.*;
 
 public interface IAdministrateurApi {
     @PostMapping(value =  "/Administrateur/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    AdministrateurDTO createAdministrateur(@RequestBody AdministrateurDTO administrateurDTO);
+    AdministrateurDTO creerAdministrateur(@RequestBody AdministrateurDTO administrateurDTO);
 
     @DeleteMapping(value =  "/Administrateur/delete/{id}")
-    void deleteAdministrateur(@PathVariable("id") Long id);
+    void supprimerAdministrateur(@PathVariable("id") Long id);
 
     @PutMapping(value = "/Administrateur/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    AdministrateurDTO updateAdministrateur(@PathVariable("id") Long id, @RequestBody AdministrateurDTO administrateurDTO);
+    AdministrateurDTO mettreAJourAdministrateur(@PathVariable("id") Long id, @RequestBody AdministrateurDTO administrateurDTO);
 }

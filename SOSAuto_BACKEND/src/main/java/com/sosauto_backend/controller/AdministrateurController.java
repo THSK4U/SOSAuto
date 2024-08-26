@@ -13,17 +13,17 @@ public class AdministrateurController implements IAdministrateurApi {
     private IAdministrateurService Service;
 
     @Override
-    public AdministrateurDTO createAdministrateur(AdministrateurDTO administrateurDTO) {
+    public AdministrateurDTO creerAdministrateur(AdministrateurDTO administrateurDTO) {
         return Service.creer(administrateurDTO);
     }
 
     @Override
-    public void deleteAdministrateur(Long id) {
+    public void supprimerAdministrateur(Long id) {
         Service.supprimer(id);
     }
 
     @Override
-    public AdministrateurDTO updateAdministrateur(Long id, AdministrateurDTO administrateurDTO) {
+    public AdministrateurDTO mettreAJourAdministrateur(Long id, AdministrateurDTO administrateurDTO) {
         return Service.mettreAJour(id, administrateurDTO);
     }
 }
