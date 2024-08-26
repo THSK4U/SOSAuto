@@ -21,6 +21,7 @@ public class DemandeDepannage {
     private LocalDateTime dateTime;
     private Double latitude;
     private Double longitude;
+    private String description;
     @Enumerated(EnumType.STRING)
     private EtatPanne etat;
 

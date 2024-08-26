@@ -1,6 +1,7 @@
 package com.sosauto_backend.model.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sosauto_backend.model.Enum.Disponibilite;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,10 @@ import java.util.List;
 @Entity
 @DiscriminatorValue(value = "MECA")
 public class Mécanicien extends Personne{
-
+    private Double latitude;
+    private Double longitude;
+    @Enumerated(EnumType.STRING)
+    private Disponibilite disponible;
     @OneToMany(mappedBy = "mécanicien",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<DemandeDepannage> demandeDepannage;
