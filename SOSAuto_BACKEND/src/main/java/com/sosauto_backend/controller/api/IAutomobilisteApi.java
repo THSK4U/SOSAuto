@@ -25,6 +25,6 @@ public interface IAutomobilisteApi {
     AutomobilisteDTO mettreAjourAutomobiliste(@PathVariable("id") Long id,@RequestBody AutomobilisteDTO automobiliste);
 
     //By Id
-    @GetMapping(value = "/utilisateur/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/Automobiliste/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     AutomobilisteDTO getAutomobilisteById(@PathVariable("id") Long id);
 }

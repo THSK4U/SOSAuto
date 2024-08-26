@@ -1,4 +1,41 @@
 package com.sosauto_backend.controller;
 
-public class DemandeController {
+import com.sosauto_backend.controller.api.IDemandeApi;
+import com.sosauto_backend.model.Dto.DemandeDepannageDTO;
+import com.sosauto_backend.service.Interface.IDemandeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+public class DemandeController implements IDemandeApi {
+
+    @Autowired
+    private IDemandeService service;
+
+    @Override
+    public DemandeDepannageDTO creerDemande(DemandeDepannageDTO Demande) {
+        return service.creer(Demande);
+    }
+
+    @Override
+    public void supprimerDemande(Long id) {
+    service.supprimer(id);
+    }
+
+    @Override
+    public List<DemandeDepannageDTO> getAllDemande() {
+        return service.voirTous();
+    }
+
+    @Override
+    public DemandeDepannageDTO mettreAjourDemande(Long id, DemandeDepannageDTO Demande) {
+        return service.mettreAJour(id,Demande);
+    }
+
+    @Override
+    public DemandeDepannageDTO getDemandeById(Long id) {
+        return service.getById(id);
+    }
 }
