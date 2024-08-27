@@ -44,7 +44,7 @@ public class DemandeDepannage {
     @JoinColumn(name = "panne_id",nullable = true)
     private Panne panne;
 
-    @OneToMany(mappedBy = "demande_id")
+    @OneToMany(mappedBy = "demande")
     @JsonIgnore
-    private List<Participation> participations;
+    private List<Participation> participation;
 }
