@@ -1,5 +1,6 @@
 package com.sosauto_backend.model.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sosauto_backend.model.Enum.EtatPanne;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -31,14 +33,18 @@ public class DemandeDepannage {
     }
 
     @ManyToOne
-    @JoinColumn(name = "automobiliste_id")
+    @JoinColumn(name = "automobiliste_id",nullable = true)
     private Automobiliste automobiliste;
 
     @ManyToOne
-    @JoinColumn(name = "mécanicien_id")
+    @JoinColumn(name = "mécanicien_id",nullable = true)
     private Mécanicien mécanicien;
 
     @ManyToOne
-    @JoinColumn(name = "panne_id")
+    @JoinColumn(name = "panne_id",nullable = true)
     private Panne panne;
+
+    @OneToMany(mappedBy = "demande_id")
+    @JsonIgnore
+    private List<Participation> participations;
 }

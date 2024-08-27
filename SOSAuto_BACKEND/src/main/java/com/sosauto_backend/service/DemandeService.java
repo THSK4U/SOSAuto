@@ -2,6 +2,7 @@ package com.sosauto_backend.service;
 
 import com.sosauto_backend.model.Dto.DemandeDepannageDTO;
 import com.sosauto_backend.model.Entity.DemandeDepannage;
+import com.sosauto_backend.model.Enum.EtatPanne;
 import com.sosauto_backend.model.Mapper.DemandeDepannageMapper;
 import com.sosauto_backend.model.Mapper.MécanicienMapper;
 import com.sosauto_backend.respository.DemandeDepannageRepository;
@@ -25,6 +26,7 @@ public class DemandeService implements IDemandeService {
     @Override
     public DemandeDepannageDTO creer(DemandeDepannageDTO DemandeDePannage) {
         DemandeDepannage DemandeDePannages = Mapper.toEntity(DemandeDePannage);
+        DemandeDePannages.setEtat(EtatPanne.A_FAIRE);
         DemandeDepannage saved = Repository.save(DemandeDePannages);
         return Mapper.toDTO(saved);
     }

@@ -12,6 +12,7 @@ public class DemandeDepannageDTO {
     private LocalDateTime dateTime;
     private Double latitude;
     private Double longitude;
+    private String description;
     private EtatPanne etat;
     private AutomobilisteDTO automobiliste;
     private MécanicienDTO mécanicien;
