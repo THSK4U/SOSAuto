@@ -1,11 +1,11 @@
 # SOSAuto
 
 # Use case Diagram
-![Capture d'écran 2024-07-26 165010](https://github.com/user-attachments/assets/1d918f09-09db-45ba-bb07-4c06b6c79089)
+![image](https://github.com/user-attachments/assets/4924ac6a-eae5-45fc-af84-ea383493ab11)
 
 
 # Class Diagram
-![Capture d'écran 2024-07-26 165151](https://github.com/user-attachments/assets/ffe90310-2dea-48ef-bdbb-03309cbd67d3)
+![Capture d'écran 2024-08-26 222621](https://github.com/user-attachments/assets/3f08244c-5157-4b5c-a4f2-bdebe5ca0f37)
 
 # Séquence Diagram
-![image](https://github.com/user-attachments/assets/89c0873a-51c5-454b-bab3-267e635dad90)
+![image](https://github.com/user-attachments/assets/331d8ab0-76ec-4b87-b2eb-db35feb7cec5)
