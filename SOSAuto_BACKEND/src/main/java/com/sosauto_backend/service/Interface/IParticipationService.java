@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IParticipationService {
     //Creer
-    ParticipationDTO creer(ParticipationDTO personne);
+    ParticipationDTO creer(ParticipationDTO participation);
 
     //mettre A Jour
     ParticipationDTO mettreAJour(Long id, ParticipationDTO DTO);
