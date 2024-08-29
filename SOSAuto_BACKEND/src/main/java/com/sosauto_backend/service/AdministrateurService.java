@@ -5,6 +5,7 @@ import com.sosauto_backend.model.Entity.Administrateur;
 import com.sosauto_backend.model.Mapper.AdministrateurMapper;
 import com.sosauto_backend.respository.AdministrateurRepository;
 import com.sosauto_backend.service.Interface.IAdministrateurService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +15,10 @@ import java.util.stream.Collectors;
 @Service
 public class AdministrateurService implements IAdministrateurService {
 
+    @Autowired
     private AdministrateurMapper Mapper;
 
+    @Autowired
     private AdministrateurRepository Repository;
 
     @Override

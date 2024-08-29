@@ -7,6 +7,7 @@ import com.sosauto_backend.model.Mapper.DemandeDepannageMapper;
 import com.sosauto_backend.model.Mapper.MécanicienMapper;
 import com.sosauto_backend.respository.DemandeDepannageRepository;
 import com.sosauto_backend.service.Interface.IDemandeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +17,13 @@ import java.util.stream.Collectors;
 @Service
 public class DemandeService implements IDemandeService {
 
+    @Autowired
     private DemandeDepannageMapper Mapper;
 
+    @Autowired
     private MécanicienMapper MécaMapper;
 
-
+    @Autowired
     private DemandeDepannageRepository Repository;
 
     @Override

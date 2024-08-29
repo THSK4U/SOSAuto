@@ -6,6 +6,7 @@ import com.sosauto_backend.model.Entity.Mécanicien;
 import com.sosauto_backend.model.Mapper.MécanicienMapper;
 import com.sosauto_backend.respository.MécanicienRepository;
 import com.sosauto_backend.service.Interface.IMécanicienService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +16,10 @@ import java.util.stream.Collectors;
 @Service
 public class MécanicienService implements IMécanicienService {
 
+    @Autowired
     private MécanicienMapper Mapper;
 
+    @Autowired
     private MécanicienRepository Repository;
 
     @Override

@@ -5,6 +5,7 @@ import com.sosauto_backend.model.Entity.Automobiliste;
 import com.sosauto_backend.model.Mapper.AutomobilisteMapper;
 import com.sosauto_backend.respository.AutomobilisteRepository;
 import com.sosauto_backend.service.Interface.IAutomobilisteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +15,10 @@ import java.util.stream.Collectors;
 @Service
 public class AutomobilisteService implements IAutomobilisteService {
 
+    @Autowired
     private AutomobilisteMapper Mapper;
 
+    @Autowired
     private AutomobilisteRepository Repository;
 
     @Override
@@ -34,6 +37,7 @@ public class AutomobilisteService implements IAutomobilisteService {
     @Override
     public List<AutomobilisteDTO> voirTous() {
         List<Automobiliste> automobiliste = Repository.findAll();
+        System.out.println(automobiliste.toString());
         return automobiliste.stream()
                 .map(Mapper::toDTO)
                 .collect(Collectors.toList());
