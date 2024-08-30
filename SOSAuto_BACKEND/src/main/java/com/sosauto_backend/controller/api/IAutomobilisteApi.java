@@ -13,18 +13,18 @@ public interface IAutomobilisteApi {
     AutomobilisteDTO creerAutomobiliste(@RequestBody AutomobilisteDTO automobiliste);
 
     //supprimer
-    @DeleteMapping(value = "/Automobiliste/Delete/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/Automobiliste/Delete/{id}")
     void supprimerAutomobiliste(@PathVariable("id") Long id);
 
     //Tous
-    @GetMapping(value = "/Automobiliste", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/Automobiliste", produces = MediaType.APPLICATION_JSON_VALUE)
     List<AutomobilisteDTO> getAllAutomobiliste();
 
     //mettre A Jour
     @PutMapping(value = "/Automobiliste/MettreAjour/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     AutomobilisteDTO mettreAjourAutomobiliste(@PathVariable("id") Long id,@RequestBody AutomobilisteDTO automobiliste);
 
-    //By Id
+    //By id
     @GetMapping(value = "/Automobiliste/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     AutomobilisteDTO getAutomobilisteById(@PathVariable("id") Long id);
 }
