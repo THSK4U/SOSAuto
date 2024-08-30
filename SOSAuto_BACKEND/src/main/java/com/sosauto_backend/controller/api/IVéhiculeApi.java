@@ -11,21 +11,21 @@ public interface IVéhiculeApi {
 
     //creer
     @PostMapping(value = "/Vehicule/Creer", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    VéhiculeDTO creerPanne(@RequestBody VéhiculeDTO vehicule);
+    VéhiculeDTO creerVehicule(@RequestBody VéhiculeDTO vehicule);
 
     //supprimer
     @DeleteMapping(value = "/Vehicule/Delete/{id}")
-    void supprimerPanne(@PathVariable("id") Long id);
+    void supprimerVehicule(@PathVariable("id") Long id);
 
     //Tous
     @GetMapping(value = "/Vehicule", produces = MediaType.APPLICATION_JSON_VALUE)
-    List<VéhiculeDTO> getAllPanne();
+    List<VéhiculeDTO> getAllVehicule();
 
     //mettre A Jour
     @PutMapping(value = "/Vehicule/MettreAjour/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    VéhiculeDTO mettreAjourPanne(@PathVariable("id") Long id,@RequestBody VéhiculeDTO vehicule);
+    VéhiculeDTO mettreAjourVehicule(@PathVariable("id") Long id,@RequestBody VéhiculeDTO vehicule);
 
     //By id
     @GetMapping(value = "/Vehicule/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    VéhiculeDTO getPanneById(@PathVariable("id") Long id);
+    VéhiculeDTO getVehiculeById(@PathVariable("id") Long id);
 }
