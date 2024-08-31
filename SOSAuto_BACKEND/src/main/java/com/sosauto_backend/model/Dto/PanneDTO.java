@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class PanneDTO {
 
-    private Long id;
+    private Long panneid;
     private String nom;
     private String description;
     @JsonIgnore

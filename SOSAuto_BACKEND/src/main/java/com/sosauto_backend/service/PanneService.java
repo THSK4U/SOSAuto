@@ -5,6 +5,7 @@ import com.sosauto_backend.model.Entity.Panne;
 import com.sosauto_backend.model.Mapper.PanneMapper;
 import com.sosauto_backend.respository.PanneRepository;
 import com.sosauto_backend.service.Interface.IPanneService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +15,10 @@ import java.util.stream.Collectors;
 @Service
 public class PanneService implements IPanneService {
 
+    @Autowired
     private PanneMapper Mapper;
 
+    @Autowired
     private PanneRepository Repository;
 
     @Override

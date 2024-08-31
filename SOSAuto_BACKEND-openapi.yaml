@@ -1,0 +1,807 @@
+openapi: "3.1.0"
+info:
+  title: "SOSAuto_BACKEND API"
+  description: "SOSAuto_BACKEND API"
+  version: "1.0.0"
+servers:
+  - url: "https://SOSAuto_BACKEND"
+paths:
+  /Administrateur/create:
+    post:
+      summary: "POST Administrateur/create"
+      operationId: "creerAdministrateur"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdministrateurDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdministrateurDTO"
+  /Administrateur/delete/{id}:
+    delete:
+      summary: "DELETE Administrateur/delete/{id}"
+      operationId: "supprimerAdministrateur"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /Administrateur/update/{id}:
+    put:
+      summary: "PUT Administrateur/update/{id}"
+      operationId: "mettreAJourAdministrateur"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdministrateurDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdministrateurDTO"
+  /Automobiliste:
+    get:
+      summary: "GET Automobiliste"
+      operationId: "getAllAutomobiliste"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/AutomobilisteDTO"
+  /Automobiliste/Creer:
+    post:
+      summary: "POST Automobiliste/Creer"
+      operationId: "creerAutomobiliste"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AutomobilisteDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AutomobilisteDTO"
+  /Automobiliste/Delete/{id}:
+    delete:
+      summary: "DELETE Automobiliste/Delete/{id}"
+      operationId: "supprimerAutomobiliste"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /Automobiliste/MettreAjour/{id}:
+    put:
+      summary: "PUT Automobiliste/MettreAjour/{id}"
+      operationId: "mettreAjourAutomobiliste"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AutomobilisteDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AutomobilisteDTO"
+  /Automobiliste/{id}:
+    get:
+      summary: "GET Automobiliste/{id}"
+      operationId: "getAutomobilisteById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AutomobilisteDTO"
+  /DemandeDepannage:
+    get:
+      summary: "GET DemandeDepannage"
+      operationId: "getAllDemande"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/DemandeDepannageDTO"
+  /DemandeDepannage/Creer:
+    post:
+      summary: "POST DemandeDepannage/Creer"
+      operationId: "creerDemande"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DemandeDepannageDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DemandeDepannageDTO"
+  /DemandeDepannage/Delete/{id}:
+    delete:
+      summary: "DELETE DemandeDepannage/Delete/{id}"
+      operationId: "supprimerDemande"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /DemandeDepannage/MettreAjour/{id}:
+    put:
+      summary: "PUT DemandeDepannage/MettreAjour/{id}"
+      operationId: "mettreAjourDemande"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DemandeDepannageDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DemandeDepannageDTO"
+  /DemandeDepannage/{id}:
+    get:
+      summary: "GET DemandeDepannage/{id}"
+      operationId: "getDemandeById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DemandeDepannageDTO"
+  /Mecanicien:
+    get:
+      summary: "GET Mecanicien"
+      operationId: "getAllMécanicien"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/MécanicienDTO"
+  /Mecanicien/Creer:
+    post:
+      summary: "POST Mecanicien/Creer"
+      operationId: "creerMécanicien"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MécanicienDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MécanicienDTO"
+  /Mecanicien/Delete/{id}:
+    delete:
+      summary: "DELETE Mecanicien/Delete/{id}"
+      operationId: "supprimerMécanicien"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /Mecanicien/MettreAjour/{id}:
+    put:
+      summary: "PUT Mecanicien/MettreAjour/{id}"
+      operationId: "mettreAjourMécanicien"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MécanicienDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MécanicienDTO"
+  /Mecanicien/{id}:
+    get:
+      summary: "GET Mecanicien/{id}"
+      operationId: "getMécanicienById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MécanicienDTO"
+  /Panne:
+    get:
+      summary: "GET Panne"
+      operationId: "getAllPanne"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/PanneDTO"
+  /Panne/Creer:
+    post:
+      summary: "POST Panne/Creer"
+      operationId: "creerPanne"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PanneDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PanneDTO"
+  /Panne/Delete/{id}:
+    delete:
+      summary: "DELETE Panne/Delete/{id}"
+      operationId: "supprimerPanne"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /Panne/MettreAjour/{id}:
+    put:
+      summary: "PUT Panne/MettreAjour/{id}"
+      operationId: "mettreAjourPanne"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PanneDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PanneDTO"
+  /Panne/{id}:
+    get:
+      summary: "GET Panne/{id}"
+      operationId: "getPanneById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PanneDTO"
+  /Vehicule:
+    get:
+      summary: "GET Vehicule"
+      operationId: "getAllVehicule"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/VéhiculeDTO"
+  /Vehicule/Creer:
+    post:
+      summary: "POST Vehicule/Creer"
+      operationId: "creerVehicule"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VéhiculeDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VéhiculeDTO"
+  /Vehicule/Delete/{id}:
+    delete:
+      summary: "DELETE Vehicule/Delete/{id}"
+      operationId: "supprimerVehicule"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /Vehicule/MettreAjour/{id}:
+    put:
+      summary: "PUT Vehicule/MettreAjour/{id}"
+      operationId: "mettreAjourVehicule"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VéhiculeDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VéhiculeDTO"
+  /Vehicule/{id}:
+    get:
+      summary: "GET Vehicule/{id}"
+      operationId: "getVehiculeById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VéhiculeDTO"
+  /Participation:
+    get:
+      summary: "GET Participation"
+      operationId: "getAllParticipation"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/ParticipationDTO"
+  /Participation/Creer:
+    post:
+      summary: "POST Participation/Creer"
+      operationId: "creerParticipation"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ParticipationDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParticipationDTO"
+  /Participation/Delete/{id}:
+    delete:
+      summary: "DELETE Participation/Delete/{id}"
+      operationId: "supprimerParticipation"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /Participation/MettreAjour/{id}:
+    put:
+      summary: "PUT Participation/MettreAjour/{id}"
+      operationId: "mettreAjourParticipation"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ParticipationDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParticipationDTO"
+  /Participation/{id}:
+    get:
+      summary: "GET Participation/{id}"
+      operationId: "getParticipationById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParticipationDTO"
+components:
+  schemas:
+    AdministrateurDTO:
+      type: "object"
+      properties:
+        personneid:
+          type: "integer"
+          format: "int64"
+        nom:
+          type: "string"
+        prenom:
+          type: "string"
+        email:
+          type: "string"
+        password:
+          type: "string"
+        role:
+          type: "string"
+          enum:
+            - "ADMIN"
+            - "AUTO"
+            - "MECA"
+    VéhiculeDTO:
+      type: "object"
+      properties:
+        véhiculeid:
+          type: "integer"
+          format: "int64"
+        marque:
+          type: "string"
+        modele:
+          type: "string"
+        année:
+          type: "integer"
+          format: "int32"
+        matricule:
+          type: "string"
+        couleur:
+          type: "string"
+    AutomobilisteDTO:
+      type: "object"
+      properties:
+        véhicules:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/VéhiculeDTO"
+        personneid:
+          type: "integer"
+          format: "int64"
+        nom:
+          type: "string"
+        prenom:
+          type: "string"
+        email:
+          type: "string"
+        password:
+          type: "string"
+        role:
+          type: "string"
+          enum:
+            - "ADMIN"
+            - "AUTO"
+            - "MECA"
+    MécanicienDTO:
+      type: "object"
+      properties:
+        personneid:
+          type: "integer"
+          format: "int64"
+        nom:
+          type: "string"
+        prenom:
+          type: "string"
+        email:
+          type: "string"
+        password:
+          type: "string"
+        role:
+          type: "string"
+          enum:
+            - "ADMIN"
+            - "AUTO"
+            - "MECA"
+    PanneDTO:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        nom:
+          type: "string"
+        description:
+          type: "string"
+    DemandeDepannageDTO:
+      type: "object"
+      properties:
+        panneid:
+          type: "integer"
+          format: "int64"
+        dateTime:
+          type: "string"
+          format: "date-time"
+        latitude:
+          type: "number"
+          format: "double"
+        longitude:
+          type: "number"
+          format: "double"
+        description:
+          type: "string"
+        etat:
+          type: "string"
+          enum:
+            - "A_FAIRE"
+            - "EN_COURS"
+            - "TERMINE"
+        automobiliste:
+          $ref: "#/components/schemas/AutomobilisteDTO"
+        mécanicien:
+          $ref: "#/components/schemas/MécanicienDTO"
+        panne:
+          $ref: "#/components/schemas/PanneDTO"
+    Automobiliste:
+      type: "object"
+      properties:
+        personneid:
+          type: "integer"
+          format: "int64"
+        nom:
+          type: "string"
+        prenom:
+          type: "string"
+        email:
+          type: "string"
+        password:
+          type: "string"
+        role:
+          type: "string"
+          enum:
+            - "ADMIN"
+            - "AUTO"
+            - "MECA"
+    Mécanicien:
+      type: "object"
+      properties:
+        latitude:
+          type: "number"
+          format: "double"
+        longitude:
+          type: "number"
+          format: "double"
+        disponible:
+          type: "string"
+          enum:
+            - "DISPONIBLE"
+            - "INDISPONIBLE"
+        personneid:
+          type: "integer"
+          format: "int64"
+        nom:
+          type: "string"
+        prenom:
+          type: "string"
+        email:
+          type: "string"
+        password:
+          type: "string"
+        role:
+          type: "string"
+          enum:
+            - "ADMIN"
+            - "AUTO"
+            - "MECA"
+    Panne:
+      type: "object"
+      properties:
+        panneid:
+          type: "integer"
+          format: "int64"
+        nom:
+          type: "string"
+        description:
+          type: "string"
+    DemandeDepannage:
+      type: "object"
+      properties:
+        demandeid:
+          type: "integer"
+          format: "int64"
+        dateTime:
+          type: "string"
+          format: "date-time"
+        latitude:
+          type: "number"
+          format: "double"
+        longitude:
+          type: "number"
+          format: "double"
+        description:
+          type: "string"
+        etat:
+          type: "string"
+          enum:
+            - "A_FAIRE"
+            - "EN_COURS"
+            - "TERMINE"
+        automobiliste:
+          $ref: "#/components/schemas/Automobiliste"
+        mécanicien:
+          $ref: "#/components/schemas/Mécanicien"
+        panne:
+          $ref: "#/components/schemas/Panne"
+    ParticipationDTO:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        demande:
+          $ref: "#/components/schemas/DemandeDepannage"
+        mecanicien:
+          $ref: "#/components/schemas/Mécanicien"
+        status:
+          type: "string"
+          enum:
+            - "EN_ATTENTE"
+            - "ACCEPTE"
+            - "REFUSE"

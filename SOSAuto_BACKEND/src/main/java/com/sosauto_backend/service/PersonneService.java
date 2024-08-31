@@ -6,6 +6,7 @@ import com.sosauto_backend.model.Entity.Personne;
 import com.sosauto_backend.model.Mapper.PersonneMapper;
 import com.sosauto_backend.respository.PersonneRepository;
 import com.sosauto_backend.service.Interface.IPersonneService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +16,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class PersonneService implements IPersonneService {
-
+    @Autowired
     private PersonneMapper Mapper;
-
+    @Autowired
     private PersonneRepository Repository;
 
     @Override

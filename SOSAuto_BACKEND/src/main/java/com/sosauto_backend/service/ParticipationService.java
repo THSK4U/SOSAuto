@@ -5,6 +5,7 @@ import com.sosauto_backend.model.Entity.Participation;
 import com.sosauto_backend.model.Mapper.ParticipationMapper;
 import com.sosauto_backend.respository.ParticipationRepository;
 import com.sosauto_backend.service.Interface.IParticipationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,9 +14,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class ParticipationService implements IParticipationService {
-
+    @Autowired
     private ParticipationMapper Mapper;
-
+    @Autowired
     private ParticipationRepository Repository;
 
     @Override

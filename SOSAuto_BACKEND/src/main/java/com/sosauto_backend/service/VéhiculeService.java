@@ -7,6 +7,7 @@ import com.sosauto_backend.model.Entity.Véhicule;
 import com.sosauto_backend.model.Mapper.véhiculeMapper;
 import com.sosauto_backend.respository.VéhiculeRepository;
 import com.sosauto_backend.service.Interface.IVéhiculeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +17,10 @@ import java.util.stream.Collectors;
 @Service
 public class VéhiculeService implements IVéhiculeService {
 
-
+    @Autowired
     private véhiculeMapper Mapper;
 
+    @Autowired
     private VéhiculeRepository Repository;
 
     @Override

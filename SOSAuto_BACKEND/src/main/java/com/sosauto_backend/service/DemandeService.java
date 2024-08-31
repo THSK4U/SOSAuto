@@ -21,9 +21,6 @@ public class DemandeService implements IDemandeService {
     private DemandeDepannageMapper Mapper;
 
     @Autowired
-    private MécanicienMapper MécaMapper;
-
-    @Autowired
     private DemandeDepannageRepository Repository;
 
     @Override
@@ -56,7 +53,9 @@ public class DemandeService implements IDemandeService {
             demandedepannage.setLongitude(DTO.getLongitude());
             demandedepannage.setLatitude(DTO.getLatitude());
             demandedepannage.setEtat(DTO.getEtat());
-            demandedepannage.setMécanicien(MécaMapper.toEntity(DTO.getMécanicien()));
+            demandedepannage.setMécanicien(DTO.getMécanicien());
+            demandedepannage.setPanne(DTO.getPanne());
+            demandedepannage.setDescription(DTO.getDescription());
 
             DemandeDepannage updated = Repository.save(demandedepannage);
             return Mapper.toDTO(updated);
