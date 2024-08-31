@@ -2,6 +2,7 @@ package com.sosauto_backend.service;
 
 import com.sosauto_backend.model.Dto.ParticipationDTO;
 import com.sosauto_backend.model.Entity.Participation;
+import com.sosauto_backend.model.Enum.StatutParticipation;
 import com.sosauto_backend.model.Mapper.ParticipationMapper;
 import com.sosauto_backend.respository.ParticipationRepository;
 import com.sosauto_backend.service.Interface.IParticipationService;
@@ -22,6 +23,7 @@ public class ParticipationService implements IParticipationService {
     @Override
     public ParticipationDTO creer(ParticipationDTO participation) {
         Participation p = Mapper.toEntity(participation);
+        p.setStatus(StatutParticipation.EN_ATTENTE);
         Participation saved = Repository.save(p);
         return Mapper.toDTO(saved);
     }
