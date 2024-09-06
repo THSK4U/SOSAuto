@@ -3,6 +3,7 @@ package com.sosauto_backend.service;
 
 import com.sosauto_backend.model.Dto.MécanicienDTO;
 import com.sosauto_backend.model.Entity.Mécanicien;
+import com.sosauto_backend.model.Enum.Disponibilite;
 import com.sosauto_backend.model.Mapper.MécanicienMapper;
 import com.sosauto_backend.respository.MécanicienRepository;
 import com.sosauto_backend.service.Interface.IMécanicienService;
@@ -25,6 +26,7 @@ public class MécanicienService implements IMécanicienService {
     @Override
     public MécanicienDTO creer(MécanicienDTO Mécanicien) {
         Mécanicien mécaniciens = Mapper.toEntity(Mécanicien);
+        mécaniciens.setDisponible(Disponibilite.INDISPONIBLE);
         Mécanicien saved = Repository.save(mécaniciens);
         return Mapper.toDTO(saved);
     }
@@ -33,6 +35,18 @@ public class MécanicienService implements IMécanicienService {
     public MécanicienDTO getById(Long id) {
         Optional<Mécanicien> mécanicien = Repository.findById(id);
         return mécanicien.map(Mapper::toDTO).orElse(null);
+    }
+
+    @Override
+    public MécanicienDTO mettreAJourdisponibilite(Long id, MécanicienDTO DTO) {
+        Optional<Mécanicien> optional = Repository.findById(id);
+        if (optional.isPresent()) {
+            Mécanicien mécanicien = optional.get();
+            mécanicien.setDisponible(DTO.getDisponible());
+            return Mapper.toDTO(Repository.save(mécanicien));
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -52,7 +66,6 @@ public class MécanicienService implements IMécanicienService {
             mécanicien.setNom(DTO.getNom());
             mécanicien.setPrenom(DTO.getPrenom());
             mécanicien.setPassword(DTO.getPassword());
-
 
             Mécanicien updated = Repository.save(mécanicien);
             return Mapper.toDTO(updated);

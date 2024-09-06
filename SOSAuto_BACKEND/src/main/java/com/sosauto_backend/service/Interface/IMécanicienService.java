@@ -19,4 +19,7 @@ public interface IMécanicienService {
 
     //By ID
     MécanicienDTO getById(Long id);
+
+    //mettre A Jour
+    MécanicienDTO mettreAJourdisponibilite(Long id, MécanicienDTO DTO);
 }

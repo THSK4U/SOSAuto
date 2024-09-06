@@ -39,5 +39,10 @@ public class MécanicienController implements IMécanicienApi {
     public MécanicienDTO getMécanicienById(Long id) {
         return service.getById(id);
     }
+
+    @Override
+    public MécanicienDTO mettreAjourDisponibilite(Long id, MécanicienDTO mécanicien) {
+        return service.mettreAJourdisponibilite(id,mécanicien);
+    }
 }
 

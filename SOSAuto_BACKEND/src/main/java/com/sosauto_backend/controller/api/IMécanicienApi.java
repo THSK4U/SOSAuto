@@ -28,4 +28,9 @@ public interface IMécanicienApi {
     //By id
     @GetMapping(value = "/Mecanicien/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     MécanicienDTO getMécanicienById(@PathVariable("id") Long id);
+
+    //mettre A Jour Disponibilite
+    @PutMapping(value = "/Mecanicien/MettreAjour/Disponibilite?={id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    MécanicienDTO mettreAjourDisponibilite(@PathVariable("id") Long id,@RequestBody MécanicienDTO mécanicien);
+
 }
