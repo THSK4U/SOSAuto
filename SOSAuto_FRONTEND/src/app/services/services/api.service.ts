@@ -2,7 +2,7 @@
 /* eslint-disable */
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { BaseService } from '../base-service';
@@ -85,9 +85,12 @@ import { VehiculeDto } from '../models/vehicule-dto';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService extends BaseService {
+  private demandesSubject = new BehaviorSubject<DemandeDepannageDto[]>([]);
+
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }
+
 
   /** Path part for operation `creerAdministrateur()` */
   static readonly CreerAdministrateurPath = '/Administrateur/create';

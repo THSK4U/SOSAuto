@@ -1,9 +1,14 @@
-.page-content {
-  margin-top: 0px;
-}
-.card-body {
-  height: 670px;
+body{
+  overflow: hidden;
 }
 .card{
-  height: calc(100% - 120px);
+  height: calc(100% - 10px);
 }
+.row{
+  height: calc(100% - 150px);
+}
+
+.overflow-auto::-webkit-scrollbar{
+  display: none;
+}
+

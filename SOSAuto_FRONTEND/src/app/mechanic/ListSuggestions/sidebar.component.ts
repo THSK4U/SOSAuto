@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Mecanicien} from "../../services/models/mecanicien";
 import {ApiService} from "../../services/services/api.service";
 import {Router} from "@angular/router";
 import {DemandeDepannageDto} from "../../services/models/demande-depannage-dto";
@@ -21,6 +20,9 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.findAllDemande();
+    this.service.getAllDemande().subscribe(demandes => {
+      this.Demandes = demandes;
+    });
   }
 
   private findAllDemande() {
