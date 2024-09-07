@@ -22,4 +22,7 @@ public interface IMécanicienService {
 
     //mettre A Jour
     MécanicienDTO mettreAJourdisponibilite(Long id, MécanicienDTO DTO);
+
+    //get Disponibilite
+    List<MécanicienDTO> getDisponibilite();
 }

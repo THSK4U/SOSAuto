@@ -27,6 +27,7 @@ public class MécanicienController implements IMécanicienApi {
 
     @Override
     public List<MécanicienDTO> getAllMécanicien() {
+        System.out.println("getAllMécanicien"+ service.voirTous());
         return service.voirTous();
     }
 
@@ -43,6 +44,11 @@ public class MécanicienController implements IMécanicienApi {
     @Override
     public MécanicienDTO mettreAjourDisponibilite(Long id, MécanicienDTO mécanicien) {
         return service.mettreAJourdisponibilite(id,mécanicien);
+    }
+
+    @Override
+    public List<MécanicienDTO> getAllMécanicienDesponible() {
+        return service.getDisponibilite();
     }
 }
 

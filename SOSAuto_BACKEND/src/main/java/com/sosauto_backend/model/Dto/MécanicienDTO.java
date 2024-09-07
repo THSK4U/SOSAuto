@@ -9,6 +9,8 @@ import java.util.List;
 
 @Data
 public class MécanicienDTO extends PersonneDTO {
+    private Double latitude;
+    private Double longitude;
     private Disponibilite disponible;
     @JsonIgnore
     private List<DemandeDepannageDTO> tickets;

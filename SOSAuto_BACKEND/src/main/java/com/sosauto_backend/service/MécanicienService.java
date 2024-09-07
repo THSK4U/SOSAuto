@@ -50,6 +50,14 @@ public class MécanicienService implements IMécanicienService {
     }
 
     @Override
+    public List<MécanicienDTO> getDisponibilite() {
+        List<Mécanicien> mécanicien = Repository.getAllByDisponible(Disponibilite.DISPONIBLE);
+        return mécanicien.stream()
+                .map(Mapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<MécanicienDTO> voirTous() {
         List<Mécanicien> mécanicien = Repository.findAll();
         return mécanicien.stream()
@@ -78,5 +86,6 @@ public class MécanicienService implements IMécanicienService {
     public void supprimer(Long id) {
         Repository.deleteById(id);
     }
+
 
 }
