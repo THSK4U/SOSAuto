@@ -1,0 +1,37 @@
+body {
+  overflow: hidden;
+}
+
+.card {
+  height: calc(100% - 10px);
+}
+
+.row {
+  height: calc(100% - 150px);
+}
+
+.overflow-auto::-webkit-scrollbar {
+  display: none;
+}
+
+.card-body {
+  position: relative;
+  height: 100%;
+}
+
+app-map-motorist {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+}
+
+app-creatdemande {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}

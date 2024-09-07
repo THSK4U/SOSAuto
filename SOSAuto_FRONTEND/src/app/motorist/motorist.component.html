@@ -1,1 +1,36 @@
-<p>motorist works!</p>
+<body>
+<div class="page-container">
+  <app-navbarAutomobiliste></app-navbarAutomobiliste>
+
+  <!--  <div class="page-sidebar">-->
+  <!--    <app-sidebar></app-sidebar>-->
+  <!--  </div>-->
+
+  <div class="page-content">
+    <div class="main-wrapper">
+
+
+      <div class="row">
+        <div class="col-sm-12 col-md-3 ">
+          <div class="card stat-widget">
+            <div class="d-flex justify-content-center m-3">
+              <h5 class="text-center mb-0">Les Mécaniciens Disponibles</h5>
+            </div>
+            <app-list-suggestions class="overflow-auto"></app-list-suggestions>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-9">
+          <div class="card stat-widget">
+            <div class="card-body">
+              <app-creatdemande></app-creatdemande>
+              <app-map-motorist></app-map-motorist>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
