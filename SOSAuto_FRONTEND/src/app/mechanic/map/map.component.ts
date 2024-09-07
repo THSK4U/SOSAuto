@@ -61,16 +61,12 @@ export class MapComponent implements OnInit {
     const geolocateControl = new mapboxgl.GeolocateControl({
       positionOptions: { enableHighAccuracy: true },
       trackUserLocation: true,
-      showUserHeading: true
+      showUserHeading: true,
+      showAccuracyCircle: false,
     });
 
     this.map.addControl(geolocateControl);
 
-    this.map.on('load', () => {
-      geolocateControl.trigger();
-    });
-
-    this.map.setZoom(7);
   }
 
   private setupGeolocation(): void {

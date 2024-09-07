@@ -24,7 +24,7 @@ export class MapMotoristComponent {
   ngOnInit(): void {
     this.initializeMap();
     this.addControls();
-    this.setupGeolocation();  // Set up real-time geolocation tracking
+    this.setupGeolocation();
     this.loadDemandes();
   }
 
@@ -60,6 +60,7 @@ export class MapMotoristComponent {
     const geolocateControl = new mapboxgl.GeolocateControl({
       positionOptions: { enableHighAccuracy: true },
       trackUserLocation: true,
+      showAccuracyCircle: false,
     });
 
     this.map.addControl(geolocateControl);
@@ -68,7 +69,6 @@ export class MapMotoristComponent {
       geolocateControl.trigger();
     });
 
-    this.map.setZoom(7);
   }
 
 
@@ -93,9 +93,11 @@ export class MapMotoristComponent {
     this.userLat = userLat;
 
     this.sharedDataService.setUserLocation(userLat, userLng);
-    this.map.setCenter([userLng, userLat]); // Update map center to user's live location
 
-    console.log(`User location updated: ${userLng}, ${userLat}`);
+    this.map.flyTo({
+      center: [userLng, userLat],
+      zoom: 14,
+    });
   }
 
   private handleLocationError(error: GeolocationPositionError): void {

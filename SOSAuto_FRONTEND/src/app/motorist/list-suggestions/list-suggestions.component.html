@@ -1,10 +1,4 @@
 <div class="d-flex flex-column gap-2 p-3">
-  <ng-container *ngIf="countMecanicienIndisponible() === mecaniciens.length && mecaniciens.length > 0">
-    <div class="alert alert-light opacity-75" role="alert">
-      Aucun mécanicien disponible pour le moment.
-    </div>
-  </ng-container>
-
     <ng-container *ngFor="let mecanicien of mecaniciens">
       <ng-container *ngIf="mecanicien.disponible?.length === 0">
           <div class="alert alert-light opacity-75" role="alert">

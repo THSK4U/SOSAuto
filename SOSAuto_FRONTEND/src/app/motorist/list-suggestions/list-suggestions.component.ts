@@ -24,8 +24,4 @@ export class ListSuggestionsComponent implements OnInit{
       }
     );
   }
-
-  countMecanicienIndisponible(): number {
-    return this.mecaniciens.filter(m => m.disponible === 'INDISPONIBLE').length;
-  }
 }
