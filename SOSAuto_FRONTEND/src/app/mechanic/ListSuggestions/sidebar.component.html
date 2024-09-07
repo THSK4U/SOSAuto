@@ -1,4 +1,8 @@
-
+<ng-container *ngIf="Demandes.length === 0">
+<div class="alert alert-light opacity-75" role="alert">
+    Aucun Demande de panne disponible pour le moment.
+  </div>
+</ng-container>
 
 <div class="d-flex flex-column gap-2 p-3">
   <ng-container *ngFor="let demande of Demandes" class="">
