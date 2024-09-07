@@ -2,7 +2,7 @@
 /* eslint-disable */
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { BaseService } from '../base-service';
@@ -32,6 +32,8 @@ import { getAllDemande } from '../fn/operations/get-all-demande';
 import { GetAllDemande$Params } from '../fn/operations/get-all-demande';
 import { getAllMecanicien } from '../fn/operations/get-all-mecanicien';
 import { GetAllMecanicien$Params } from '../fn/operations/get-all-mecanicien';
+import { getAllMecanicienDesponible } from '../fn/operations/get-all-mecanicien-desponible';
+import { GetAllMecanicienDesponible$Params } from '../fn/operations/get-all-mecanicien-desponible';
 import { getAllPanne } from '../fn/operations/get-all-panne';
 import { GetAllPanne$Params } from '../fn/operations/get-all-panne';
 import { getAllParticipation } from '../fn/operations/get-all-participation';
@@ -57,6 +59,8 @@ import { mettreAjourAutomobiliste } from '../fn/operations/mettre-ajour-automobi
 import { MettreAjourAutomobiliste$Params } from '../fn/operations/mettre-ajour-automobiliste';
 import { mettreAjourDemande } from '../fn/operations/mettre-ajour-demande';
 import { MettreAjourDemande$Params } from '../fn/operations/mettre-ajour-demande';
+import { mettreAjourDisponibilite } from '../fn/operations/mettre-ajour-disponibilite';
+import { MettreAjourDisponibilite$Params } from '../fn/operations/mettre-ajour-disponibilite';
 import { mettreAjourMecanicien } from '../fn/operations/mettre-ajour-mecanicien';
 import { MettreAjourMecanicien$Params } from '../fn/operations/mettre-ajour-mecanicien';
 import { mettreAjourPanne } from '../fn/operations/mettre-ajour-panne';
@@ -85,12 +89,9 @@ import { VehiculeDto } from '../models/vehicule-dto';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService extends BaseService {
-  private demandesSubject = new BehaviorSubject<DemandeDepannageDto[]>([]);
-
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }
-
 
   /** Path part for operation `creerAdministrateur()` */
   static readonly CreerAdministrateurPath = '/Administrateur/create';
@@ -620,6 +621,39 @@ export class ApiService extends BaseService {
     );
   }
 
+  /** Path part for operation `getAllMecanicienDesponible()` */
+  static readonly GetAllMecanicienDesponiblePath = '/Mecanicien/Desponible';
+
+  /**
+   * GET Mecanicien/Desponible.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getAllMecanicienDesponible()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllMecanicienDesponible$Response(params?: GetAllMecanicienDesponible$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<MecanicienDto>>> {
+    return getAllMecanicienDesponible(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * GET Mecanicien/Desponible.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getAllMecanicienDesponible$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllMecanicienDesponible(params?: GetAllMecanicienDesponible$Params, context?: HttpContext): Observable<Array<MecanicienDto>> {
+    return this.getAllMecanicienDesponible$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<MecanicienDto>>): Array<MecanicienDto> => r.body)
+    );
+  }
+
   /** Path part for operation `mettreAjourMecanicien()` */
   static readonly MettreAjourMecanicienPath = '/Mecanicien/MettreAjour/{id}';
 
@@ -649,6 +683,39 @@ export class ApiService extends BaseService {
    */
   mettreAjourMecanicien(params: MettreAjourMecanicien$Params, context?: HttpContext): Observable<MecanicienDto> {
     return this.mettreAjourMecanicien$Response(params, context).pipe(
+      map((r: StrictHttpResponse<MecanicienDto>): MecanicienDto => r.body)
+    );
+  }
+
+  /** Path part for operation `mettreAjourDisponibilite()` */
+  static readonly MettreAjourDisponibilitePath = '/Mecanicien/MettreAjour/{id}/Disponibilite';
+
+  /**
+   * PUT Mecanicien/MettreAjour/{id}/Disponibilite.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `mettreAjourDisponibilite()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  mettreAjourDisponibilite$Response(params: MettreAjourDisponibilite$Params, context?: HttpContext): Observable<StrictHttpResponse<MecanicienDto>> {
+    return mettreAjourDisponibilite(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * PUT Mecanicien/MettreAjour/{id}/Disponibilite.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `mettreAjourDisponibilite$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  mettreAjourDisponibilite(params: MettreAjourDisponibilite$Params, context?: HttpContext): Observable<MecanicienDto> {
+    return this.mettreAjourDisponibilite$Response(params, context).pipe(
       map((r: StrictHttpResponse<MecanicienDto>): MecanicienDto => r.body)
     );
   }

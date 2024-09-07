@@ -429,10 +429,68 @@
         }
       }
     },
+    "/Mecanicien/Desponible" : {
+      "get" : {
+        "summary" : "GET Mecanicien/Desponible",
+        "operationId" : "getAllMécanicienDesponible",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/MécanicienDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/Mecanicien/MettreAjour/{id}" : {
       "put" : {
         "summary" : "PUT Mecanicien/MettreAjour/{id}",
         "operationId" : "mettreAjourMécanicien",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MécanicienDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MécanicienDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Mecanicien/MettreAjour/{id}/Disponibilite" : {
+      "put" : {
+        "summary" : "PUT Mecanicien/MettreAjour/{id}/Disponibilite",
+        "operationId" : "mettreAjourDisponibilite",
         "parameters" : [ {
           "name" : "id",
           "in" : "path",
@@ -945,37 +1003,6 @@
           }
         }
       },
-      "AutomobilisteDTO" : {
-        "type" : "object",
-        "properties" : {
-          "véhicules" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/VéhiculeDTO"
-            }
-          },
-          "personneid" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
-          "nom" : {
-            "type" : "string"
-          },
-          "prenom" : {
-            "type" : "string"
-          },
-          "email" : {
-            "type" : "string"
-          },
-          "password" : {
-            "type" : "string"
-          },
-          "role" : {
-            "type" : "string",
-            "enum" : [ "ADMIN", "AUTO", "MECA" ]
-          }
-        }
-      },
       "Automobiliste" : {
         "type" : "object",
         "properties" : {
@@ -1014,7 +1041,7 @@
           },
           "disponible" : {
             "type" : "string",
-            "enum" : [ "DISPONIBLE", "INDISPONIBLE" ]
+            "enum" : [ "INDISPONIBLE", "DISPONIBLE" ]
           },
           "personneid" : {
             "type" : "integer",
@@ -1039,83 +1066,6 @@
         }
       },
       "Panne" : {
-        "type" : "object",
-        "properties" : {
-          "panneid" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
-          "nom" : {
-            "type" : "string"
-          },
-          "description" : {
-            "type" : "string"
-          }
-        }
-      },
-      "DemandeDepannageDTO" : {
-        "type" : "object",
-        "properties" : {
-          "demandeid" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
-          "dateTime" : {
-            "type" : "string",
-            "format" : "date-time"
-          },
-          "latitude" : {
-            "type" : "number",
-            "format" : "double"
-          },
-          "longitude" : {
-            "type" : "number",
-            "format" : "double"
-          },
-          "description" : {
-            "type" : "string"
-          },
-          "etat" : {
-            "type" : "string",
-            "enum" : [ "A_FAIRE", "EN_COURS", "TERMINE" ]
-          },
-          "automobiliste" : {
-            "$ref" : "#/components/schemas/Automobiliste"
-          },
-          "mécanicien" : {
-            "$ref" : "#/components/schemas/Mécanicien"
-          },
-          "panne" : {
-            "$ref" : "#/components/schemas/Panne"
-          }
-        }
-      },
-      "MécanicienDTO" : {
-        "type" : "object",
-        "properties" : {
-          "personneid" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
-          "nom" : {
-            "type" : "string"
-          },
-          "prenom" : {
-            "type" : "string"
-          },
-          "email" : {
-            "type" : "string"
-          },
-          "password" : {
-            "type" : "string"
-          },
-          "role" : {
-            "type" : "string",
-            "enum" : [ "ADMIN", "AUTO", "MECA" ]
-          }
-        }
-      },
-      "PanneDTO" : {
         "type" : "object",
         "properties" : {
           "panneid" : {
@@ -1164,6 +1114,132 @@
           },
           "panne" : {
             "$ref" : "#/components/schemas/Panne"
+          }
+        }
+      },
+      "AutomobilisteDTO" : {
+        "type" : "object",
+        "properties" : {
+          "véhicules" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/VéhiculeDTO"
+            }
+          },
+          "demandeDepannage" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/DemandeDepannage"
+            }
+          },
+          "personneid" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "nom" : {
+            "type" : "string"
+          },
+          "prenom" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "role" : {
+            "type" : "string",
+            "enum" : [ "ADMIN", "AUTO", "MECA" ]
+          }
+        }
+      },
+      "DemandeDepannageDTO" : {
+        "type" : "object",
+        "properties" : {
+          "demandeid" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "dateTime" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "latitude" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "longitude" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "etat" : {
+            "type" : "string",
+            "enum" : [ "A_FAIRE", "EN_COURS", "TERMINE" ]
+          },
+          "automobiliste" : {
+            "$ref" : "#/components/schemas/Automobiliste"
+          },
+          "mécanicien" : {
+            "$ref" : "#/components/schemas/Mécanicien"
+          },
+          "panne" : {
+            "$ref" : "#/components/schemas/Panne"
+          }
+        }
+      },
+      "MécanicienDTO" : {
+        "type" : "object",
+        "properties" : {
+          "latitude" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "longitude" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "disponible" : {
+            "type" : "string",
+            "enum" : [ "INDISPONIBLE", "DISPONIBLE" ]
+          },
+          "personneid" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "nom" : {
+            "type" : "string"
+          },
+          "prenom" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "role" : {
+            "type" : "string",
+            "enum" : [ "ADMIN", "AUTO", "MECA" ]
+          }
+        }
+      },
+      "PanneDTO" : {
+        "type" : "object",
+        "properties" : {
+          "panneid" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "nom" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
           }
         }
       },

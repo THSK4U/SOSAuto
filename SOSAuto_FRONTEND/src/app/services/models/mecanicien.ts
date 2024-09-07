@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface Mecanicien {
-  disponible?: 'DISPONIBLE' | 'INDISPONIBLE';
+  disponible?: 'INDISPONIBLE' | 'DISPONIBLE';
   email?: string;
   latitude?: number;
   longitude?: number;
