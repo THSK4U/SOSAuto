@@ -37,7 +37,6 @@ public class AutomobilisteService implements IAutomobilisteService {
     @Override
     public List<AutomobilisteDTO> voirTous() {
         List<Automobiliste> automobiliste = Repository.findAll();
-        System.out.println(automobiliste.toString());
         return automobiliste.stream()
                 .map(Mapper::toDTO)
                 .collect(Collectors.toList());
