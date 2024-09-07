@@ -843,6 +843,9 @@ body.sidebar-hidden .main-wrapper {
 .card-body {
   padding: 30px
 }
+.card-body-mark {
+  padding: 10px
+}
 .card-description {
   margin-bottom: 20px
 }

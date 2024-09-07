@@ -21,7 +21,7 @@ export class MapComponent implements OnInit {
   private userLat!: number;
 
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService,) {}
 
   ngOnInit(): void {
     this.initializeMap();
@@ -41,7 +41,7 @@ export class MapComponent implements OnInit {
     });
 
     this.map.addControl(new mapboxgl.NavigationControl());
-    this.map.scrollZoom.disable();
+    this.map.scrollZoom.enable();
 
     this.map.on('style.load', () => {
       this.map.setFog({});
@@ -92,10 +92,6 @@ export class MapComponent implements OnInit {
     this.userLat = userLat;
 
     this.map.setCenter([userLng, userLat]);
-
-
-
-    console.log(`User location: ${userLng}, ${userLat}`);
   }
 
   private handleLocationError(error: GeolocationPositionError): void {
@@ -130,12 +126,14 @@ export class MapComponent implements OnInit {
         markerElement.src = 'assets/images/WHITE.png';
         markerElement.style.width = '50px';
         markerElement.style.height = '50px';
+        markerElement.style.marginTop = `-20px`;
+
 
         new mapboxgl.Marker({ element: markerElement })
           .setLngLat([demande.longitude, demande.latitude])
           .setPopup(new mapboxgl.Popup().setHTML(`
-            <div class="card-body text-center d-flex flex-column align-items-center border-radius: 10px">
-              <h5 class="card-title mb-4">
+            <div class="card-body-mark text-center d-flex flex-column align-items-center border-radius: 10px">
+              <h5 class="card-title mb-2">
                 ${demande.automobiliste?.nom?.toUpperCase() || 'Unknown'}
                 <span class="text-muted" style="font-size: 12px;">à ${this.KM.toFixed(1)}KM</span>
               </h5>
