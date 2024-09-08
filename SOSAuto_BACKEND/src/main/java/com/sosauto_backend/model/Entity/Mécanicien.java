@@ -18,8 +18,10 @@ import java.util.List;
 public class Mécanicien extends Personne{
     private Double latitude;
     private Double longitude;
+    private String proofOfProfessionUrl;
     @Enumerated(EnumType.STRING)
     private Disponibilite disponible;
+
     @OneToMany(mappedBy = "mécanicien",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<DemandeDepannage> demandeDepannage;

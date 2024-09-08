@@ -8,4 +8,7 @@ import lombok.Data;
 @DiscriminatorValue(value = "ADMIN")
 public class Administrateur extends Personne {
 
+    @Column(nullable = false, unique = true)
+    private String username;
+
 }

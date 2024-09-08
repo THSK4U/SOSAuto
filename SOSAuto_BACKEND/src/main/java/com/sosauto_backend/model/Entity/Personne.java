@@ -19,6 +19,8 @@ public class Personne {
     private String nom;
     private String prenom;
     private String email;
+    private String nationalIdCardUrl;
+    private String numTelephone;
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;

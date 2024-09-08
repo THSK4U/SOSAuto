@@ -11,6 +11,7 @@ import java.util.List;
 public class MécanicienDTO extends PersonneDTO {
     private Double latitude;
     private Double longitude;
+    private String proofOfProfessionUrl;
     private Disponibilite disponible;
     @JsonIgnore
     private List<DemandeDepannageDTO> tickets;
