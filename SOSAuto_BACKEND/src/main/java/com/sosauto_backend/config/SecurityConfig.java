@@ -11,6 +11,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -20,6 +22,11 @@ public class SecurityConfig {
 
         return http
                 .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests( auth -> {
+                    auth.requestMatchers("/api/**").permitAll();
+                    auth.anyRequest().authenticated();})
+                .oauth2Login(withDefaults())
+                .formLogin(withDefaults())
                 .build();
     }
 
