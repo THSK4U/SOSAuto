@@ -1,16 +1,19 @@
 package com.sosauto_backend.controller.api;
 
 import com.sosauto_backend.model.Dto.AdministrateurDTO;
+import com.sosauto_backend.model.Entity.AuthResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-public interface IAdministrateurApi {
-    @PostMapping(value =  "/Administrateur/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    AdministrateurDTO creerAdministrateur(@RequestBody AdministrateurDTO administrateurDTO);
+import static com.sosauto_backend.controller.utils.Constants.APP_ADMIN;
 
-    @DeleteMapping(value =  "/Administrateur/delete/{id}")
+public interface IAdministrateurApi {
+    @PostMapping(value = APP_ADMIN + "/Administrateur/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    AuthResponse creerAdministrateur(@RequestBody AdministrateurDTO administrateurDTO);
+
+    @DeleteMapping(value = APP_ADMIN + "/Administrateur/delete/{id}")
     void supprimerAdministrateur(@PathVariable("id") Long id);
 
-    @PutMapping(value = "/Administrateur/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = APP_ADMIN + "/Administrateur/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     AdministrateurDTO mettreAJourAdministrateur(@PathVariable("id") Long id, @RequestBody AdministrateurDTO administrateurDTO);
 }

@@ -1,12 +1,13 @@
 package com.sosauto_backend.service.Interface;
 
 import com.sosauto_backend.model.Dto.MécanicienDTO;
+import com.sosauto_backend.model.Entity.AuthResponse;
 
 import java.util.List;
 
 public interface IMécanicienService {
     //Creer
-    MécanicienDTO creer(MécanicienDTO personne);
+    AuthResponse creer(MécanicienDTO personne);
 
     //mettre A Jour
     MécanicienDTO mettreAJour(Long id, MécanicienDTO DTO);

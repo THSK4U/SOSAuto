@@ -5,4 +5,6 @@ import lombok.Data;
 @Data
 public class AdministrateurDTO extends PersonneDTO {
 
+    private String username;
+
 }
