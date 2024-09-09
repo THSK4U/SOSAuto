@@ -1,12 +1,13 @@
 package com.sosauto_backend.service;
 
 
+import com.sosauto_backend.model.Dto.AdministrateurDTO;
+import com.sosauto_backend.model.Dto.AutomobilisteDTO;
+import com.sosauto_backend.model.Dto.MécanicienDTO;
+import com.sosauto_backend.model.Dto.PersonneDTO;
 import com.sosauto_backend.model.Entity.*;
 import com.sosauto_backend.model.Enum.Disponibilite;
 import com.sosauto_backend.model.Enum.Role;
-import com.sosauto_backend.model.Mapper.AutomobilisteMapper;
-import com.sosauto_backend.model.Mapper.MécanicienMapper;
-import com.sosauto_backend.model.Mapper.PersonneMapper;
 import com.sosauto_backend.respository.AdministrateurRepository;
 import com.sosauto_backend.respository.AutomobilisteRepository;
 import com.sosauto_backend.respository.MécanicienRepository;
@@ -16,9 +17,8 @@ import com.sosauto_backend.service.securitySevice.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -30,10 +30,7 @@ public class AuthenticationService implements IAuthenticationService {
     private final MécanicienRepository MechRepository;
     private final AdministrateurRepository administrateurRepository;
 //
-        //Mapper
-    private final PersonneMapper userMapper;
-    private final AutomobilisteMapper AutoMapper;
-    private final MécanicienMapper MechMapper;
+
     //
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -41,8 +38,8 @@ public class AuthenticationService implements IAuthenticationService {
 
 
     @Override
-    public AuthResponse registerAutomobiliste(Automobiliste request) {
-        if(AutoRepository.findBynumTelephone(request.getNumTelephone()).isPresent()){
+    public AuthResponse registerAutomobiliste(AutomobilisteDTO request) {
+        if (AutoRepository.findBynumTelephone(request.getNumTelephone()).isPresent()) {
             return new AuthResponse(null, "Numéro de téléphone déjà existant");
         }
 
@@ -59,12 +56,11 @@ public class AuthenticationService implements IAuthenticationService {
         AutoRepository.save(auto);
 
         return new AuthResponse(jwtService.generateToken(auto), "L'inscription de l'automobiliste a été réussie");
-
     }
 
     @Override
-    public AuthResponse registerMecanicien(Mécanicien request) {
-        if(MechRepository.findBynumTelephone(request.getNumTelephone()).isPresent()){
+    public AuthResponse registerMecanicien(MécanicienDTO request) {
+        if (MechRepository.findBynumTelephone(request.getNumTelephone()).isPresent()) {
             return new AuthResponse(null, "Numéro de téléphone déjà existant");
         }
 
@@ -89,19 +85,19 @@ public class AuthenticationService implements IAuthenticationService {
     }
 
     @Override
-    public AuthResponse registerAdmin(Administrateur request) {
-       Administrateur admin = new Administrateur();
+    public AuthResponse registerAdmin(AdministrateurDTO request) {
+        Administrateur admin = new Administrateur();
 
-       admin.setUsername(request.getUsername());
-       admin.setPassword(passwordEncoder.encode(request.getPassword()));
-       admin.setRole(Role.ADMIN);
+        admin.setUsername(request.getUsername());
+        admin.setPassword(passwordEncoder.encode(request.getPassword()));
+        admin.setRole(Role.ADMIN);
 
-       administrateurRepository.save(admin);
+        administrateurRepository.save(admin);
         return new AuthResponse(jwtService.generateToken(admin), "L'inscription de l'administrateur a été spécie");
     }
 
     @Override
-    public AuthResponse authenticate(Personne request) {
+    public AuthResponse authenticate(PersonneDTO request) {
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -110,7 +106,10 @@ public class AuthenticationService implements IAuthenticationService {
                 )
         );
 
-        Personne user = Persrepository.findBynumTelephone(request.getNumTelephone()).orElseThrow();
-        return new AuthResponse(jwtService.generateToken(user) ,"Authentification reussie");
+        Personne user = Persrepository.findBynumTelephone(request.getNumTelephone())
+                .orElseThrow(() -> new RuntimeException("User not found with phone number: " + request.getNumTelephone()));
+
+        // Generate JWT token for the authenticated user
+        return new AuthResponse(jwtService.generateToken(user), "Authentification réussie");
     }
 }
