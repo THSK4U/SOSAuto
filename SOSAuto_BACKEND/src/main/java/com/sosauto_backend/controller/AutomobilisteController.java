@@ -2,6 +2,7 @@ package com.sosauto_backend.controller;
 
 import com.sosauto_backend.controller.api.IAutomobilisteApi;
 import com.sosauto_backend.model.Dto.AutomobilisteDTO;
+import com.sosauto_backend.model.Entity.AuthResponse;
 import com.sosauto_backend.service.AutomobilisteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ public class AutomobilisteController implements IAutomobilisteApi {
     private AutomobilisteService Service;
 
     @Override
-    public AutomobilisteDTO creerAutomobiliste(AutomobilisteDTO automobiliste) {
+    public AuthResponse creerAutomobiliste(AutomobilisteDTO automobiliste) {
         return Service.creer(automobiliste);
     }
 

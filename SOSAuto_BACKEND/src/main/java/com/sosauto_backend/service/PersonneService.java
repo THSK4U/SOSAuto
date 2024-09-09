@@ -7,6 +7,9 @@ import com.sosauto_backend.model.Mapper.PersonneMapper;
 import com.sosauto_backend.respository.PersonneRepository;
 import com.sosauto_backend.service.Interface.IPersonneService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class PersonneService implements IPersonneService {
+public class PersonneService implements IPersonneService, UserDetailsService {
     @Autowired
     private PersonneMapper Mapper;
     @Autowired
@@ -33,6 +36,7 @@ public class PersonneService implements IPersonneService {
         Optional<Personne> personne = Repository.findById(id);
         return personne.map(Mapper::toDTO).orElse(null);
     }
+
 
     @Override
     public List<PersonneDTO> voirTous() {
@@ -63,5 +67,12 @@ public class PersonneService implements IPersonneService {
     public void supprimer(Long id) {
         Repository.deleteById(id);
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String numTelephone) throws UsernameNotFoundException {
+        return Repository.findBynumTelephone(numTelephone)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
 
 }

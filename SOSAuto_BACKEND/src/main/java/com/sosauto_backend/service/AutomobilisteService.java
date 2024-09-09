@@ -1,9 +1,11 @@
 package com.sosauto_backend.service;
 
 import com.sosauto_backend.model.Dto.AutomobilisteDTO;
+import com.sosauto_backend.model.Entity.AuthResponse;
 import com.sosauto_backend.model.Entity.Automobiliste;
 import com.sosauto_backend.model.Mapper.AutomobilisteMapper;
 import com.sosauto_backend.respository.AutomobilisteRepository;
+import com.sosauto_backend.service.Interface.IAuthenticationService;
 import com.sosauto_backend.service.Interface.IAutomobilisteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +23,12 @@ public class AutomobilisteService implements IAutomobilisteService {
     @Autowired
     private AutomobilisteRepository Repository;
 
+    @Autowired
+    private IAuthenticationService authenticationService;
+
     @Override
-    public AutomobilisteDTO creer(AutomobilisteDTO Automobiliste) {
-        Automobiliste Automobilistes = Mapper.toEntity(Automobiliste);
-        Automobiliste saved = Repository.save(Automobilistes);
-        return Mapper.toDTO(saved);
+    public AuthResponse creer(AutomobilisteDTO Automobiliste) {
+        return authenticationService.registerAutomobiliste(Automobiliste);
     }
 
     @Override

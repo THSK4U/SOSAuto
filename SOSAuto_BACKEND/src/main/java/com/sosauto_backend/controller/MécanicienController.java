@@ -3,6 +3,7 @@ package com.sosauto_backend.controller;
 
 import com.sosauto_backend.controller.api.IMécanicienApi;
 import com.sosauto_backend.model.Dto.MécanicienDTO;
+import com.sosauto_backend.model.Entity.AuthResponse;
 import com.sosauto_backend.service.Interface.IMécanicienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ public class MécanicienController implements IMécanicienApi {
     private IMécanicienService service;
 
     @Override
-    public MécanicienDTO creerMécanicien(MécanicienDTO Mécanicien) {
+    public AuthResponse creerMécanicien(MécanicienDTO Mécanicien) {
         return service.creer(Mécanicien);
     }
 

@@ -2,9 +2,11 @@ package com.sosauto_backend.service;
 
 import com.sosauto_backend.model.Dto.AdministrateurDTO;
 import com.sosauto_backend.model.Entity.Administrateur;
+import com.sosauto_backend.model.Entity.AuthResponse;
 import com.sosauto_backend.model.Mapper.AdministrateurMapper;
 import com.sosauto_backend.respository.AdministrateurRepository;
 import com.sosauto_backend.service.Interface.IAdministrateurService;
+import com.sosauto_backend.service.Interface.IAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +23,12 @@ public class AdministrateurService implements IAdministrateurService {
     @Autowired
     private AdministrateurRepository Repository;
 
+    @Autowired
+    private IAuthenticationService authenticationService;
+
     @Override
-    public AdministrateurDTO creer(AdministrateurDTO Administrateur) {
-        Administrateur Administrateurs = Mapper.toEntity(Administrateur);
-        Administrateur saved = Repository.save(Administrateurs);
-        return Mapper.toDTO(saved);
+    public AuthResponse creer(AdministrateurDTO Administrateur) {
+        return authenticationService.registerAdmin(Administrateur);
     }
 
     @Override

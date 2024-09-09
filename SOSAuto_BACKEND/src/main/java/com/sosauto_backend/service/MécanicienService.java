@@ -2,10 +2,12 @@ package com.sosauto_backend.service;
 
 
 import com.sosauto_backend.model.Dto.MécanicienDTO;
+import com.sosauto_backend.model.Entity.AuthResponse;
 import com.sosauto_backend.model.Entity.Mécanicien;
 import com.sosauto_backend.model.Enum.Disponibilite;
 import com.sosauto_backend.model.Mapper.MécanicienMapper;
 import com.sosauto_backend.respository.MécanicienRepository;
+import com.sosauto_backend.service.Interface.IAuthenticationService;
 import com.sosauto_backend.service.Interface.IMécanicienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,12 +25,14 @@ public class MécanicienService implements IMécanicienService {
     @Autowired
     private MécanicienRepository Repository;
 
+    @Autowired
+    private IAuthenticationService authenticationService;
+
+
     @Override
-    public MécanicienDTO creer(MécanicienDTO Mécanicien) {
-        Mécanicien mécaniciens = Mapper.toEntity(Mécanicien);
-        mécaniciens.setDisponible(Disponibilite.INDISPONIBLE);
-        Mécanicien saved = Repository.save(mécaniciens);
-        return Mapper.toDTO(saved);
+    public AuthResponse creer(MécanicienDTO Mécanicien) {
+        Mécanicien.setDisponible(Disponibilite.INDISPONIBLE);
+        return authenticationService.registerMecanicien(Mécanicien);
     }
 
     @Override

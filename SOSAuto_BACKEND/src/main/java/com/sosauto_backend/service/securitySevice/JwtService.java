@@ -28,13 +28,13 @@ public class JwtService {
                 .parseClaimsJws(token);
     }
 
-    public String extractUsername(String token) {
+    public String extractnumTelephone(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
 
     public boolean isValid(String token, UserDetails user) {
-        String username = extractUsername(token);
+        String username = extractnumTelephone(token);
         return (username.equals(user.getUsername())) && !isTokenExpired(token);
     }
 
@@ -64,7 +64,7 @@ public class JwtService {
     public String generateToken(Personne user) {
         String token = Jwts
                 .builder()
-                .subject(user.getEmail())
+                .subject(user.getNumTelephone())
                 .claim("id",user.getPersonneid())
                 .claim("role",user.getRole())
                 .issuedAt(new Date(System.currentTimeMillis()))
