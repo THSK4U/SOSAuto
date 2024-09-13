@@ -1,5 +1,6 @@
 package com.sosauto_backend.config;
 
+import com.sosauto_backend.controller.utils.Constants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -26,13 +27,32 @@ public class SecurityConfig {
 
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests( auth -> {
-                    auth.requestMatchers("/login","/**").permitAll();
-//                    auth.anyRequest().authenticated();
-                  })
-//                .oauth2Login(withDefaults())
+                .authorizeHttpRequests(auth -> {
+                    auth.requestMatchers("/login").permitAll();
+                    auth.requestMatchers("/public/**").permitAll();
+
+                    // Admin routes
+                    auth.requestMatchers(Constants.APP_ADMIN, Constants.APP_ADMIN_AUTO, Constants.APP_ADMIN_MECH).hasRole("ADMIN");
+
+                    // Automobiliste routes
+                    auth.requestMatchers(Constants.APP_AUTO, Constants.APP_ADMIN_AUTO).hasRole("AUTO");
+
+                    // Mechanic routes
+                    auth.requestMatchers(Constants.APP_MECH, Constants.APP_ADMIN_MECH).hasRole("MECA");
+
+                    // Routes for all authenticated users
+                    auth.requestMatchers(Constants.APP_PERMITALLAuth).authenticated();
+
+                    // Permit all
+                    auth.requestMatchers(Constants.APP_PERMIT_ALL).permitAll();
+
+                    // Catch-all: require authentication for any other request
+                    auth.anyRequest().authenticated();
+                })
+                .httpBasic(withDefaults())
                 .build();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder()
     {
