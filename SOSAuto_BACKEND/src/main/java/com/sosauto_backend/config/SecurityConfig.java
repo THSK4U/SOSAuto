@@ -28,28 +28,24 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/login").permitAll();
-                    auth.requestMatchers("/public/**").permitAll();
+                    // Admin
+                    auth.requestMatchers(Constants.APP_ADMIN+"/**", Constants.APP_ADMIN_AUTO+"/**", Constants.APP_ADMIN_MECH+"/**").hasRole("ADMIN");
 
-                    // Admin routes
-                    auth.requestMatchers(Constants.APP_ADMIN, Constants.APP_ADMIN_AUTO, Constants.APP_ADMIN_MECH).hasRole("ADMIN");
+                    // Automobiliste
+                    auth.requestMatchers(Constants.APP_AUTO+"/**", Constants.APP_ADMIN_AUTO+"/**").hasRole("AUTO");
 
-                    // Automobiliste routes
-                    auth.requestMatchers(Constants.APP_AUTO, Constants.APP_ADMIN_AUTO).hasRole("AUTO");
+                    // Mechanic
+                    auth.requestMatchers(Constants.APP_MECH+"/**", Constants.APP_ADMIN_MECH+"/**").hasRole("MECA");
 
-                    // Mechanic routes
-                    auth.requestMatchers(Constants.APP_MECH, Constants.APP_ADMIN_MECH).hasRole("MECA");
-
-                    // Routes for all authenticated users
-                    auth.requestMatchers(Constants.APP_PERMITALLAuth).authenticated();
+                    // Permit authenticated
+                    auth.requestMatchers(Constants.APP_PERMITALLAuth+"/**").authenticated();
 
                     // Permit all
-                    auth.requestMatchers(Constants.APP_PERMIT_ALL).permitAll();
+                    auth.requestMatchers(Constants.APP_PERMIT_ALL+"/**").permitAll();
 
-                    // Catch-all: require authentication for any other request
+                    //require authentication for any other request
                     auth.anyRequest().authenticated();
                 })
-                .httpBasic(withDefaults())
                 .build();
     }
 
