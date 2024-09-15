@@ -28,23 +28,23 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    // Admin
-                    auth.requestMatchers(Constants.APP_ADMIN+"/**", Constants.APP_ADMIN_AUTO+"/**", Constants.APP_ADMIN_MECH+"/**").hasRole("ADMIN");
-
-                    // Automobiliste
-                    auth.requestMatchers(Constants.APP_AUTO+"/**", Constants.APP_ADMIN_AUTO+"/**").hasRole("AUTO");
-
-                    // Mechanic
-                    auth.requestMatchers(Constants.APP_MECH+"/**", Constants.APP_ADMIN_MECH+"/**").hasRole("MECA");
-
-                    // Permit authenticated
-                    auth.requestMatchers(Constants.APP_PERMITALLAuth+"/**").authenticated();
-
-                    // Permit all
-                    auth.requestMatchers(Constants.APP_PERMIT_ALL+"/**").permitAll();
-
+//                    // Admin
+//                    auth.requestMatchers(Constants.APP_ADMIN+"/**", Constants.APP_ADMIN_AUTO+"/**", Constants.APP_ADMIN_MECH+"/**").hasRole("ADMIN")
+//
+//                    // Automobiliste
+//                    .requestMatchers(Constants.APP_AUTO+"/**", Constants.APP_ADMIN_AUTO+"/**").hasRole("AUTO")
+//
+//                    // Mechanic
+//                    .requestMatchers(Constants.APP_MECH+"/**", Constants.APP_ADMIN_MECH+"/**").hasRole("MECA")
+//
+//                    // Permit authenticated
+//                    .requestMatchers(Constants.APP_PERMITALLAuth+"/**").authenticated()
+//
+//                    // Permit all
+//                    .requestMatchers(Constants.APP_PERMIT_ALL+"/**").permitAll(
+                    auth.requestMatchers("/**").permitAll()
                     //require authentication for any other request
-                    auth.anyRequest().authenticated();
+                    .anyRequest().authenticated();
                 })
                 .build();
     }
