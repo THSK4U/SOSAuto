@@ -1,11 +1,10 @@
+<div class="d-flex flex-column gap-2 p-3">
 <ng-container *ngIf="Demandes.length === 0">
 <div class="alert alert-light opacity-75" role="alert">
     Aucun Demande de panne disponible pour le moment.
   </div>
 </ng-container>
-
-<div class="d-flex flex-column gap-2 p-3">
-  <ng-container *ngFor="let demande of Demandes" class="">
+ <ng-container *ngFor="let demande of Demandes" class="">
     <div class="d-flex justify-content-between align-items-center bg-white rounded shadow-sm p-3 ">
       <div class="d-flex flex-column">
         <span class="text-dark fw-bold fs-5">{{ demande.automobiliste?.nom?.toUpperCase() }}</span>

@@ -27,4 +27,4 @@ export function supprimerVehicule(http: HttpClient, rootUrl: string, params: Sup
   );
 }
 
-supprimerVehicule.PATH = '/Vehicule/Delete/{id}';
+supprimerVehicule.PATH = '/autoadmin/Vehicule/Delete/{id}';

@@ -27,11 +27,19 @@ app-map-motorist {
   bottom: 0;
   z-index: 9;
 }
+app-form-demande{
+  position: absolute;
+  z-index: 10;
+}
 
 app-creatdemande {
+  transform: translateX(-50%);
+  z-index: 10;
+}
+.container{
   position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 10;
+  z-index: 11;
 }

@@ -30,4 +30,4 @@ export function mettreAJourAdministrateur(http: HttpClient, rootUrl: string, par
   );
 }
 
-mettreAJourAdministrateur.PATH = '/Administrateur/update/{id}';
+mettreAJourAdministrateur.PATH = '/admin/Administrateur/update/{id}';

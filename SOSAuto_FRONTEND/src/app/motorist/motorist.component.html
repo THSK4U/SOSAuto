@@ -22,7 +22,29 @@
         <div class="col-sm-12 col-md-9">
           <div class="card stat-widget">
             <div class="card-body">
-              <app-creatdemande></app-creatdemande>
+
+              <div class="container">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
+                  <mat-icon>add</mat-icon>Demande De Dépannage</button>
+              </div>
+
+
+
+
+              <!-- Modal -->
+              <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModal" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addModalLabel">Add New Ticket</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <app-creatdemande></app-creatdemande>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <app-map-motorist></app-map-motorist>
 
             </div>

@@ -6,13 +6,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { AuthResponse } from '../../models/auth-response';
 import { MecanicienDto } from '../../models/mecanicien-dto';
 
 export interface CreerMecanicien$Params {
       body: MecanicienDto
 }
 
-export function creerMecanicien(http: HttpClient, rootUrl: string, params: CreerMecanicien$Params, context?: HttpContext): Observable<StrictHttpResponse<MecanicienDto>> {
+export function creerMecanicien(http: HttpClient, rootUrl: string, params: CreerMecanicien$Params, context?: HttpContext): Observable<StrictHttpResponse<AuthResponse>> {
   const rb = new RequestBuilder(rootUrl, creerMecanicien.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/json');
@@ -23,9 +24,9 @@ export function creerMecanicien(http: HttpClient, rootUrl: string, params: Creer
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<MecanicienDto>;
+      return r as StrictHttpResponse<AuthResponse>;
     })
   );
 }
 
-creerMecanicien.PATH = '/Mecanicien/Creer';
+creerMecanicien.PATH = '/All/Mecanicien/Creer';

@@ -145,7 +145,7 @@ export class MapMotoristComponent {
                 <span class="text-muted" style="font-size: 12px;">à ${distance.toFixed(1)}KM</span>
               </h6>
               <h6 class="card-subtitle mb-2 text-danger">${List.disponible || 'Unknown'}</h6>
-              <p class="card-text">${List.email || 'Unknown'}</p>
+              <p class="card-text">${List.numTelephone || 'Unknown'}</p>
               <a href="#" class="btn btn-success mt-2">Demande</a>
             </div>
           `))

@@ -28,4 +28,4 @@ export function getParticipationById(http: HttpClient, rootUrl: string, params: 
   );
 }
 
-getParticipationById.PATH = '/Participation/{id}';
+getParticipationById.PATH = '/Auth/Participation/{id}';

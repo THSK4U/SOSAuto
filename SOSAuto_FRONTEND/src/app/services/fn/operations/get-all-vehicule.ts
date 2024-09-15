@@ -26,4 +26,4 @@ export function getAllVehicule(http: HttpClient, rootUrl: string, params?: GetAl
   );
 }
 
-getAllVehicule.PATH = '/Vehicule';
+getAllVehicule.PATH = '/admin/Vehicule';

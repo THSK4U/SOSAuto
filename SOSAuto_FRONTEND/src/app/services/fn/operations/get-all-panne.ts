@@ -26,4 +26,4 @@ export function getAllPanne(http: HttpClient, rootUrl: string, params?: GetAllPa
   );
 }
 
-getAllPanne.PATH = '/Panne';
+getAllPanne.PATH = '/autoadmin/Panne';

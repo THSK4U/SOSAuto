@@ -28,4 +28,4 @@ export function creerDemande(http: HttpClient, rootUrl: string, params: CreerDem
   );
 }
 
-creerDemande.PATH = '/DemandeDepannage/Creer';
+creerDemande.PATH = '/automobiliste/DemandeDepannage/Creer';

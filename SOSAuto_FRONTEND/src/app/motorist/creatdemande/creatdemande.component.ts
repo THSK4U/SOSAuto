@@ -12,7 +12,13 @@ import { SharedDataService } from "../../services/services/share-data.service";
 })
 export class CreatdemandeComponent {
 
-  constructor(private service: ApiService, private sharedDataService: SharedDataService) {}
+  description: string = '';
+  automobiliste: { personneid: number } = { personneid: 0 };
+  panne: { panneid: number } = { panneid: 0 };
+
+  constructor(private service: ApiService,
+              private sharedDataService: SharedDataService,
+  ) {}
 
   onSubmit(): void {
     const location = this.sharedDataService.getUserLocation();
@@ -22,26 +28,28 @@ export class CreatdemandeComponent {
         body: {
           latitude: location.lat,
           longitude: location.lng,
-          description: 'Hada test',
+          description: this.description,
           automobiliste: {
-            personneid: 4
+            personneid: this.automobiliste?.personneid
           },
           panne: {
-            panneid: 2
+            panneid: this.panne?.panneid
           }
         }
       };
 
       this.service.creerDemande$Response(requestParams).subscribe(
         (response: StrictHttpResponse<DemandeDepannageDto>) => {
+          console.log('Demande créée avec succès', response.body);
+
         },
         (error) => {
-          console.error('Request failed:', error);
+          console.error('La création de la demande a échoué:', error);
         }
       );
     } else {
-      console.error('User location is not available.');
-      alert('Could not retrieve user location. Please make sure location services are enabled.');
+      console.error('La localisation de l\'utilisateur n\'est pas disponible.');
+      alert('Impossible de récupérer la localisation de l\'utilisateur. Veuillez vous assurer que les services de localisation sont activés.');
     }
   }
 }

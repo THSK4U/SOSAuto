@@ -30,4 +30,4 @@ export function mettreAjourVehicule(http: HttpClient, rootUrl: string, params: M
   );
 }
 
-mettreAjourVehicule.PATH = '/Vehicule/MettreAjour/{id}';
+mettreAjourVehicule.PATH = '/autoadmin/Vehicule/MettreAjour/{id}';

@@ -27,4 +27,4 @@ export function supprimerAutomobiliste(http: HttpClient, rootUrl: string, params
   );
 }
 
-supprimerAutomobiliste.PATH = '/Automobiliste/Delete/{id}';
+supprimerAutomobiliste.PATH = '/automobiliste/Automobiliste/Delete/{id}';

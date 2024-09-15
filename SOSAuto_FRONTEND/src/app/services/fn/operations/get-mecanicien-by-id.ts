@@ -28,4 +28,4 @@ export function getMecanicienById(http: HttpClient, rootUrl: string, params: Get
   );
 }
 
-getMecanicienById.PATH = '/Mecanicien/{id}';
+getMecanicienById.PATH = '/Auth/Mecanicien/{id}';

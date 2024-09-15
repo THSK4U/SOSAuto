@@ -6,26 +6,27 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { PanneDto } from '../../models/panne-dto';
+import { AuthResponse } from '../../models/auth-response';
+import { PersonneDto } from '../../models/personne-dto';
 
-export interface CreerPanne$Params {
-      body: PanneDto
+export interface Login$Params {
+      body: PersonneDto
 }
 
-export function creerPanne(http: HttpClient, rootUrl: string, params: CreerPanne$Params, context?: HttpContext): Observable<StrictHttpResponse<PanneDto>> {
-  const rb = new RequestBuilder(rootUrl, creerPanne.PATH, 'post');
+export function login(http: HttpClient, rootUrl: string, params: Login$Params, context?: HttpContext): Observable<StrictHttpResponse<AuthResponse>> {
+  const rb = new RequestBuilder(rootUrl, login.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/json');
   }
 
   return http.request(
-    rb.build({ responseType: 'json', accept: 'application/json', context })
+    rb.build({ responseType: 'blob', accept: '*/*', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<PanneDto>;
+      return r as StrictHttpResponse<AuthResponse>;
     })
   );
 }
 
-creerPanne.PATH = '/admin/Panne/Creer';
+login.PATH = '/All/login';

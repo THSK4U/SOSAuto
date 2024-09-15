@@ -28,4 +28,4 @@ export function getVehiculeById(http: HttpClient, rootUrl: string, params: GetVe
   );
 }
 
-getVehiculeById.PATH = '/Vehicule/{id}';
+getVehiculeById.PATH = '/autoadmin/Vehicule/{id}';

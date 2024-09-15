@@ -7,12 +7,13 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 import { AdministrateurDto } from '../../models/administrateur-dto';
+import { AuthResponse } from '../../models/auth-response';
 
 export interface CreerAdministrateur$Params {
       body: AdministrateurDto
 }
 
-export function creerAdministrateur(http: HttpClient, rootUrl: string, params: CreerAdministrateur$Params, context?: HttpContext): Observable<StrictHttpResponse<AdministrateurDto>> {
+export function creerAdministrateur(http: HttpClient, rootUrl: string, params: CreerAdministrateur$Params, context?: HttpContext): Observable<StrictHttpResponse<AuthResponse>> {
   const rb = new RequestBuilder(rootUrl, creerAdministrateur.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/json');
@@ -23,9 +24,9 @@ export function creerAdministrateur(http: HttpClient, rootUrl: string, params: C
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<AdministrateurDto>;
+      return r as StrictHttpResponse<AuthResponse>;
     })
   );
 }
 
-creerAdministrateur.PATH = '/Administrateur/create';
+creerAdministrateur.PATH = '/admin/Administrateur/create';

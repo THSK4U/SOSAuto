@@ -26,4 +26,4 @@ export function getAllAutomobiliste(http: HttpClient, rootUrl: string, params?: 
   );
 }
 
-getAllAutomobiliste.PATH = '/Automobiliste';
+getAllAutomobiliste.PATH = '/admin/Automobiliste';

@@ -26,4 +26,4 @@ export function getAllMecanicienDesponible(http: HttpClient, rootUrl: string, pa
   );
 }
 
-getAllMecanicienDesponible.PATH = '/Mecanicien/Desponible';
+getAllMecanicienDesponible.PATH = '/autoadmin/Mecanicien/Desponible';

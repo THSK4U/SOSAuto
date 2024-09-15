@@ -30,4 +30,4 @@ export function mettreAjourPanne(http: HttpClient, rootUrl: string, params: Mett
   );
 }
 
-mettreAjourPanne.PATH = '/Panne/MettreAjour/{id}';
+mettreAjourPanne.PATH = '/admin/Panne/MettreAjour/{id}';

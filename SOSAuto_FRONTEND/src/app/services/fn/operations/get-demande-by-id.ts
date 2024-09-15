@@ -28,4 +28,4 @@ export function getDemandeById(http: HttpClient, rootUrl: string, params: GetDem
   );
 }
 
-getDemandeById.PATH = '/DemandeDepannage/{id}';
+getDemandeById.PATH = '/Auth/DemandeDepannage/{id}';

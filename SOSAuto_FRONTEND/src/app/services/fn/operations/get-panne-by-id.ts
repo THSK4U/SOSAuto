@@ -28,4 +28,4 @@ export function getPanneById(http: HttpClient, rootUrl: string, params: GetPanne
   );
 }
 
-getPanneById.PATH = '/Panne/{id}';
+getPanneById.PATH = '/Auth/Panne/{id}';

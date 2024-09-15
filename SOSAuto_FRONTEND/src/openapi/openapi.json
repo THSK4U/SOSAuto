@@ -6,18 +6,18 @@
     "version" : "1.0.0"
   },
   "servers" : [ {
-    "url" : "https://SOSAuto_BACKEND"
+    "url" : "http://localhost:8088"
   } ],
   "paths" : {
-    "/Administrateur/create" : {
+    "/All/Automobiliste/Creer" : {
       "post" : {
-        "summary" : "POST Administrateur/create",
-        "operationId" : "creerAdministrateur",
+        "summary" : "POST All/Automobiliste/Creer",
+        "operationId" : "creerAutomobiliste",
         "requestBody" : {
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/AdministrateurDTO"
+                "$ref" : "#/components/schemas/AutomobilisteDTO"
               }
             }
           },
@@ -29,7 +29,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/AdministrateurDTO"
+                  "$ref" : "#/components/schemas/AuthResponse"
                 }
               }
             }
@@ -37,66 +37,9 @@
         }
       }
     },
-    "/Administrateur/delete/{id}" : {
-      "delete" : {
-        "summary" : "DELETE Administrateur/delete/{id}",
-        "operationId" : "supprimerAdministrateur",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        }
-      }
-    },
-    "/Administrateur/update/{id}" : {
-      "put" : {
-        "summary" : "PUT Administrateur/update/{id}",
-        "operationId" : "mettreAJourAdministrateur",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/AdministrateurDTO"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AdministrateurDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Automobiliste" : {
+    "/admin/Automobiliste" : {
       "get" : {
-        "summary" : "GET Automobiliste",
+        "summary" : "GET admin/Automobiliste",
         "operationId" : "getAllAutomobiliste",
         "responses" : {
           "200" : {
@@ -115,57 +58,9 @@
         }
       }
     },
-    "/Automobiliste/Creer" : {
-      "post" : {
-        "summary" : "POST Automobiliste/Creer",
-        "operationId" : "creerAutomobiliste",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/AutomobilisteDTO"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AutomobilisteDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Automobiliste/Delete/{id}" : {
-      "delete" : {
-        "summary" : "DELETE Automobiliste/Delete/{id}",
-        "operationId" : "supprimerAutomobiliste",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        }
-      }
-    },
-    "/Automobiliste/MettreAjour/{id}" : {
+    "/autoadmin/Automobiliste/MettreAjour/{id}" : {
       "put" : {
-        "summary" : "PUT Automobiliste/MettreAjour/{id}",
+        "summary" : "PUT autoadmin/Automobiliste/MettreAjour/{id}",
         "operationId" : "mettreAjourAutomobiliste",
         "parameters" : [ {
           "name" : "id",
@@ -200,9 +95,9 @@
         }
       }
     },
-    "/Automobiliste/{id}" : {
+    "/autoadmin/Automobiliste/{id}" : {
       "get" : {
-        "summary" : "GET Automobiliste/{id}",
+        "summary" : "GET autoadmin/Automobiliste/{id}",
         "operationId" : "getAutomobilisteById",
         "parameters" : [ {
           "name" : "id",
@@ -227,59 +122,10 @@
         }
       }
     },
-    "/DemandeDepannage" : {
-      "get" : {
-        "summary" : "GET DemandeDepannage",
-        "operationId" : "getAllDemande",
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/DemandeDepannageDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/DemandeDepannage/Creer" : {
-      "post" : {
-        "summary" : "POST DemandeDepannage/Creer",
-        "operationId" : "creerDemande",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/DemandeDepannageDTO"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/DemandeDepannageDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/DemandeDepannage/Delete/{id}" : {
+    "/automobiliste/Automobiliste/Delete/{id}" : {
       "delete" : {
-        "summary" : "DELETE DemandeDepannage/Delete/{id}",
-        "operationId" : "supprimerDemande",
+        "summary" : "DELETE automobiliste/Automobiliste/Delete/{id}",
+        "operationId" : "supprimerAutomobiliste",
         "parameters" : [ {
           "name" : "id",
           "in" : "path",
@@ -296,47 +142,10 @@
         }
       }
     },
-    "/DemandeDepannage/MettreAjour/{id}" : {
-      "put" : {
-        "summary" : "PUT DemandeDepannage/MettreAjour/{id}",
-        "operationId" : "mettreAjourDemande",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/DemandeDepannageDTO"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/DemandeDepannageDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/DemandeDepannage/{id}" : {
+    "/Auth/Participation/{id}" : {
       "get" : {
-        "summary" : "GET DemandeDepannage/{id}",
-        "operationId" : "getDemandeById",
+        "summary" : "GET Auth/Participation/{id}",
+        "operationId" : "getParticipationById",
         "parameters" : [ {
           "name" : "id",
           "in" : "path",
@@ -352,7 +161,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/DemandeDepannageDTO"
+                  "$ref" : "#/components/schemas/ParticipationDTO"
                 }
               }
             }
@@ -360,466 +169,9 @@
         }
       }
     },
-    "/Mecanicien" : {
+    "/admin/Participation" : {
       "get" : {
-        "summary" : "GET Mecanicien",
-        "operationId" : "getAllMécanicien",
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/MécanicienDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Mecanicien/Creer" : {
-      "post" : {
-        "summary" : "POST Mecanicien/Creer",
-        "operationId" : "creerMécanicien",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/MécanicienDTO"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/MécanicienDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Mecanicien/Delete/{id}" : {
-      "delete" : {
-        "summary" : "DELETE Mecanicien/Delete/{id}",
-        "operationId" : "supprimerMécanicien",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        }
-      }
-    },
-    "/Mecanicien/Desponible" : {
-      "get" : {
-        "summary" : "GET Mecanicien/Desponible",
-        "operationId" : "getAllMécanicienDesponible",
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/MécanicienDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Mecanicien/MettreAjour/{id}" : {
-      "put" : {
-        "summary" : "PUT Mecanicien/MettreAjour/{id}",
-        "operationId" : "mettreAjourMécanicien",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/MécanicienDTO"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/MécanicienDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Mecanicien/MettreAjour/{id}/Disponibilite" : {
-      "put" : {
-        "summary" : "PUT Mecanicien/MettreAjour/{id}/Disponibilite",
-        "operationId" : "mettreAjourDisponibilite",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/MécanicienDTO"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/MécanicienDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Mecanicien/{id}" : {
-      "get" : {
-        "summary" : "GET Mecanicien/{id}",
-        "operationId" : "getMécanicienById",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/MécanicienDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Panne" : {
-      "get" : {
-        "summary" : "GET Panne",
-        "operationId" : "getAllPanne",
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/PanneDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Panne/Creer" : {
-      "post" : {
-        "summary" : "POST Panne/Creer",
-        "operationId" : "creerPanne",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/PanneDTO"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/PanneDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Panne/Delete/{id}" : {
-      "delete" : {
-        "summary" : "DELETE Panne/Delete/{id}",
-        "operationId" : "supprimerPanne",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        }
-      }
-    },
-    "/Panne/MettreAjour/{id}" : {
-      "put" : {
-        "summary" : "PUT Panne/MettreAjour/{id}",
-        "operationId" : "mettreAjourPanne",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/PanneDTO"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/PanneDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Panne/{id}" : {
-      "get" : {
-        "summary" : "GET Panne/{id}",
-        "operationId" : "getPanneById",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/PanneDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Vehicule" : {
-      "get" : {
-        "summary" : "GET Vehicule",
-        "operationId" : "getAllVehicule",
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/VéhiculeDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Vehicule/Creer" : {
-      "post" : {
-        "summary" : "POST Vehicule/Creer",
-        "operationId" : "creerVehicule",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/VéhiculeDTO"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/VéhiculeDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Vehicule/Delete/{id}" : {
-      "delete" : {
-        "summary" : "DELETE Vehicule/Delete/{id}",
-        "operationId" : "supprimerVehicule",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        }
-      }
-    },
-    "/Vehicule/MettreAjour/{id}" : {
-      "put" : {
-        "summary" : "PUT Vehicule/MettreAjour/{id}",
-        "operationId" : "mettreAjourVehicule",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/VéhiculeDTO"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/VéhiculeDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Vehicule/{id}" : {
-      "get" : {
-        "summary" : "GET Vehicule/{id}",
-        "operationId" : "getVehiculeById",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/VéhiculeDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Participation" : {
-      "get" : {
-        "summary" : "GET Participation",
+        "summary" : "GET admin/Participation",
         "operationId" : "getAllParticipation",
         "responses" : {
           "200" : {
@@ -838,37 +190,9 @@
         }
       }
     },
-    "/Participation/Creer" : {
-      "post" : {
-        "summary" : "POST Participation/Creer",
-        "operationId" : "creerParticipation",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/ParticipationDTO"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ParticipationDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Participation/Delete/{id}" : {
+    "/mechadmin/Participation/Delete/{id}" : {
       "delete" : {
-        "summary" : "DELETE Participation/Delete/{id}",
+        "summary" : "DELETE mechadmin/Participation/Delete/{id}",
         "operationId" : "supprimerParticipation",
         "parameters" : [ {
           "name" : "id",
@@ -886,9 +210,9 @@
         }
       }
     },
-    "/Participation/MettreAjour/{id}" : {
+    "/mechadmin/Participation/MettreAjour/{id}" : {
       "put" : {
-        "summary" : "PUT Participation/MettreAjour/{id}",
+        "summary" : "PUT mechadmin/Participation/MettreAjour/{id}",
         "operationId" : "mettreAjourParticipation",
         "parameters" : [ {
           "name" : "id",
@@ -923,10 +247,38 @@
         }
       }
     },
-    "/Participation/{id}" : {
+    "/mechanic/Participation/Creer" : {
+      "post" : {
+        "summary" : "POST mechanic/Participation/Creer",
+        "operationId" : "creerParticipation",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ParticipationDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ParticipationDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Auth/DemandeDepannage/{id}" : {
       "get" : {
-        "summary" : "GET Participation/{id}",
-        "operationId" : "getParticipationById",
+        "summary" : "GET Auth/DemandeDepannage/{id}",
+        "operationId" : "getDemandeById",
         "parameters" : [ {
           "name" : "id",
           "in" : "path",
@@ -942,7 +294,683 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ParticipationDTO"
+                  "$ref" : "#/components/schemas/DemandeDepannageDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/autoadmin/DemandeDepannage/Delete/{id}" : {
+      "delete" : {
+        "summary" : "DELETE autoadmin/DemandeDepannage/Delete/{id}",
+        "operationId" : "supprimerDemande",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/autoadmin/DemandeDepannage/MettreAjour/{id}" : {
+      "put" : {
+        "summary" : "PUT autoadmin/DemandeDepannage/MettreAjour/{id}",
+        "operationId" : "mettreAjourDemande",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DemandeDepannageDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DemandeDepannageDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/automobiliste/DemandeDepannage/Creer" : {
+      "post" : {
+        "summary" : "POST automobiliste/DemandeDepannage/Creer",
+        "operationId" : "creerDemande",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DemandeDepannageDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DemandeDepannageDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mechadmin/DemandeDepannage" : {
+      "get" : {
+        "summary" : "GET mechadmin/DemandeDepannage",
+        "operationId" : "getAllDemande",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/DemandeDepannageDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/Vehicule" : {
+      "get" : {
+        "summary" : "GET admin/Vehicule",
+        "operationId" : "getAllVehicule",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/VéhiculeDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/autoadmin/Vehicule/Delete/{id}" : {
+      "delete" : {
+        "summary" : "DELETE autoadmin/Vehicule/Delete/{id}",
+        "operationId" : "supprimerVehicule",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/autoadmin/Vehicule/MettreAjour/{id}" : {
+      "put" : {
+        "summary" : "PUT autoadmin/Vehicule/MettreAjour/{id}",
+        "operationId" : "mettreAjourVehicule",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VéhiculeDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/VéhiculeDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/autoadmin/Vehicule/{id}" : {
+      "get" : {
+        "summary" : "GET autoadmin/Vehicule/{id}",
+        "operationId" : "getVehiculeById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/VéhiculeDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/automobiliste/Vehicule/Creer" : {
+      "post" : {
+        "summary" : "POST automobiliste/Vehicule/Creer",
+        "operationId" : "creerVehicule",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VéhiculeDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/VéhiculeDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/Administrateur/create" : {
+      "post" : {
+        "summary" : "POST admin/Administrateur/create",
+        "operationId" : "creerAdministrateur",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AdministrateurDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/Administrateur/delete/{id}" : {
+      "delete" : {
+        "summary" : "DELETE admin/Administrateur/delete/{id}",
+        "operationId" : "supprimerAdministrateur",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/admin/Administrateur/update/{id}" : {
+      "put" : {
+        "summary" : "PUT admin/Administrateur/update/{id}",
+        "operationId" : "mettreAJourAdministrateur",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AdministrateurDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdministrateurDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Auth/Panne/{id}" : {
+      "get" : {
+        "summary" : "GET Auth/Panne/{id}",
+        "operationId" : "getPanneById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PanneDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/Panne/Creer" : {
+      "post" : {
+        "summary" : "POST admin/Panne/Creer",
+        "operationId" : "creerPanne",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PanneDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PanneDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/Panne/Delete/{id}" : {
+      "delete" : {
+        "summary" : "DELETE admin/Panne/Delete/{id}",
+        "operationId" : "supprimerPanne",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/admin/Panne/MettreAjour/{id}" : {
+      "put" : {
+        "summary" : "PUT admin/Panne/MettreAjour/{id}",
+        "operationId" : "mettreAjourPanne",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PanneDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PanneDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/autoadmin/Panne" : {
+      "get" : {
+        "summary" : "GET autoadmin/Panne",
+        "operationId" : "getAllPanne",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/PanneDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/All/Mecanicien/Creer" : {
+      "post" : {
+        "summary" : "POST All/Mecanicien/Creer",
+        "operationId" : "creerMécanicien",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MécanicienDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Auth/Mecanicien/{id}" : {
+      "get" : {
+        "summary" : "GET Auth/Mecanicien/{id}",
+        "operationId" : "getMécanicienById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MécanicienDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/autoadmin/Mecanicien" : {
+      "get" : {
+        "summary" : "GET autoadmin/Mecanicien",
+        "operationId" : "getAllMécanicien",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/MécanicienDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/autoadmin/Mecanicien/Desponible" : {
+      "get" : {
+        "summary" : "GET autoadmin/Mecanicien/Desponible",
+        "operationId" : "getAllMécanicienDesponible",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/MécanicienDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mechadmin/Mecanicien/Delete/{id}" : {
+      "delete" : {
+        "summary" : "DELETE mechadmin/Mecanicien/Delete/{id}",
+        "operationId" : "supprimerMécanicien",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/mechadmin/Mecanicien/MettreAjour/{id}" : {
+      "put" : {
+        "summary" : "PUT mechadmin/Mecanicien/MettreAjour/{id}",
+        "operationId" : "mettreAjourMécanicien",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MécanicienDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MécanicienDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mechanic/Mecanicien/MettreAjour/{id}/Disponibilite" : {
+      "put" : {
+        "summary" : "PUT mechanic/Mecanicien/MettreAjour/{id}/Disponibilite",
+        "operationId" : "mettreAjourDisponibilite",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MécanicienDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MécanicienDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/All/login" : {
+      "post" : {
+        "summary" : "POST All/login",
+        "operationId" : "login",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PersonneDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AuthResponse"
                 }
               }
             }
@@ -953,31 +981,6 @@
   },
   "components" : {
     "schemas" : {
-      "AdministrateurDTO" : {
-        "type" : "object",
-        "properties" : {
-          "personneid" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
-          "nom" : {
-            "type" : "string"
-          },
-          "prenom" : {
-            "type" : "string"
-          },
-          "email" : {
-            "type" : "string"
-          },
-          "password" : {
-            "type" : "string"
-          },
-          "role" : {
-            "type" : "string",
-            "enum" : [ "ADMIN", "AUTO", "MECA" ]
-          }
-        }
-      },
       "VéhiculeDTO" : {
         "type" : "object",
         "properties" : {
@@ -1019,6 +1022,12 @@
           "email" : {
             "type" : "string"
           },
+          "nationalIdCardUrl" : {
+            "type" : "string"
+          },
+          "numTelephone" : {
+            "type" : "string"
+          },
           "password" : {
             "type" : "string"
           },
@@ -1039,6 +1048,9 @@
             "type" : "number",
             "format" : "double"
           },
+          "proofOfProfessionUrl" : {
+            "type" : "string"
+          },
           "disponible" : {
             "type" : "string",
             "enum" : [ "INDISPONIBLE", "DISPONIBLE" ]
@@ -1054,6 +1066,12 @@
             "type" : "string"
           },
           "email" : {
+            "type" : "string"
+          },
+          "nationalIdCardUrl" : {
+            "type" : "string"
+          },
+          "numTelephone" : {
             "type" : "string"
           },
           "password" : {
@@ -1145,12 +1163,48 @@
           "email" : {
             "type" : "string"
           },
+          "nationalIdCardUrl" : {
+            "type" : "string"
+          },
+          "numTelephone" : {
+            "type" : "string"
+          },
           "password" : {
             "type" : "string"
           },
           "role" : {
             "type" : "string",
             "enum" : [ "ADMIN", "AUTO", "MECA" ]
+          }
+        }
+      },
+      "AuthResponse" : {
+        "type" : "object",
+        "properties" : {
+          "jwt" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ParticipationDTO" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "demande" : {
+            "$ref" : "#/components/schemas/DemandeDepannage"
+          },
+          "mecanicien" : {
+            "$ref" : "#/components/schemas/Mécanicien"
+          },
+          "status" : {
+            "type" : "string",
+            "enum" : [ "EN_ATTENTE", "ACCEPTE", "REFUSE" ]
           }
         }
       },
@@ -1191,20 +1245,11 @@
           }
         }
       },
-      "MécanicienDTO" : {
+      "AdministrateurDTO" : {
         "type" : "object",
         "properties" : {
-          "latitude" : {
-            "type" : "number",
-            "format" : "double"
-          },
-          "longitude" : {
-            "type" : "number",
-            "format" : "double"
-          },
-          "disponible" : {
-            "type" : "string",
-            "enum" : [ "INDISPONIBLE", "DISPONIBLE" ]
+          "username" : {
+            "type" : "string"
           },
           "personneid" : {
             "type" : "integer",
@@ -1217,6 +1262,12 @@
             "type" : "string"
           },
           "email" : {
+            "type" : "string"
+          },
+          "nationalIdCardUrl" : {
+            "type" : "string"
+          },
+          "numTelephone" : {
             "type" : "string"
           },
           "password" : {
@@ -1243,22 +1294,80 @@
           }
         }
       },
-      "ParticipationDTO" : {
+      "MécanicienDTO" : {
         "type" : "object",
         "properties" : {
-          "id" : {
+          "latitude" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "longitude" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "proofOfProfessionUrl" : {
+            "type" : "string"
+          },
+          "disponible" : {
+            "type" : "string",
+            "enum" : [ "INDISPONIBLE", "DISPONIBLE" ]
+          },
+          "personneid" : {
             "type" : "integer",
             "format" : "int64"
           },
-          "demande" : {
-            "$ref" : "#/components/schemas/DemandeDepannage"
+          "nom" : {
+            "type" : "string"
           },
-          "mecanicien" : {
-            "$ref" : "#/components/schemas/Mécanicien"
+          "prenom" : {
+            "type" : "string"
           },
-          "status" : {
+          "email" : {
+            "type" : "string"
+          },
+          "nationalIdCardUrl" : {
+            "type" : "string"
+          },
+          "numTelephone" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "role" : {
             "type" : "string",
-            "enum" : [ "EN_ATTENTE", "ACCEPTE", "REFUSE" ]
+            "enum" : [ "ADMIN", "AUTO", "MECA" ]
+          }
+        }
+      },
+      "PersonneDTO" : {
+        "type" : "object",
+        "properties" : {
+          "personneid" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "nom" : {
+            "type" : "string"
+          },
+          "prenom" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "nationalIdCardUrl" : {
+            "type" : "string"
+          },
+          "numTelephone" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "role" : {
+            "type" : "string",
+            "enum" : [ "ADMIN", "AUTO", "MECA" ]
           }
         }
       }

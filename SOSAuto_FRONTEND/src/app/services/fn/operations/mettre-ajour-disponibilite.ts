@@ -30,4 +30,4 @@ export function mettreAjourDisponibilite(http: HttpClient, rootUrl: string, para
   );
 }
 
-mettreAjourDisponibilite.PATH = '/Mecanicien/MettreAjour/{id}/Disponibilite';
+mettreAjourDisponibilite.PATH = '/mechanic/Mecanicien/MettreAjour/{id}/Disponibilite';

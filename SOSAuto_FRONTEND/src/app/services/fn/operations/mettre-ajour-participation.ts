@@ -30,4 +30,4 @@ export function mettreAjourParticipation(http: HttpClient, rootUrl: string, para
   );
 }
 
-mettreAjourParticipation.PATH = '/Participation/MettreAjour/{id}';
+mettreAjourParticipation.PATH = '/mechadmin/Participation/MettreAjour/{id}';

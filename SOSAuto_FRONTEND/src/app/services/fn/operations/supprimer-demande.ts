@@ -27,4 +27,4 @@ export function supprimerDemande(http: HttpClient, rootUrl: string, params: Supp
   );
 }
 
-supprimerDemande.PATH = '/DemandeDepannage/Delete/{id}';
+supprimerDemande.PATH = '/autoadmin/DemandeDepannage/Delete/{id}';

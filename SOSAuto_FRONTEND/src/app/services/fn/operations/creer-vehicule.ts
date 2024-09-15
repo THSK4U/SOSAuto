@@ -28,4 +28,4 @@ export function creerVehicule(http: HttpClient, rootUrl: string, params: CreerVe
   );
 }
 
-creerVehicule.PATH = '/Vehicule/Creer';
+creerVehicule.PATH = '/automobiliste/Vehicule/Creer';

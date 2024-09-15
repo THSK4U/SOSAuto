@@ -26,4 +26,4 @@ export function getAllDemande(http: HttpClient, rootUrl: string, params?: GetAll
   );
 }
 
-getAllDemande.PATH = '/DemandeDepannage';
+getAllDemande.PATH = '/mechadmin/DemandeDepannage';

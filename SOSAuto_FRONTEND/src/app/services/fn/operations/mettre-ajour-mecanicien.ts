@@ -30,4 +30,4 @@ export function mettreAjourMecanicien(http: HttpClient, rootUrl: string, params:
   );
 }
 
-mettreAjourMecanicien.PATH = '/Mecanicien/MettreAjour/{id}';
+mettreAjourMecanicien.PATH = '/mechadmin/Mecanicien/MettreAjour/{id}';

@@ -28,4 +28,4 @@ export function creerParticipation(http: HttpClient, rootUrl: string, params: Cr
   );
 }
 
-creerParticipation.PATH = '/Participation/Creer';
+creerParticipation.PATH = '/mechanic/Participation/Creer';

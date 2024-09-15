@@ -30,4 +30,4 @@ export function mettreAjourDemande(http: HttpClient, rootUrl: string, params: Me
   );
 }
 
-mettreAjourDemande.PATH = '/DemandeDepannage/MettreAjour/{id}';
+mettreAjourDemande.PATH = '/autoadmin/DemandeDepannage/MettreAjour/{id}';

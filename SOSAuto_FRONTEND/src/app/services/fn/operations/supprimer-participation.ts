@@ -27,4 +27,4 @@ export function supprimerParticipation(http: HttpClient, rootUrl: string, params
   );
 }
 
-supprimerParticipation.PATH = '/Participation/Delete/{id}';
+supprimerParticipation.PATH = '/mechadmin/Participation/Delete/{id}';

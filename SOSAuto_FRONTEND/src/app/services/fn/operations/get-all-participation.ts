@@ -26,4 +26,4 @@ export function getAllParticipation(http: HttpClient, rootUrl: string, params?: 
   );
 }
 
-getAllParticipation.PATH = '/Participation';
+getAllParticipation.PATH = '/admin/Participation';

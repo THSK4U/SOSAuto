@@ -26,4 +26,4 @@ export function getAllMecanicien(http: HttpClient, rootUrl: string, params?: Get
   );
 }
 
-getAllMecanicien.PATH = '/Mecanicien';
+getAllMecanicien.PATH = '/autoadmin/Mecanicien';

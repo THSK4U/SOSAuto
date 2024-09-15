@@ -27,4 +27,4 @@ export function supprimerMecanicien(http: HttpClient, rootUrl: string, params: S
   );
 }
 
-supprimerMecanicien.PATH = '/Mecanicien/Delete/{id}';
+supprimerMecanicien.PATH = '/mechadmin/Mecanicien/Delete/{id}';

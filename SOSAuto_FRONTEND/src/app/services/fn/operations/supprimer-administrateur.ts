@@ -27,4 +27,4 @@ export function supprimerAdministrateur(http: HttpClient, rootUrl: string, param
   );
 }
 
-supprimerAdministrateur.PATH = '/Administrateur/delete/{id}';
+supprimerAdministrateur.PATH = '/admin/Administrateur/delete/{id}';

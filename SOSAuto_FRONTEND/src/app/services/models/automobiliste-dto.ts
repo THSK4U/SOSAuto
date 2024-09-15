@@ -5,7 +5,9 @@ import { VehiculeDto } from '../models/vehicule-dto';
 export interface AutomobilisteDto {
   demandeDepannage?: Array<DemandeDepannage>;
   email?: string;
+  nationalIdCardUrl?: string;
   nom?: string;
+  numTelephone?: string;
   password?: string;
   personneid?: number;
   prenom?: string;

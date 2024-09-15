@@ -27,4 +27,4 @@ export function supprimerPanne(http: HttpClient, rootUrl: string, params: Suppri
   );
 }
 
-supprimerPanne.PATH = '/Panne/Delete/{id}';
+supprimerPanne.PATH = '/admin/Panne/Delete/{id}';
