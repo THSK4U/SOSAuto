@@ -17,7 +17,7 @@ public class DemandeDepannageDTO {
     private Double longitude;
     private String description;
     private EtatPanne etat;
-    private Automobiliste automobiliste;
+    private AutomobilisteDTO automobiliste;
     private Mécanicien mécanicien;
     private Panne panne;
 }

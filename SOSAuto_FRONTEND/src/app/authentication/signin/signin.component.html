@@ -1,0 +1,38 @@
+<h1 class="logo">SOS<span>AUTO</span></h1>
+
+<div class="login-container" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="login-card" fxFlex="400px" fxFlex.lt-md="100%">
+    <h2>Connectez-vous à votre compte</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Numéro de téléphone</mat-label>
+        <input matInput formControlName="numTelephone" required placeholder="Entrer votre numéro de téléphone">
+        <mat-error *ngIf="loginForm.get('numTelephone')?.hasError('required')">
+          Le numéro de téléphone est requis
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('numTelephone')?.hasError('pattern')">
+          Le numéro de téléphone doit contenir 13 chiffres
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required placeholder="Entrer votre mot de passe">
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          Le mot de passe est requis
+        </mat-error>
+      </mat-form-field>
+
+      <p class="signup-link">Vous n'avez pas de compte ? <a routerLink="/Register">S'inscrire</a></p>
+
+      <button type="submit" [disabled]="!loginForm.valid" class="btn button">se connecter</button>
+    </form>
+
+    <mat-error *ngIf="errorMsg.length > 0" class="error-message">
+      <p *ngFor="let error of errorMsg">{{ error }}</p>
+    </mat-error>
+  </mat-card>
+</div>
