@@ -26,6 +26,7 @@
     "@mapbox/mapbox-gl-geocoder": "^5.0.2",
     "@types/mapbox__mapbox-gl-geocoder": "^5.0.0",
     "bootstrap": "^5.3.3",
+    "jwt-decode": "^4.0.0",
     "mapbox-gl": "^3.6.0",
     "mapbox-gl-style-switcher": "1.0.8",
     "ng-openapi-gen": "^0.51.0",
