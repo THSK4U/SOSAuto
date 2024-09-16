@@ -3,24 +3,26 @@ import { CommonModule } from '@angular/common';
 
 import { MechanicRoutingModule } from './mechanic-routing.module';
 import { MechanicComponent } from './mechanic.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './ListSuggestions/sidebar.component';
 import { MapComponent } from './map/map.component';
+import {AppModule} from "../app.module";
+import {NavbarComponent} from "./navbar/navbar.component";
 
 
 @NgModule({
-    declarations: [
-        MechanicComponent,
-        NavbarComponent,
-        SidebarComponent,
-        MapComponent
-    ],
+  declarations: [
+    MechanicComponent,
+    SidebarComponent,
+    MapComponent,
+    NavbarComponent
+  ],
     exports: [
-        NavbarComponent
+
     ],
-    imports: [
-        CommonModule,
-        MechanicRoutingModule
-    ]
+  imports: [
+    CommonModule,
+    MechanicRoutingModule,
+
+  ]
 })
 export class MechanicModule { }

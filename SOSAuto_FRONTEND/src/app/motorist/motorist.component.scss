@@ -43,3 +43,12 @@ app-creatdemande {
   transform: translateX(-50%);
   z-index: 11;
 }
+
+@media (max-width:992px) {
+  body {
+    overflow-y : visible;
+  }
+  .overflow-auto::-webkit-scrollbar {
+    display: none;
+  }
+  }

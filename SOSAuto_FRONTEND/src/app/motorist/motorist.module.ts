@@ -5,7 +5,6 @@ import { MotoristRoutingModule } from './motorist-routing.module';
 import { MotoristComponent } from './motorist.component';
 import { MapMotoristComponent } from './map-motorist/map-motorist.component';
 import { ListSuggestionsComponent } from './list-suggestions/list-suggestions.component';
-import {NavbarComponent} from "./navbar/navbar.component";
 import { CreatdemandeComponent } from './creatdemande/creatdemande.component';
 import {FormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
@@ -13,6 +12,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
+import {NavbarComponent} from "./navbar/navbar.component";
 
 
 
@@ -21,8 +21,8 @@ import {MatCardModule} from "@angular/material/card";
     MotoristComponent,
     MapMotoristComponent,
     ListSuggestionsComponent,
-    NavbarComponent,
-    CreatdemandeComponent
+    CreatdemandeComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +35,8 @@ import {MatCardModule} from "@angular/material/card";
     MatIconModule,
     MatInputModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+
   ]
 })
 export class MotoristModule { }
