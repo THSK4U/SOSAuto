@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import {AppComponent} from "../app.component";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { ParticipationComponent } from './participation/participation.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     MapComponent,
     NavbarComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    ParticipationComponent
   ],exports: [
     ],
   imports: [

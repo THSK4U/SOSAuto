@@ -5,6 +5,7 @@ import { DemandeDepannageDto } from "../../services/models/demande-depannage-dto
 import { ApiService } from "../../services/services/api.service";
 // @ts-ignore
 import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-map',
@@ -21,13 +22,18 @@ export class MapComponent implements OnInit {
   private userLat!: number;
 
 
-  constructor(private apiService: ApiService,) {}
+  constructor(private apiService: ApiService,
+              private router: Router
+              ) {
+    (window as any).goToParticipation = this.goToParticipation.bind(this);
+  }
 
   ngOnInit(): void {
     this.initializeMap();
     this.addControls();
     this.setupGeolocation();
     this.loadDemandes();
+
   }
 
   private initializeMap(): void {
@@ -135,7 +141,7 @@ export class MapComponent implements OnInit {
               </h5>
               <h6 class="card-subtitle mb-2 text-danger">${demande.panne?.nom || 'Unknown'}</h6>
               <p class="card-text">${demande.description || 'Unknown'}</p>
-              <a href="#" class="btn btn-success mt-2">Demande</a>
+          <button class="btn btn-success mt-2" onclick="window.goToParticipation(${demande.demandeid})">Demande</button>
             </div>
           `))
           .addTo(this.map);
@@ -144,6 +150,10 @@ export class MapComponent implements OnInit {
         console.warn('Demande missing coordinates:', demande);
       }
     });
+  }
+
+  private goToParticipation(demandeid: number): void {
+    this.router.navigate(['/participation', demandeid]);
   }
 
   private calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {

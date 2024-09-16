@@ -1,49 +1,6 @@
-body {
-  overflow: hidden;
+app-navbar-Moto{
+  display: flex;
 }
-
-.card {
-  height: calc(100% - 10px);
-}
-
-.row {
-  height: calc(100% - 150px);
-}
-
-.overflow-auto::-webkit-scrollbar {
-  display: none;
-}
-
-.card-body {
-  position: relative;
-  height: 100%;
-}
-
-app-map-motorist {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9;
-}
-app-form-demande{
-  position: absolute;
-  z-index: 10;
-}
-
-app-creatdemande {
-  transform: translateX(-50%);
-  z-index: 10;
-}
-.container{
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 11;
-}
-
 @media (max-width:992px) {
   body {
     overflow-y : visible;

@@ -13,6 +13,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {NavbarComponent} from "./navbar/navbar.component";
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -22,7 +23,8 @@ import {NavbarComponent} from "./navbar/navbar.component";
     MapMotoristComponent,
     ListSuggestionsComponent,
     CreatdemandeComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

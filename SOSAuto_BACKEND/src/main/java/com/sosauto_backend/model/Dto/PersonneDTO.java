@@ -1,5 +1,6 @@
 package com.sosauto_backend.model.Dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sosauto_backend.model.Enum.Role;
 import lombok.Data;
 

@@ -11,6 +11,6 @@ export interface DemandeDepannageDto {
   etat?: 'A_FAIRE' | 'EN_COURS' | 'TERMINE';
   latitude?: number;
   longitude?: number;
-  'mécanicien'?: Mecanicien;
+  mécanicien?: Mecanicien;
   panne?: Panne;
 }

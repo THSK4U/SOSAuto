@@ -22,6 +22,7 @@ public class ParticipationService implements IParticipationService {
 
     @Override
     public ParticipationDTO creer(ParticipationDTO participation) {
+
         Participation p = Mapper.toEntity(participation);
         p.setStatus(StatutParticipation.EN_ATTENTE);
         Participation saved = Repository.save(p);

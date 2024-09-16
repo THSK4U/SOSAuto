@@ -4,6 +4,7 @@ import {MechanicComponent} from './mechanic.component'
 import {MapComponent} from "./map/map.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {HomeComponent} from "./home/home.component";
+import {ParticipationComponent} from "./participation/participation.component";
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'participation/:demandeid', component: ParticipationComponent },
     ]
   }
 ];
