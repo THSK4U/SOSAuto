@@ -64,4 +64,12 @@ public class ParticipationService implements IParticipationService {
         Optional<Participation> optional = Repository.findById(id);
         return optional.map(Mapper::toDTO).orElse(null);
     }
+
+    @Override
+    public List<ParticipationDTO> getByMecanicienId(Long id) {
+        List<Participation> optional = Repository.getAllByMecanicien_Personneid(id);
+        return optional.stream()
+                .map(Mapper::toDTO)
+                .collect(Collectors.toList());
+    }
 }

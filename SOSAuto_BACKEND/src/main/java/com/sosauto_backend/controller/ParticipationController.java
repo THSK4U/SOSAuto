@@ -36,4 +36,9 @@ public class ParticipationController implements IParticipationApi {
     public ParticipationDTO getParticipationById(Long id) {
         return Service.getById(id);
     }
+
+    @Override
+    public List<ParticipationDTO> getALLParticipationByIdMecanicien(Long id) {
+        return Service.getByMecanicienId(id);
+    }
 }

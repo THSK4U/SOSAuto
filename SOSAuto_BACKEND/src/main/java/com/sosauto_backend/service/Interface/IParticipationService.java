@@ -21,4 +21,7 @@ public interface IParticipationService {
     //By ID
     ParticipationDTO getById(Long id);
 
+    //By ID Mecanicien
+    List<ParticipationDTO> getByMecanicienId(Long id);
+
 }

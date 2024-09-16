@@ -30,4 +30,8 @@ public interface IParticipationApi {
     //By id
     @GetMapping(value = APP_PERMITALLAuth + "/Participation/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     ParticipationDTO getParticipationById(@PathVariable("id") Long id);
+
+    //By Mecanicienid
+    @GetMapping(value = APP_ADMIN_MECH + "/Participation/Mecanicien/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<ParticipationDTO> getALLParticipationByIdMecanicien(@PathVariable("id") Long id);
 }
