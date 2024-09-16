@@ -6,13 +6,10 @@
   </div>
 
   <div class="form-group">
-    <label for="personneid">ID de l'automobiliste :</label>
-    <input type="number" id="personneid" name="personneid" [(ngModel)]="automobiliste.personneid" class="form-control" required>
-  </div>
-
-  <div class="form-group">
-    <label for="panneid">ID de la panne :</label>
-    <input type="number" id="panneid" name="panneid" [(ngModel)]="panne.panneid" class="form-control" required>
+    <label for="panneid">Le panne :</label>
+    <select id="panneid" name="panneid" [(ngModel)]="panne.panneid" class="form-control" required>
+      <option *ngFor="let panne of pannes" [value]="panne.panneid">{{ panne.nom }}</option>
+    </select>
   </div>
 
   <button type="submit" class="btn btn-primary">Envoyer la demande</button>
