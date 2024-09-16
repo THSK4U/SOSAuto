@@ -7,6 +7,11 @@ import { SidebarComponent } from './ListSuggestions/sidebar.component';
 import { MapComponent } from './map/map.component';
 import {AppModule} from "../app.module";
 import {NavbarComponent} from "./navbar/navbar.component";
+import {MatIconModule} from "@angular/material/icon";
+import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './home/home.component';
+import {AppComponent} from "../app.component";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -14,14 +19,15 @@ import {NavbarComponent} from "./navbar/navbar.component";
     MechanicComponent,
     SidebarComponent,
     MapComponent,
-    NavbarComponent
-  ],
-    exports: [
-
+    NavbarComponent,
+    ProfileComponent,
+    HomeComponent
+  ],exports: [
     ],
   imports: [
     CommonModule,
     MechanicRoutingModule,
+    MatIconModule,
 
   ]
 })

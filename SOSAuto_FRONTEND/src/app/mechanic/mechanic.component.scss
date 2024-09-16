@@ -1,14 +1,13 @@
-body{
-  overflow: hidden;
-}
-.card{
-  height: calc(100% - 10px);
-}
-.row{
-  height: calc(100% - 150px);
+
+app-navbar-meca{
+  display: flex;
 }
 
-.overflow-auto::-webkit-scrollbar{
-  display: none;
+@media (max-width:992px) {
+  body {
+    overflow-y : visible;
+  }
+  .overflow-auto::-webkit-scrollbar {
+    display: none;
+  }
 }
-

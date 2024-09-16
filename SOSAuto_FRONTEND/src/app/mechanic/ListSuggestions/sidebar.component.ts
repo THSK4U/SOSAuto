@@ -20,16 +20,19 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.findAllDemande();
-    this.service.getAllDemande().subscribe(demandes => {
-      this.Demandes = demandes;
-    });
   }
 
   private findAllDemande() {
     this.service.getAllDemande()
       .subscribe({
         next: (demande) => {
-          this.Demandes = demande;
+          this.Demandes = demande.sort((a, b) => {
+            const dateA = a.dateTime ? new Date(a.dateTime).getTime() : 0;
+            const dateB = b.dateTime ? new Date(b.dateTime).getTime() : 0;
+            return dateB - dateA;
+
+          });
+
         },
         error: (err) => {
           console.error('Error fetching demands', err);

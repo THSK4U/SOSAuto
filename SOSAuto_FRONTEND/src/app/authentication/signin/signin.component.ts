@@ -44,13 +44,13 @@ export class SigninComponent implements OnInit {
             const role = this.tokenService.getRoleFromJwt(this.tokenService.token);
               console.log(role);
             if (role === 'ADMIN') {
-              this.router.navigate(['/Admin']);
+              this.router.navigate(['/admin']);
             } else if (role === 'AUTO') {
-              this.router.navigate(['/Automobiliste']);
+              this.router.navigate(['/automobiliste']);
             } else if (role === 'MECA') {
-              this.router.navigate(['/Mecanicien']);
+              this.router.navigate(['/mecanicien']);
             } else {
-              this.router.navigate(['/Login']);
+              this.router.navigate(['/login']);
             }
           } else {
             this.errorMsg.push("JWT not found in the response");

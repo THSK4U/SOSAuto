@@ -1,0 +1,45 @@
+<div class="row" *ngIf="mecanicien">
+  <div class="col-xl-12">
+    <div class="profile-cover">
+      <!-- L'image de couverture peut être ajoutée ici si disponible -->
+    </div>
+
+    <div class="profile-header">
+      <div class="profile-img">
+        <img [src]=" '../../assets/images/avatars/profile-image-2.png'" alt="Photo de profil">
+      </div>
+
+      <div class="profile-name">
+        <h3>{{ mecanicien.nom }} {{ mecanicien.prenom }}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="mecanicien">
+  <div class="col-sm-12 col-md-8">
+    <div class="card">
+      <div class="card-body">
+        <h5 id="about" class="card-title">À propos du mécanicien</h5>
+        <p>{{ mecanicien || 'Aucune description disponible.' }}</p>
+        <ul>
+          <li>Spécialité: {{ mecanicien || 'Non spécifié' }}</li>
+          <li>Années d'expérience: {{ mecanicien || 'Non spécifié' }}</li>
+          <li>Évaluation: {{ mecanicien || 'Pas encore évalué' }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-md-4">
+    <div class="card stat-widget">
+      <div class="card-body">
+        <h5 id="contact-info" class="card-title">Informations de contact</h5>
+        <ul class="list-unstyled profile-about-list">
+          <li><i class="far fa-envelope m-r-xxs"></i><span>{{ mecanicien.email }}</span></li>
+          <li><i  class="far fa-address-book m-r-xxs"></i><span>{{ mecanicien.numTelephone || 'Non disponible' }}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

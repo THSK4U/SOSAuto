@@ -34,6 +34,10 @@ export class TokenService {
     const decodedToken = jwtDecode<JwtPayload>(token);
     return decodedToken.id;
   }
+  getIDFromLocalJwt(){
+    const decodedToken = jwtDecode<JwtPayload>(this.token);
+    return decodedToken.id;
+  }
 
   logout(): void {
     localStorage.removeItem('jwt');

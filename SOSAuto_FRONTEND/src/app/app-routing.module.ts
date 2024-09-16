@@ -8,10 +8,10 @@ const routes: Routes = [
   {
     path: '',component: AppComponent,
   },
-  { path: 'Automobiliste', loadChildren: () => import('./motorist/motorist.module').then(m => m.MotoristModule) },
-  { path: 'Mecanicien', loadChildren: () => import('./mechanic/mechanic.module').then(m => m.MechanicModule) },
-  { path: 'Admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-  { path: 'Login', component: SigninComponent},
+  { path: 'automobiliste', loadChildren: () => import('./motorist/motorist.module').then(m => m.MotoristModule) },
+  { path: 'mecanicien', loadChildren: () => import('./mechanic/mechanic.module').then(m => m.MechanicModule) },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { path: 'login', component: SigninComponent},
   {path: 'MAP', component: MapComponent},
 ];
 
