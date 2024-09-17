@@ -3,6 +3,7 @@ package com.sosauto_backend.controller.api;
 
 import com.sosauto_backend.model.Dto.ParticipationDTO;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,4 +35,9 @@ public interface IParticipationApi {
     //By Mecanicienid
     @GetMapping(value = APP_ADMIN_MECH + "/Participation/Mecanicien/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     List<ParticipationDTO> getALLParticipationByIdMecanicien(@PathVariable("id") Long id);
+
+    @PostMapping(value = APP_MECH +"/accept/{participationId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<ParticipationDTO> acceptParticipation(@PathVariable Long participationId);
+    @PostMapping(value = APP_MECH +"/reject/{participationId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<ParticipationDTO> rejectParticipation(@PathVariable Long participationId);
 }

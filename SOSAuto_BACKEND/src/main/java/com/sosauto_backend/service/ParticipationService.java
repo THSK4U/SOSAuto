@@ -6,6 +6,7 @@ import com.sosauto_backend.model.Enum.StatutParticipation;
 import com.sosauto_backend.model.Mapper.ParticipationMapper;
 import com.sosauto_backend.respository.ParticipationRepository;
 import com.sosauto_backend.service.Interface.IParticipationService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,61 +16,83 @@ import java.util.stream.Collectors;
 
 @Service
 public class ParticipationService implements IParticipationService {
+
     @Autowired
-    private ParticipationMapper Mapper;
+    private ParticipationMapper mapper;
+
     @Autowired
-    private ParticipationRepository Repository;
+    private ParticipationRepository repository;
 
     @Override
-    public ParticipationDTO creer(ParticipationDTO participation) {
-
-        Participation p = Mapper.toEntity(participation);
-        p.setStatus(StatutParticipation.EN_ATTENTE);
-        Participation saved = Repository.save(p);
-        return Mapper.toDTO(saved);
+    public ParticipationDTO creer(ParticipationDTO participationDTO) {
+        Participation participation = mapper.toEntity(participationDTO);
+        participation.setStatus(StatutParticipation.EN_ATTENTE);
+        Participation saved = repository.save(participation);
+        return mapper.toDTO(saved);
     }
 
     @Override
-    public ParticipationDTO mettreAJour(Long id, ParticipationDTO DTO) {
-        Optional<Participation> optional = Repository.findById(id);
-        if (optional.isPresent()) {
-            Participation P = optional.get();
-            P.setDemande(DTO.getDemande());
-            P.setStatus(DTO.getStatus());
-            P.setMecanicien(DTO.getMecanicien());
-
-            Participation updated = Repository.save(P);
-            return Mapper.toDTO(updated);
+    public ParticipationDTO mettreAJour(Long id, ParticipationDTO participationDTO) {
+        Optional<Participation> optionalParticipation = repository.findById(id);
+        if (optionalParticipation.isPresent()) {
+            Participation participation = optionalParticipation.get();
+            participation.setDemande(participationDTO.getDemande());
+            participation.setMecanicien(participationDTO.getMecanicien());
+            participation.setStatus(participationDTO.getStatus());
+            Participation updated = repository.save(participation);
+            return mapper.toDTO(updated);
         } else {
-            return null;
+            throw new EntityNotFoundException("Participation not found with id: " + id);
         }
     }
 
     @Override
     public void supprimer(Long id) {
-        Repository.deleteById(id);
-
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException("Participation not found with id: " + id);
+        }
     }
 
     @Override
     public List<ParticipationDTO> voirTous() {
-        List<Participation> p = Repository.findAll();
-        return p.stream()
-                .map(Mapper::toDTO)
+        List<Participation> participations = repository.findAll();
+        return participations.stream()
+                .map(mapper::toDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
     public ParticipationDTO getById(Long id) {
-        Optional<Participation> optional = Repository.findById(id);
-        return optional.map(Mapper::toDTO).orElse(null);
+        return repository.findById(id)
+                .map(mapper::toDTO)
+                .orElseThrow(() -> new EntityNotFoundException("Participation not found with id: " + id));
     }
 
     @Override
     public List<ParticipationDTO> getByMecanicienId(Long id) {
-        List<Participation> optional = Repository.getAllByMecanicien_Personneid(id);
-        return optional.stream()
-                .map(Mapper::toDTO)
+        List<Participation> participations = repository.getAllByMecanicien_Personneid(id);
+        return participations.stream()
+                .map(mapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public ParticipationDTO acceptParticipation(Long participationId) {
+        Participation participation = repository.findById(participationId)
+                .orElseThrow(() -> new EntityNotFoundException("Participation not found with id: " + participationId));
+        participation.setStatus(StatutParticipation.ACCEPTE);
+        Participation updated = repository.save(participation);
+        return mapper.toDTO(updated);
+    }
+
+    @Override
+    public ParticipationDTO rejectParticipation(Long participationId) {
+        Participation participation = repository.findById(participationId)
+                .orElseThrow(() -> new EntityNotFoundException("Participation not found with id: " + participationId));
+        participation.setStatus(StatutParticipation.REFUSE);
+        Participation updated = repository.save(participation);
+        return mapper.toDTO(updated);
     }
 }

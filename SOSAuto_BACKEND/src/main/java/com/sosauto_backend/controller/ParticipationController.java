@@ -2,8 +2,10 @@ package com.sosauto_backend.controller;
 
 import com.sosauto_backend.controller.api.IParticipationApi;
 import com.sosauto_backend.model.Dto.ParticipationDTO;
+import com.sosauto_backend.model.Entity.Participation;
 import com.sosauto_backend.service.ParticipationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -40,5 +42,17 @@ public class ParticipationController implements IParticipationApi {
     @Override
     public List<ParticipationDTO> getALLParticipationByIdMecanicien(Long id) {
         return Service.getByMecanicienId(id);
+    }
+
+    @Override
+    public ResponseEntity<ParticipationDTO> acceptParticipation(Long participationId) {
+        ParticipationDTO participation = Service.acceptParticipation(participationId);
+        return ResponseEntity.ok(participation);
+    }
+
+    @Override
+    public ResponseEntity<ParticipationDTO> rejectParticipation(Long participationId) {
+        ParticipationDTO participation = Service.rejectParticipation(participationId);
+        return ResponseEntity.ok(participation);
     }
 }
