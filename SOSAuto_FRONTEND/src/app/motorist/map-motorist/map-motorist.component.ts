@@ -3,7 +3,7 @@ import * as mapboxgl from "mapbox-gl";
 import {ApiService} from "../../services/services/api.service";
 import * as MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import {Mecanicien} from "../../services/models/mecanicien";
-import {SharedDataService} from "../../services/services/share-data.service";
+import {SharedDataService} from "../../services/token/share-data.service";
 
 @Component({
   selector: 'app-map-motorist',
