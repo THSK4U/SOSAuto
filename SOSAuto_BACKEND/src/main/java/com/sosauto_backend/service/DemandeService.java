@@ -7,6 +7,7 @@ import com.sosauto_backend.model.Mapper.DemandeDepannageMapper;
 import com.sosauto_backend.model.Mapper.MécanicienMapper;
 import com.sosauto_backend.respository.DemandeDepannageRepository;
 import com.sosauto_backend.service.Interface.IDemandeService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,7 +61,7 @@ public class DemandeService implements IDemandeService {
             DemandeDepannage updated = Repository.save(demandedepannage);
             return Mapper.toDTO(updated);
         } else {
-            return null;
+            throw new EntityNotFoundException("DemandeDepannage with ID " + id + " not found");
         }
     }
 
