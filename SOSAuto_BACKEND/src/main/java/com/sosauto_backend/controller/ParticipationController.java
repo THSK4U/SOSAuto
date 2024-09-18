@@ -25,6 +25,9 @@ public class ParticipationController implements IParticipationApi {
     }
 
     @Override
+    public void supprimerParticipationByDemande(Long demandeId, Long mecanicienId) { Service.supprimerByDemande(demandeId, mecanicienId); }
+
+    @Override
     public List<ParticipationDTO> getAllParticipation() {
         return Service.voirTous();
     }

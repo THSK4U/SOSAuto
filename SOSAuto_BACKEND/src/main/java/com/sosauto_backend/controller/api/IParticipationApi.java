@@ -20,6 +20,11 @@ public interface IParticipationApi {
     @DeleteMapping(value = APP_ADMIN_MECH + "/Participation/Delete/{id}")
     void supprimerParticipation(@PathVariable("id") Long id);
 
+    //supprimer
+    @DeleteMapping(value = APP_ADMIN_MECH + "/Participation/DeleteByDemande/{Demandid}/Mecanicien/{Mecanicienid}")
+    void supprimerParticipationByDemande(@PathVariable("Demandid") Long demandeId,
+                                          @PathVariable("Mecanicienid") Long mecanicienId);
+
     //Tous
     @GetMapping(value = APP_ADMIN + "/Participation", produces = MediaType.APPLICATION_JSON_VALUE)
     List<ParticipationDTO> getAllParticipation();

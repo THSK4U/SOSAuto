@@ -56,6 +56,11 @@ public class ParticipationService implements IParticipationService {
     }
 
     @Override
+    public void supprimerByDemande(Long demandeId, Long mecanicienId) {
+        repository.deleteByDemande_DemandeidAndMecanicien_Personneid(demandeId, mecanicienId);
+    }
+
+    @Override
     public List<ParticipationDTO> voirTous() {
         List<Participation> participations = repository.findAll();
         return participations.stream()

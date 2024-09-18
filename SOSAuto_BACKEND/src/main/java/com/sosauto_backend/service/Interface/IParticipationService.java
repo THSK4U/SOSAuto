@@ -15,6 +15,9 @@ public interface IParticipationService {
     //supprimer
     void supprimer(Long id);
 
+    //supprimer BY Demande Id
+    void supprimerByDemande(Long demandeId, Long mecanicienId);
+
     //consulter Tous
     List<ParticipationDTO> voirTous();
 
