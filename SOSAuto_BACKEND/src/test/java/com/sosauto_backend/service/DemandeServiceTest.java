@@ -26,6 +26,20 @@ class DemandeServiceTest {
 
     @Test
     void creer() {
+        DemandeDepannageDTO demandeDepannageDTO = new DemandeDepannageDTO();
+        DemandeDepannage demandeDepannage = new DemandeDepannage();
+
+        when(mapper.toEntity(demandeDepannageDTO)).thenReturn(demandeDepannage);
+        when(Repository.save(demandeDepannage)).thenReturn(demandeDepannage);
+        when(mapper.toDTO(demandeDepannage)).thenReturn(demandeDepannageDTO);
+
+        DemandeDepannageDTO result = Service.creer(demandeDepannageDTO);
+
+        assertNotNull(result);
+        assertEquals(demandeDepannageDTO, result);
+        verify(mapper, times(1)).toEntity(demandeDepannageDTO);
+        verify(Repository, times(1)).save(demandeDepannage);
+        verify(mapper, times(1)).toDTO(demandeDepannage);
     }
 
     @Test
