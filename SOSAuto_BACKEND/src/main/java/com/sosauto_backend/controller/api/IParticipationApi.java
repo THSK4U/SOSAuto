@@ -14,7 +14,7 @@ public interface IParticipationApi {
 
     //creer
     @PostMapping(value = APP_MECH +"/Participation/Creer", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    ParticipationDTO creerParticipation(@RequestBody ParticipationDTO Participation);
+    ResponseEntity<ParticipationDTO> creerParticipation(@RequestBody ParticipationDTO Participation);
 
     //supprimer
     @DeleteMapping(value = APP_ADMIN_MECH + "/Participation/Delete/{id}")

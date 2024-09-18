@@ -10,7 +10,7 @@ public class ParticipationDTO {
 
         private Long id;
         private DemandeDepannage demande;
-        private Mécanicien mecanicien;
+        private MécanicienDTO mecanicien;
         private StatutParticipation status;
 
 

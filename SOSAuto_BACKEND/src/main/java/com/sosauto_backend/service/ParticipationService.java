@@ -37,7 +37,6 @@ public class ParticipationService implements IParticipationService {
         if (optionalParticipation.isPresent()) {
             Participation participation = optionalParticipation.get();
             participation.setDemande(participationDTO.getDemande());
-            participation.setMecanicien(participationDTO.getMecanicien());
             participation.setStatus(participationDTO.getStatus());
             Participation updated = repository.save(participation);
             return mapper.toDTO(updated);

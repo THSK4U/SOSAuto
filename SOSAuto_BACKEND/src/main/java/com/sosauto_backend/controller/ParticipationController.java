@@ -15,8 +15,9 @@ public class ParticipationController implements IParticipationApi {
     @Autowired
     private ParticipationService Service;
     @Override
-    public ParticipationDTO creerParticipation(ParticipationDTO Participation) {
-        return Service.creer(Participation);
+    public ResponseEntity<ParticipationDTO> creerParticipation(ParticipationDTO Participation) {
+        ParticipationDTO test = Service.creer(Participation);
+        return ResponseEntity.ok(test);
     }
 
     @Override
