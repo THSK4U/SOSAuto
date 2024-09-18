@@ -100,4 +100,18 @@ public class ParticipationService implements IParticipationService {
         Participation updated = repository.save(participation);
         return mapper.toDTO(updated);
     }
+
+    @Override
+    public ParticipationDTO annulerParticipation(Long participationId) {
+        Optional<Participation> optionalParticipation = repository.findById(participationId);
+        if (optionalParticipation.isPresent()) {
+            Participation participation = optionalParticipation.get();
+            participation.setStatus(StatutParticipation.ANNULER);
+            Participation updated = repository.save(participation);
+            return mapper.toDTO(updated);
+        } else {
+            throw new EntityNotFoundException("Participation not found with id: " + participationId);
+        }
+    }
+
 }

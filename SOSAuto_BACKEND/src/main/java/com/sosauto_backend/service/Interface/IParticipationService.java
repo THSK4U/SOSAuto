@@ -30,4 +30,8 @@ public interface IParticipationService {
     //Accept ou reject
     ParticipationDTO acceptParticipation(Long participationId);
     ParticipationDTO rejectParticipation(Long participationId);
+
+    //Annuler Participation
+    ParticipationDTO annulerParticipation(Long participationId);
+
 }

@@ -45,4 +45,8 @@ public interface IParticipationApi {
     ResponseEntity<ParticipationDTO> acceptParticipation(@PathVariable Long participationId);
     @PostMapping(value = APP_MECH +"/reject/{participationId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ParticipationDTO> rejectParticipation(@PathVariable Long participationId);
+
+    //mettre A Jour
+    @PutMapping(value = APP_ADMIN_MECH + "/Participation/{id}/Annuler", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    ParticipationDTO annulerParticipation(@PathVariable("id") Long id);
 }

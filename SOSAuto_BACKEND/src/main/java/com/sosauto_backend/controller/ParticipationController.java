@@ -58,4 +58,9 @@ public class ParticipationController implements IParticipationApi {
         ParticipationDTO participation = Service.rejectParticipation(participationId);
         return ResponseEntity.ok(participation);
     }
+
+    @Override
+    public ParticipationDTO annulerParticipation(Long id) {
+        return Service.annulerParticipation(id);
+    }
 }
