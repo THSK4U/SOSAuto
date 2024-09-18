@@ -3,7 +3,7 @@ import { ApiService } from '../../services/services/api.service';
 import { CreerDemande$Params } from "../../services/fn/operations/creer-demande";
 import { StrictHttpResponse } from "../../services/strict-http-response";
 import { DemandeDepannageDto } from "../../services/models/demande-depannage-dto";
-import { SharedDataService } from "../../services/services/share-data.service";
+import { SharedDataService } from "../../services/token/share-data.service";
 import {PanneDto} from "../../services/models/panne-dto";
 import {TokenService} from "../../services/token/token.service";
 

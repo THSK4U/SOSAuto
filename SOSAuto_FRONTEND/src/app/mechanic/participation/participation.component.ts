@@ -37,10 +37,15 @@ export class ParticipationComponent implements OnInit{
     console.log(requestParams.body);
     this.service.creerParticipation$Response(requestParams).subscribe(
       (response) => {
-        console.log('Participation créée avec succès', response.body);
+        const createdParticipationId = response.body.id;
+        console.log('Participation créée avec succès', createdParticipationId);
       },(error) => {
       console.error('La création de la demande a échoué:', error);
     }
     )
+  }
+
+  cancelRequest() {
+
   }
 }

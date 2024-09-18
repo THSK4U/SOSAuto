@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {jwtDecode} from "jwt-decode";
-import {JwtPayload} from "../models/JwtPayload";
+import {JwtPayload} from "../token/JwtPayload";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 

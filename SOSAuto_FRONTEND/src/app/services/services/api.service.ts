@@ -9,7 +9,11 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { acceptParticipation } from '../fn/operations/accept-participation';
+import { AcceptParticipation$Params } from '../fn/operations/accept-participation';
 import { AdministrateurDto } from '../models/administrateur-dto';
+import { annulerParticipation } from '../fn/operations/annuler-participation';
+import { AnnulerParticipation$Params } from '../fn/operations/annuler-participation';
 import { AuthResponse } from '../models/auth-response';
 import { AutomobilisteDto } from '../models/automobiliste-dto';
 import { creerAdministrateur } from '../fn/operations/creer-administrateur';
@@ -39,6 +43,8 @@ import { getAllPanne } from '../fn/operations/get-all-panne';
 import { GetAllPanne$Params } from '../fn/operations/get-all-panne';
 import { getAllParticipation } from '../fn/operations/get-all-participation';
 import { GetAllParticipation$Params } from '../fn/operations/get-all-participation';
+import { getAllParticipationByIdMecanicien } from '../fn/operations/get-all-participation-by-id-mecanicien';
+import { GetAllParticipationByIdMecanicien$Params } from '../fn/operations/get-all-participation-by-id-mecanicien';
 import { getAllVehicule } from '../fn/operations/get-all-vehicule';
 import { GetAllVehicule$Params } from '../fn/operations/get-all-vehicule';
 import { getAutomobilisteById } from '../fn/operations/get-automobiliste-by-id';
@@ -74,6 +80,8 @@ import { mettreAjourVehicule } from '../fn/operations/mettre-ajour-vehicule';
 import { MettreAjourVehicule$Params } from '../fn/operations/mettre-ajour-vehicule';
 import { PanneDto } from '../models/panne-dto';
 import { ParticipationDto } from '../models/participation-dto';
+import { rejectParticipation } from '../fn/operations/reject-participation';
+import { RejectParticipation$Params } from '../fn/operations/reject-participation';
 import { supprimerAdministrateur } from '../fn/operations/supprimer-administrateur';
 import { SupprimerAdministrateur$Params } from '../fn/operations/supprimer-administrateur';
 import { supprimerAutomobiliste } from '../fn/operations/supprimer-automobiliste';
@@ -86,6 +94,8 @@ import { supprimerPanne } from '../fn/operations/supprimer-panne';
 import { SupprimerPanne$Params } from '../fn/operations/supprimer-panne';
 import { supprimerParticipation } from '../fn/operations/supprimer-participation';
 import { SupprimerParticipation$Params } from '../fn/operations/supprimer-participation';
+import { supprimerParticipationByDemande } from '../fn/operations/supprimer-participation-by-demande';
+import { SupprimerParticipationByDemande$Params } from '../fn/operations/supprimer-participation-by-demande';
 import { supprimerVehicule } from '../fn/operations/supprimer-vehicule';
 import { SupprimerVehicule$Params } from '../fn/operations/supprimer-vehicule';
 import { VehiculeDto } from '../models/vehicule-dto';
@@ -94,6 +104,501 @@ import { VehiculeDto } from '../models/vehicule-dto';
 export class ApiService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
+  }
+
+  /** Path part for operation `getParticipationById()` */
+  static readonly GetParticipationByIdPath = '/Auth/Participation/{id}';
+
+  /**
+   * GET Auth/Participation/{id}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getParticipationById()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getParticipationById$Response(params: GetParticipationById$Params, context?: HttpContext): Observable<StrictHttpResponse<ParticipationDto>> {
+    return getParticipationById(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * GET Auth/Participation/{id}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getParticipationById$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getParticipationById(params: GetParticipationById$Params, context?: HttpContext): Observable<ParticipationDto> {
+    return this.getParticipationById$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ParticipationDto>): ParticipationDto => r.body)
+    );
+  }
+
+  /** Path part for operation `getAllParticipation()` */
+  static readonly GetAllParticipationPath = '/admin/Participation';
+
+  /**
+   * GET admin/Participation.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getAllParticipation()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllParticipation$Response(params?: GetAllParticipation$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ParticipationDto>>> {
+    return getAllParticipation(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * GET admin/Participation.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getAllParticipation$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllParticipation(params?: GetAllParticipation$Params, context?: HttpContext): Observable<Array<ParticipationDto>> {
+    return this.getAllParticipation$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<ParticipationDto>>): Array<ParticipationDto> => r.body)
+    );
+  }
+
+  /** Path part for operation `supprimerParticipation()` */
+  static readonly SupprimerParticipationPath = '/mechadmin/Participation/Delete/{id}';
+
+  /**
+   * DELETE mechadmin/Participation/Delete/{id}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `supprimerParticipation()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  supprimerParticipation$Response(params: SupprimerParticipation$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return supprimerParticipation(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * DELETE mechadmin/Participation/Delete/{id}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `supprimerParticipation$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  supprimerParticipation(params: SupprimerParticipation$Params, context?: HttpContext): Observable<void> {
+    return this.supprimerParticipation$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `supprimerParticipationByDemande()` */
+  static readonly SupprimerParticipationByDemandePath = '/mechadmin/Participation/DeleteByDemande/{Demandid}/Mecanicien/{Mecanicienid}';
+
+  /**
+   * DELETE mechadmin/Participation/DeleteByDemande/{Demandid}/Mecanicien/{Mecanicienid}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `supprimerParticipationByDemande()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  supprimerParticipationByDemande$Response(params: SupprimerParticipationByDemande$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return supprimerParticipationByDemande(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * DELETE mechadmin/Participation/DeleteByDemande/{Demandid}/Mecanicien/{Mecanicienid}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `supprimerParticipationByDemande$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  supprimerParticipationByDemande(params: SupprimerParticipationByDemande$Params, context?: HttpContext): Observable<void> {
+    return this.supprimerParticipationByDemande$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `getAllParticipationByIdMecanicien()` */
+  static readonly GetAllParticipationByIdMecanicienPath = '/mechadmin/Participation/Mecanicien/{id}';
+
+  /**
+   * GET mechadmin/Participation/Mecanicien/{id}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getAllParticipationByIdMecanicien()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllParticipationByIdMecanicien$Response(params: GetAllParticipationByIdMecanicien$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ParticipationDto>>> {
+    return getAllParticipationByIdMecanicien(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * GET mechadmin/Participation/Mecanicien/{id}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getAllParticipationByIdMecanicien$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllParticipationByIdMecanicien(params: GetAllParticipationByIdMecanicien$Params, context?: HttpContext): Observable<Array<ParticipationDto>> {
+    return this.getAllParticipationByIdMecanicien$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<ParticipationDto>>): Array<ParticipationDto> => r.body)
+    );
+  }
+
+  /** Path part for operation `mettreAjourParticipation()` */
+  static readonly MettreAjourParticipationPath = '/mechadmin/Participation/MettreAjour/{id}';
+
+  /**
+   * PUT mechadmin/Participation/MettreAjour/{id}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `mettreAjourParticipation()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  mettreAjourParticipation$Response(params: MettreAjourParticipation$Params, context?: HttpContext): Observable<StrictHttpResponse<ParticipationDto>> {
+    return mettreAjourParticipation(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * PUT mechadmin/Participation/MettreAjour/{id}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `mettreAjourParticipation$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  mettreAjourParticipation(params: MettreAjourParticipation$Params, context?: HttpContext): Observable<ParticipationDto> {
+    return this.mettreAjourParticipation$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ParticipationDto>): ParticipationDto => r.body)
+    );
+  }
+
+  /** Path part for operation `annulerParticipation()` */
+  static readonly AnnulerParticipationPath = '/mechadmin/Participation/{id}/Annuler';
+
+  /**
+   * PUT mechadmin/Participation/{id}/Annuler.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `annulerParticipation()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  annulerParticipation$Response(params: AnnulerParticipation$Params, context?: HttpContext): Observable<StrictHttpResponse<ParticipationDto>> {
+    return annulerParticipation(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * PUT mechadmin/Participation/{id}/Annuler.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `annulerParticipation$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  annulerParticipation(params: AnnulerParticipation$Params, context?: HttpContext): Observable<ParticipationDto> {
+    return this.annulerParticipation$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ParticipationDto>): ParticipationDto => r.body)
+    );
+  }
+
+  /** Path part for operation `creerParticipation()` */
+  static readonly CreerParticipationPath = '/mechanic/Participation/Creer';
+
+  /**
+   * POST mechanic/Participation/Creer.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `creerParticipation()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  creerParticipation$Response(params: CreerParticipation$Params, context?: HttpContext): Observable<StrictHttpResponse<ParticipationDto>> {
+    return creerParticipation(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * POST mechanic/Participation/Creer.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `creerParticipation$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  creerParticipation(params: CreerParticipation$Params, context?: HttpContext): Observable<ParticipationDto> {
+    return this.creerParticipation$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ParticipationDto>): ParticipationDto => r.body)
+    );
+  }
+
+  /** Path part for operation `acceptParticipation()` */
+  static readonly AcceptParticipationPath = '/mechanic/accept/{participationId}';
+
+  /**
+   * POST mechanic/accept/{participationId}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `acceptParticipation()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  acceptParticipation$Response(params: AcceptParticipation$Params, context?: HttpContext): Observable<StrictHttpResponse<ParticipationDto>> {
+    return acceptParticipation(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * POST mechanic/accept/{participationId}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `acceptParticipation$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  acceptParticipation(params: AcceptParticipation$Params, context?: HttpContext): Observable<ParticipationDto> {
+    return this.acceptParticipation$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ParticipationDto>): ParticipationDto => r.body)
+    );
+  }
+
+  /** Path part for operation `rejectParticipation()` */
+  static readonly RejectParticipationPath = '/mechanic/reject/{participationId}';
+
+  /**
+   * POST mechanic/reject/{participationId}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `rejectParticipation()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  rejectParticipation$Response(params: RejectParticipation$Params, context?: HttpContext): Observable<StrictHttpResponse<ParticipationDto>> {
+    return rejectParticipation(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * POST mechanic/reject/{participationId}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `rejectParticipation$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  rejectParticipation(params: RejectParticipation$Params, context?: HttpContext): Observable<ParticipationDto> {
+    return this.rejectParticipation$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ParticipationDto>): ParticipationDto => r.body)
+    );
+  }
+
+  /** Path part for operation `getDemandeById()` */
+  static readonly GetDemandeByIdPath = '/Auth/DemandeDepannage/{id}';
+
+  /**
+   * GET Auth/DemandeDepannage/{id}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getDemandeById()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getDemandeById$Response(params: GetDemandeById$Params, context?: HttpContext): Observable<StrictHttpResponse<DemandeDepannageDto>> {
+    return getDemandeById(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * GET Auth/DemandeDepannage/{id}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getDemandeById$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getDemandeById(params: GetDemandeById$Params, context?: HttpContext): Observable<DemandeDepannageDto> {
+    return this.getDemandeById$Response(params, context).pipe(
+      map((r: StrictHttpResponse<DemandeDepannageDto>): DemandeDepannageDto => r.body)
+    );
+  }
+
+  /** Path part for operation `supprimerDemande()` */
+  static readonly SupprimerDemandePath = '/autoadmin/DemandeDepannage/Delete/{id}';
+
+  /**
+   * DELETE autoadmin/DemandeDepannage/Delete/{id}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `supprimerDemande()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  supprimerDemande$Response(params: SupprimerDemande$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return supprimerDemande(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * DELETE autoadmin/DemandeDepannage/Delete/{id}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `supprimerDemande$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  supprimerDemande(params: SupprimerDemande$Params, context?: HttpContext): Observable<void> {
+    return this.supprimerDemande$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `mettreAjourDemande()` */
+  static readonly MettreAjourDemandePath = '/autoadmin/DemandeDepannage/MettreAjour/{id}';
+
+  /**
+   * PUT autoadmin/DemandeDepannage/MettreAjour/{id}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `mettreAjourDemande()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  mettreAjourDemande$Response(params: MettreAjourDemande$Params, context?: HttpContext): Observable<StrictHttpResponse<DemandeDepannageDto>> {
+    return mettreAjourDemande(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * PUT autoadmin/DemandeDepannage/MettreAjour/{id}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `mettreAjourDemande$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  mettreAjourDemande(params: MettreAjourDemande$Params, context?: HttpContext): Observable<DemandeDepannageDto> {
+    return this.mettreAjourDemande$Response(params, context).pipe(
+      map((r: StrictHttpResponse<DemandeDepannageDto>): DemandeDepannageDto => r.body)
+    );
+  }
+
+  /** Path part for operation `creerDemande()` */
+  static readonly CreerDemandePath = '/automobiliste/DemandeDepannage/Creer';
+
+  /**
+   * POST automobiliste/DemandeDepannage/Creer.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `creerDemande()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  creerDemande$Response(params: CreerDemande$Params, context?: HttpContext): Observable<StrictHttpResponse<DemandeDepannageDto>> {
+    return creerDemande(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * POST automobiliste/DemandeDepannage/Creer.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `creerDemande$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  creerDemande(params: CreerDemande$Params, context?: HttpContext): Observable<DemandeDepannageDto> {
+    return this.creerDemande$Response(params, context).pipe(
+      map((r: StrictHttpResponse<DemandeDepannageDto>): DemandeDepannageDto => r.body)
+    );
+  }
+
+  /** Path part for operation `getAllDemande()` */
+  static readonly GetAllDemandePath = '/mechadmin/DemandeDepannage';
+
+  /**
+   * GET mechadmin/DemandeDepannage.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getAllDemande()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllDemande$Response(params?: GetAllDemande$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DemandeDepannageDto>>> {
+    return getAllDemande(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * GET mechadmin/DemandeDepannage.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getAllDemande$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllDemande(params?: GetAllDemande$Params, context?: HttpContext): Observable<Array<DemandeDepannageDto>> {
+    return this.getAllDemande$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<DemandeDepannageDto>>): Array<DemandeDepannageDto> => r.body)
+    );
   }
 
   /** Path part for operation `creerAutomobiliste()` */
@@ -261,333 +766,36 @@ export class ApiService extends BaseService {
     );
   }
 
-  /** Path part for operation `getParticipationById()` */
-  static readonly GetParticipationByIdPath = '/Auth/Participation/{id}';
+  /** Path part for operation `login()` */
+  static readonly LoginPath = '/All/login';
 
   /**
-   * GET Auth/Participation/{id}.
+   * POST All/login.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getParticipationById()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getParticipationById$Response(params: GetParticipationById$Params, context?: HttpContext): Observable<StrictHttpResponse<ParticipationDto>> {
-    return getParticipationById(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * GET Auth/Participation/{id}.
-   *
-   *
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `getParticipationById$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getParticipationById(params: GetParticipationById$Params, context?: HttpContext): Observable<ParticipationDto> {
-    return this.getParticipationById$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ParticipationDto>): ParticipationDto => r.body)
-    );
-  }
-
-  /** Path part for operation `getAllParticipation()` */
-  static readonly GetAllParticipationPath = '/admin/Participation';
-
-  /**
-   * GET admin/Participation.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getAllParticipation()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getAllParticipation$Response(params?: GetAllParticipation$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ParticipationDto>>> {
-    return getAllParticipation(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * GET admin/Participation.
-   *
-   *
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `getAllParticipation$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getAllParticipation(params?: GetAllParticipation$Params, context?: HttpContext): Observable<Array<ParticipationDto>> {
-    return this.getAllParticipation$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Array<ParticipationDto>>): Array<ParticipationDto> => r.body)
-    );
-  }
-
-  /** Path part for operation `supprimerParticipation()` */
-  static readonly SupprimerParticipationPath = '/mechadmin/Participation/Delete/{id}';
-
-  /**
-   * DELETE mechadmin/Participation/Delete/{id}.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `supprimerParticipation()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  supprimerParticipation$Response(params: SupprimerParticipation$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-    return supprimerParticipation(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * DELETE mechadmin/Participation/Delete/{id}.
-   *
-   *
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `supprimerParticipation$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  supprimerParticipation(params: SupprimerParticipation$Params, context?: HttpContext): Observable<void> {
-    return this.supprimerParticipation$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
-    );
-  }
-
-  /** Path part for operation `mettreAjourParticipation()` */
-  static readonly MettreAjourParticipationPath = '/mechadmin/Participation/MettreAjour/{id}';
-
-  /**
-   * PUT mechadmin/Participation/MettreAjour/{id}.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `mettreAjourParticipation()` instead.
+   * To access only the response body, use `login()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  mettreAjourParticipation$Response(params: MettreAjourParticipation$Params, context?: HttpContext): Observable<StrictHttpResponse<ParticipationDto>> {
-    return mettreAjourParticipation(this.http, this.rootUrl, params, context);
+  login$Response(params: Login$Params, context?: HttpContext): Observable<StrictHttpResponse<AuthResponse>> {
+    return login(this.http, this.rootUrl, params, context);
   }
 
   /**
-   * PUT mechadmin/Participation/MettreAjour/{id}.
+   * POST All/login.
    *
    *
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `mettreAjourParticipation$Response()` instead.
+   * To access the full response (for headers, for example), `login$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  mettreAjourParticipation(params: MettreAjourParticipation$Params, context?: HttpContext): Observable<ParticipationDto> {
-    return this.mettreAjourParticipation$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ParticipationDto>): ParticipationDto => r.body)
-    );
-  }
-
-  /** Path part for operation `creerParticipation()` */
-  static readonly CreerParticipationPath = '/mechanic/Participation/Creer';
-
-  /**
-   * POST mechanic/Participation/Creer.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `creerParticipation()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  creerParticipation$Response(params: CreerParticipation$Params, context?: HttpContext): Observable<StrictHttpResponse<ParticipationDto>> {
-    return creerParticipation(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * POST mechanic/Participation/Creer.
-   *
-   *
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `creerParticipation$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  creerParticipation(params: CreerParticipation$Params, context?: HttpContext): Observable<ParticipationDto> {
-    return this.creerParticipation$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ParticipationDto>): ParticipationDto => r.body)
-    );
-  }
-
-  /** Path part for operation `getDemandeById()` */
-  static readonly GetDemandeByIdPath = '/Auth/DemandeDepannage/{id}';
-
-  /**
-   * GET Auth/DemandeDepannage/{id}.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getDemandeById()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getDemandeById$Response(params: GetDemandeById$Params, context?: HttpContext): Observable<StrictHttpResponse<DemandeDepannageDto>> {
-    return getDemandeById(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * GET Auth/DemandeDepannage/{id}.
-   *
-   *
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `getDemandeById$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getDemandeById(params: GetDemandeById$Params, context?: HttpContext): Observable<DemandeDepannageDto> {
-    return this.getDemandeById$Response(params, context).pipe(
-      map((r: StrictHttpResponse<DemandeDepannageDto>): DemandeDepannageDto => r.body)
-    );
-  }
-
-  /** Path part for operation `supprimerDemande()` */
-  static readonly SupprimerDemandePath = '/autoadmin/DemandeDepannage/Delete/{id}';
-
-  /**
-   * DELETE autoadmin/DemandeDepannage/Delete/{id}.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `supprimerDemande()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  supprimerDemande$Response(params: SupprimerDemande$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-    return supprimerDemande(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * DELETE autoadmin/DemandeDepannage/Delete/{id}.
-   *
-   *
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `supprimerDemande$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  supprimerDemande(params: SupprimerDemande$Params, context?: HttpContext): Observable<void> {
-    return this.supprimerDemande$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
-    );
-  }
-
-  /** Path part for operation `mettreAjourDemande()` */
-  static readonly MettreAjourDemandePath = '/autoadmin/DemandeDepannage/MettreAjour/{id}';
-
-  /**
-   * PUT autoadmin/DemandeDepannage/MettreAjour/{id}.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `mettreAjourDemande()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  mettreAjourDemande$Response(params: MettreAjourDemande$Params, context?: HttpContext): Observable<StrictHttpResponse<DemandeDepannageDto>> {
-    return mettreAjourDemande(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * PUT autoadmin/DemandeDepannage/MettreAjour/{id}.
-   *
-   *
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `mettreAjourDemande$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  mettreAjourDemande(params: MettreAjourDemande$Params, context?: HttpContext): Observable<DemandeDepannageDto> {
-    return this.mettreAjourDemande$Response(params, context).pipe(
-      map((r: StrictHttpResponse<DemandeDepannageDto>): DemandeDepannageDto => r.body)
-    );
-  }
-
-  /** Path part for operation `creerDemande()` */
-  static readonly CreerDemandePath = '/automobiliste/DemandeDepannage/Creer';
-
-  /**
-   * POST automobiliste/DemandeDepannage/Creer.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `creerDemande()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  creerDemande$Response(params: CreerDemande$Params, context?: HttpContext): Observable<StrictHttpResponse<DemandeDepannageDto>> {
-    return creerDemande(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * POST automobiliste/DemandeDepannage/Creer.
-   *
-   *
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `creerDemande$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  creerDemande(params: CreerDemande$Params, context?: HttpContext): Observable<DemandeDepannageDto> {
-    return this.creerDemande$Response(params, context).pipe(
-      map((r: StrictHttpResponse<DemandeDepannageDto>): DemandeDepannageDto => r.body)
-    );
-  }
-
-  /** Path part for operation `getAllDemande()` */
-  static readonly GetAllDemandePath = '/mechadmin/DemandeDepannage';
-
-  /**
-   * GET mechadmin/DemandeDepannage.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getAllDemande()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getAllDemande$Response(params?: GetAllDemande$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DemandeDepannageDto>>> {
-    return getAllDemande(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * GET mechadmin/DemandeDepannage.
-   *
-   *
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `getAllDemande$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getAllDemande(params?: GetAllDemande$Params, context?: HttpContext): Observable<Array<DemandeDepannageDto>> {
-    return this.getAllDemande$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Array<DemandeDepannageDto>>): Array<DemandeDepannageDto> => r.body)
+  login(params: Login$Params, context?: HttpContext): Observable<AuthResponse> {
+    return this.login$Response(params, context).pipe(
+      map((r: StrictHttpResponse<AuthResponse>): AuthResponse => r.body)
     );
   }
 
@@ -1248,39 +1456,6 @@ export class ApiService extends BaseService {
   mettreAjourDisponibilite(params: MettreAjourDisponibilite$Params, context?: HttpContext): Observable<MecanicienDto> {
     return this.mettreAjourDisponibilite$Response(params, context).pipe(
       map((r: StrictHttpResponse<MecanicienDto>): MecanicienDto => r.body)
-    );
-  }
-
-  /** Path part for operation `login()` */
-  static readonly LoginPath = '/All/login';
-
-  /**
-   * POST All/login.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `login()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  login$Response(params: Login$Params, context?: HttpContext): Observable<StrictHttpResponse<AuthResponse>> {
-    return login(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * POST All/login.
-   *
-   *
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `login$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  login(params: Login$Params, context?: HttpContext): Observable<AuthResponse> {
-    return this.login$Response(params, context).pipe(
-      map((r: StrictHttpResponse<AuthResponse>): AuthResponse => r.body)
     );
   }
 
