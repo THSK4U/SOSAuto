@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^16.2.0",
+    "@angular/animations": "^16.2.12",
     "@angular/cdk": "^16.2.14",
     "@angular/common": "^16.2.0",
     "@angular/compiler": "^16.2.0",
@@ -30,6 +30,7 @@
     "mapbox-gl": "^3.6.0",
     "mapbox-gl-style-switcher": "1.0.8",
     "ng-openapi-gen": "^0.51.0",
+    "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
     "sosauto-frontend": "file:",
     "tslib": "^2.3.0",
