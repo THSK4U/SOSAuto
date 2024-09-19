@@ -1,0 +1,29 @@
+.disponibilite-container {
+  text-align: center;
+  display: flex;
+  padding-bottom: 20px;
+  width: 183px;
+  flex-direction: column;
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &.disponible {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    &.indisponible {
+      background-color: #f44336;
+      color: white;
+    }
+  }
+
+  p {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+}

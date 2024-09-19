@@ -1,1 +1,6 @@
-<p>disponibilite works!</p>
+<div class="disponibilite-container">
+  <button class="btn disponible" (click)="toggleDisponibilite()" [ngClass]="{'Indisponible': mecanicien.disponible === 'DISPONIBLE', 'Disponible': mecanicien.disponible === 'INDISPONIBLE'}">
+    {{ mecanicien.disponible === 'DISPONIBLE' ? 'Indisponible' : 'Disponible' }}
+  </button >
+  <p>État actuel : {{ mecanicien.disponible === 'DISPONIBLE' ? 'Disponible' : 'Indisponible' }}</p>
+</div>
