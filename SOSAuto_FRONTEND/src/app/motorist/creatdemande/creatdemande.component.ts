@@ -6,6 +6,7 @@ import { DemandeDepannageDto } from "../../services/models/demande-depannage-dto
 import { SharedDataService } from "../../services/token/share-data.service";
 import {PanneDto} from "../../services/models/panne-dto";
 import {TokenService} from "../../services/token/token.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-creatdemande',
@@ -21,8 +22,8 @@ export class CreatdemandeComponent implements OnInit{
 
   constructor(private service: ApiService,
               private sharedDataService: SharedDataService,
-              private tokenService: TokenService
-
+              private tokenService: TokenService,
+              private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -52,16 +53,19 @@ export class CreatdemandeComponent implements OnInit{
 
       this.service.creerDemande$Response(requestParams).subscribe(
         (response: StrictHttpResponse<DemandeDepannageDto>) => {
+          this.toastr.success('Demande créée avec succès', 'succès!');
           console.log('Demande créée avec succès', response.body);
           window.location.reload();
         },
         (error) => {
+          this.toastr.error('La création de la demande a échoué', 'échoué!');
           console.error('La création de la demande a échoué:', error);
         }
       );
     } else {
       console.error('La localisation de l\'utilisateur n\'est pas disponible.');
-      alert('Impossible de récupérer la localisation de l\'utilisateur. Veuillez vous assurer que les services de localisation sont activés.');
+      this.toastr.error('Impossible de récupérer la localisation de l\'utilisateur. Veuillez vous assurer que les services de localisation sont activés.', 'échoué!');
+
     }
   }
 

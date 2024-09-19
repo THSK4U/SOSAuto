@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {TokenService} from "../../services/token/token.service";
 import {MettreAjourDisponibilite$Params} from "../../services/fn/operations/mettre-ajour-disponibilite";
 import {MecanicienDto} from "../../services/models/mecanicien-dto";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-disponibilite',
@@ -16,7 +17,8 @@ export class DisponibiliteComponent implements OnInit{
   constructor(
     private router: Router,
     private Service: ApiService,
-    private Token : TokenService
+    private Token : TokenService,
+    private toastr: ToastrService
   ) {
   }
   ngOnInit(): void {
@@ -54,9 +56,12 @@ export class DisponibiliteComponent implements OnInit{
 
     this.Service.mettreAjourDisponibilite$Response(requestParams).subscribe(
       (data: any) => {
+        this.toastr.success('La disponibilité a été mise à jour avec succès', 'succès!');
+
         console.log('La disponibilité a été mise à jour avec succès:', data);
       },
       (error) => {
+        this.toastr.error('Erreur lors de la mise à jour de la disponibilité', 'Erreur!');
         console.error('Erreur lors de la mise à jour de la disponibilité:', error);
       }
     );

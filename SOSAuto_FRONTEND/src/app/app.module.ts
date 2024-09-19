@@ -13,6 +13,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {SigninComponent} from "./authentication/signin/signin.component";
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 registerLocaleData(localeFr);
 
@@ -33,6 +35,8 @@ registerLocaleData(localeFr);
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [
     HttpClient,
