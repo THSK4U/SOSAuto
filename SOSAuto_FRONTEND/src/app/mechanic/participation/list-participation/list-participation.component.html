@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Liste des participations</h2>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Description</th>
+      <th>Panne</th>
+      <th>Statut</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let participation of participations">
+      <td>{{ participation.demande?.description }}</td>
+      <td>{{ participation.demande?.panne?.nom}}</td>
+      <td>{{ participation.status }}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="participations.length === 0">
+    Aucune participation trouvée.
+  </div>
+</div>
