@@ -5,6 +5,7 @@ import {MapComponent} from "./map/map.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {HomeComponent} from "./home/home.component";
 import {ParticipationComponent} from "./participation/participation.component";
+import {ListParticipationComponent} from "./participation/list-participation/list-participation.component";
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'participation/:demandeid', component: ParticipationComponent },
+      { path: 'participation', component: ListParticipationComponent },
     ]
   }
 ];

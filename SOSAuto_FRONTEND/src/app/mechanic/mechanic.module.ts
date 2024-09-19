@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import {AppComponent} from "../app.component";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { ParticipationComponent } from './participation/participation.component';
+import { ListParticipationComponent } from './participation/list-participation/list-participation.component';
+import { DisponibiliteComponent } from './disponibilite/disponibilite.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ParticipationComponent } from './participation/participation.component'
     NavbarComponent,
     ProfileComponent,
     HomeComponent,
-    ParticipationComponent
+    ParticipationComponent,
+    ListParticipationComponent,
+    DisponibiliteComponent
   ],exports: [
     ],
   imports: [
