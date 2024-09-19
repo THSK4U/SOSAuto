@@ -104,7 +104,7 @@ export class MapComponent implements OnInit {
   private loadDemandes(): void {
     this.apiService.getAllDemande().subscribe(
       (demandes) => {
-        this.demandes = demandes;
+        this.demandes = demandes.filter(demande => demande.etat === 'A_FAIRE');
         console.log('Loaded demandes:', this.demandes);
         this.addDemandeMarkers();
       },
