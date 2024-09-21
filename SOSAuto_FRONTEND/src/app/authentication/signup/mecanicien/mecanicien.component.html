@@ -1,0 +1,101 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+  <ng-container *ngIf="currentStep === 1">
+<div class="form-group">
+    <mat-form-field appearance="outline">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="nom" required placeholder="Entrer votre nom">
+      <mat-error *ngIf="registerForm.get('nom')?.hasError('required')">
+        Le nom est requis
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Prénom</mat-label>
+      <input matInput formControlName="prenom" required placeholder="Entrer votre prénom">
+      <mat-error *ngIf="registerForm.get('prenom')?.hasError('required')">
+        Le prénom est requis
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" required placeholder="Entrer votre email">
+      <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+        L'email est requis
+      </mat-error>
+      <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
+        Entrez un email valide
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required placeholder="Entrer votre mot de passe">
+      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+        Le mot de passe est requis
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Numéro de téléphone</mat-label>
+      <input matInput formControlName="numTelephone" required placeholder="Entrer votre numéro de téléphone">
+      <mat-error *ngIf="registerForm.get('numTelephone')?.hasError('required')">
+        Le numéro de téléphone est requis
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+<div class="button-container">
+    <button mat-raised-button class="custom-next-button" (click)="nextStep()">Suivant ></button>
+</div>
+  </ng-container>
+
+  <ng-container *ngIf="currentStep === 2">
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>URL de la carte d'identité nationale</mat-label>
+        <input matInput formControlName="nationalIdCardUrl" required placeholder="Entrer l'URL de votre carte d'identité">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>URL de preuve de profession</mat-label>
+        <input matInput formControlName="proofOfProfessionUrl" placeholder="Entrer l'URL de votre preuve de profession">
+      </mat-form-field>
+    </div>
+
+    <div class="button-container">
+    <button mat-raised-button class="custom-prev-button" (click)="prevStep()">< Précédent</button>
+    <button mat-raised-button class="custom-next-button" (click)="nextStep()">Suivant ></button>
+    </div>
+  </ng-container>
+
+    <ng-container *ngIf="currentStep === 3">
+      <div class="form-group">
+    <mat-form-field appearance="outline">
+      <mat-label>Latitude</mat-label>
+      <input matInput formControlName="latitude" type="number" placeholder="Entrer la latitude" readonly>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Longitude</mat-label>
+      <input matInput formControlName="longitude" type="number" placeholder="Entrer la longitude" readonly>
+    </mat-form-field>
+      </div>
+      <div id="map" style="height: 400px; width: 100%;"></div>
+
+      <div class="button-container">
+
+      <button mat-raised-button class="custom-prev-button" (click)="prevStep()">< Précédent</button>
+    <button type="submit" [disabled]="!registerForm.valid" class="btn button">S'inscrire</button>
+      </div>
+    </ng-container>
+</form>
+
+<mat-error *ngIf="errorMsg.length > 0" class="error-message">
+  <p *ngFor="let error of errorMsg">{{ error }}</p>
+</mat-error>
