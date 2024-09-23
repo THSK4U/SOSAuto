@@ -1,4 +1,4 @@
-package com.sosauto_backend.controller.utils;
+package com.sosauto_backend.utils;
 
 public interface Constants {
     public static String APP_ADMIN = "admin";

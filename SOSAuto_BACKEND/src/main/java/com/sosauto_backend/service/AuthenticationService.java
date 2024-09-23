@@ -1,10 +1,7 @@
 package com.sosauto_backend.service;
 
 
-import com.sosauto_backend.model.Dto.AdministrateurDTO;
-import com.sosauto_backend.model.Dto.AutomobilisteDTO;
-import com.sosauto_backend.model.Dto.MécanicienDTO;
-import com.sosauto_backend.model.Dto.PersonneDTO;
+import com.sosauto_backend.model.Dto.*;
 import com.sosauto_backend.model.Entity.*;
 import com.sosauto_backend.model.Enum.Disponibilite;
 import com.sosauto_backend.model.Enum.Role;
@@ -80,7 +77,7 @@ public class AuthenticationService implements IAuthenticationService {
 
         MechRepository.save(Mech);
 
-        return new AuthResponse(jwtService.generateToken(Mech), "L'inscription de l'automobiliste a été réussie");
+        return new AuthResponse(jwtService.generateToken(Mech), "L'inscription du mécanicien a été réussie");
 
     }
 

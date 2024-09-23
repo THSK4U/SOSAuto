@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.sosauto_backend.controller.utils.Constants.*;
+import static com.sosauto_backend.utils.Constants.*;
 
 public interface IParticipationApi {
 

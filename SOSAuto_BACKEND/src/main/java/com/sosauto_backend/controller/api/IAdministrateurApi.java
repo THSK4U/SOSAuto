@@ -5,7 +5,7 @@ import com.sosauto_backend.model.Entity.AuthResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import static com.sosauto_backend.controller.utils.Constants.APP_ADMIN;
+import static com.sosauto_backend.utils.Constants.APP_ADMIN;
 
 public interface IAdministrateurApi {
     @PostMapping(value = APP_ADMIN + "/Administrateur/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

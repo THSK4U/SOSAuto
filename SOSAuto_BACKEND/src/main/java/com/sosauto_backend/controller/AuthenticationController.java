@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.sosauto_backend.controller.utils.Constants.APP_PERMIT_ALL;
+import static com.sosauto_backend.utils.Constants.APP_PERMIT_ALL;
 
 
 @RestController
