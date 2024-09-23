@@ -6,6 +6,8 @@ import axios from 'axios'
 import {ApiService} from "../../../services/services/api.service";
 import {MecanicienDto} from "../../../services/models/mecanicien-dto";
 import {CreerMecanicien$Params} from "../../../services/fn/operations/creer-mecanicien";
+import {Router} from "@angular/router";
+import {UploadImage} from "../../../services/services/UploadImage";
 @Component({
   selector: 'app-mecanicien',
   templateUrl: './mecanicien.component.html',
@@ -24,7 +26,9 @@ export class MecanicienComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder,
-              private Service: ApiService
+              private Service: ApiService,
+              private router: Router,
+              private uploadService: UploadImage
   ) {}
 
   ngOnInit() {
@@ -69,10 +73,10 @@ export class MecanicienComponent implements OnInit {
       console.log('Form Data:', this.registerForm.value);
 
       if (formData.nationalIdCardUrl) {
-        formData.nationalIdCardUrl = await this.uploadImageToCloudinary(formData.nationalIdCardUrl);
+        formData.nationalIdCardUrl = await this.uploadService.uploadImageToCloudinary(formData.nationalIdCardUrl);
       }
       if (formData.nationalIdCardUrl) {
-        formData.proofOfProfessionUrl = await this.uploadImageToCloudinary(formData.proofOfProfessionUrl);
+        formData.proofOfProfessionUrl = await this.uploadService.uploadImageToCloudinary(formData.proofOfProfessionUrl);
       }
       console.log('Form Data after:', formData);
 
@@ -81,6 +85,7 @@ export class MecanicienComponent implements OnInit {
       }).subscribe(
           data => {
               console.log('Mecanicien created successfully:', data);
+              this.router.navigate(['/login']);
           }
       )
 
@@ -103,27 +108,6 @@ export class MecanicienComponent implements OnInit {
     } else {
       alert('Veuillez sélectionner une image valide');
     }
-  }
-
-  uploadImageToCloudinary(file: File): Promise<string> {
-    const cloudinaryUrl = 'https://api.cloudinary.com/v1_1/dflocbrja/image/upload';
-    const unsignedUploadPreset = 'sosauto';
-
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', unsignedUploadPreset);
-
-    return axios.post(cloudinaryUrl, formData)
-      .then(response => {
-        if (response.data.secure_url) {
-          return response.data.secure_url;
-        } else {
-          throw new Error('Upload failed');
-        }
-      })
-      .catch(error => {
-        throw error;
-      });
   }
 
   private initializeMap(): void {
