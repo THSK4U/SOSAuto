@@ -57,16 +57,25 @@
 
   <ng-container *ngIf="currentStep === 2">
     <div class="form-group">
-      <mat-form-field appearance="outline">
-        <mat-label>URL de la carte d'identité nationale</mat-label>
-        <input matInput formControlName="nationalIdCardUrl" required placeholder="Entrer l'URL de votre carte d'identité">
-      </mat-form-field>
+      <label for="nationalIdCardUrl">Carte d'identité nationale</label>
+      <input id="nationalIdCardUrl" type="file" (change)="onFileSelected($event, 'nationalIdCardUrl')" required>
 
-      <mat-form-field appearance="outline">
-        <mat-label>URL de preuve de profession</mat-label>
-        <input matInput formControlName="proofOfProfessionUrl" placeholder="Entrer l'URL de votre preuve de profession">
-      </mat-form-field>
+      <div *ngIf="imagePreviewUrl">
+        <h3>Aperçu de l'image :</h3>
+        <img [src]="imagePreviewUrl" alt="Image Preview" style="max-width: 70%; height: auto;">
+      </div>
+
+      <label for="proofOfProfessionUrl">Preuve de profession</label>
+      <input id="proofOfProfessionUrl" type="file" (change)="onFileSelected($event, 'proofOfProfessionUrl')">
+
+      <div *ngIf="imageProofPreviewUrl">
+        <h3>Aperçu de l'image :</h3>
+        <img [src]="imageProofPreviewUrl" alt="Image Preview" style="max-width: 70%; height: auto;">
+      </div>
+
     </div>
+
+
 
     <div class="button-container">
     <button mat-raised-button class="custom-prev-button" (click)="prevStep()">< Précédent</button>

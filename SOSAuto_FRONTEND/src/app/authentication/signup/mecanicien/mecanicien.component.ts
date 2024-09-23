@@ -2,7 +2,10 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import * as mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-
+import axios from 'axios'
+import {ApiService} from "../../../services/services/api.service";
+import {MecanicienDto} from "../../../services/models/mecanicien-dto";
+import {CreerMecanicien$Params} from "../../../services/fn/operations/creer-mecanicien";
 @Component({
   selector: 'app-mecanicien',
   templateUrl: './mecanicien.component.html',
@@ -16,8 +19,13 @@ export class MecanicienComponent implements OnInit {
   private readonly mapboxAccessToken = 'pk.eyJ1Ijoic29zYXV0byIsImEiOiJjbTBlZmhudTkwNm16MmpzN3RkZDJiZ2MzIn0.NCq9laQd2WA2o0fdBKhfOw';
   private map!: mapboxgl.Map;
   private marker!: mapboxgl.Marker;
+  imageProofPreviewUrl: string | null = null;
+  imagePreviewUrl: string | null = null;
 
-  constructor(private fb: FormBuilder) {}
+
+  constructor(private fb: FormBuilder,
+              private Service: ApiService
+  ) {}
 
   ngOnInit() {
     this.initForm();
@@ -55,16 +63,68 @@ export class MecanicienComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.registerForm.valid) {
-      this.errorMsg = [];
-      console.log(this.registerForm.value);
+      const formData = this.registerForm.value;
+      console.log('Form Data:', this.registerForm.value);
 
-    } else {
-      this.errorMsg.push('Veuillez remplir tous les champs requis.');
+      if (formData.nationalIdCardUrl) {
+        formData.nationalIdCardUrl = await this.uploadImageToCloudinary(formData.nationalIdCardUrl);
+      }
+      if (formData.nationalIdCardUrl) {
+        formData.proofOfProfessionUrl = await this.uploadImageToCloudinary(formData.proofOfProfessionUrl);
+      }
+      console.log('Form Data after:', formData);
+
+      this.Service.creerMecanicien$Response({
+        body: formData
+      }).subscribe(
+          data => {
+              console.log('Mecanicien created successfully:', data);
+          }
+      )
+
     }
   }
 
+  onFileSelected(event: any, controlName: string): void {
+    const file = event.target.files[0];
+    if (file && file.type.match(/image\/*/) != null) {
+      const previewUrl = URL.createObjectURL(file);
+      this.registerForm.patchValue({
+        [controlName]: file
+      });
+      this.registerForm.get(controlName)?.markAsTouched();
+      if (controlName === 'nationalIdCardUrl') {
+        this.imagePreviewUrl = previewUrl;
+      } else if (controlName === 'proofOfProfessionUrl') {
+        this.imageProofPreviewUrl = previewUrl;
+      }
+    } else {
+      alert('Veuillez sélectionner une image valide');
+    }
+  }
+
+  uploadImageToCloudinary(file: File): Promise<string> {
+    const cloudinaryUrl = 'https://api.cloudinary.com/v1_1/dflocbrja/image/upload';
+    const unsignedUploadPreset = 'sosauto';
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', unsignedUploadPreset);
+
+    return axios.post(cloudinaryUrl, formData)
+      .then(response => {
+        if (response.data.secure_url) {
+          return response.data.secure_url;
+        } else {
+          throw new Error('Upload failed');
+        }
+      })
+      .catch(error => {
+        throw error;
+      });
+  }
 
   private initializeMap(): void {
     (mapboxgl as any).accessToken = this.mapboxAccessToken;
