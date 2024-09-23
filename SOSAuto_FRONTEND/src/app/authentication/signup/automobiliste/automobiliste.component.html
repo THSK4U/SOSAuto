@@ -45,6 +45,15 @@
       Le numéro de téléphone est requis
     </mat-error>
   </mat-form-field>
+
+  <label for="nationalIdCardUrl">Carte d'identité nationale</label>
+  <input id="nationalIdCardUrl" type="file" (change)="onFileSelected($event, 'nationalIdCardUrl')" required>
+
+  <div *ngIf="imagePreviewUrl">
+    <h3>Aperçu de l'image :</h3>
+    <img [src]="imagePreviewUrl" alt="Image Preview" style="max-width: 70%; height: auto;">
+  </div>
+
 </div>
   <div class="button-container">
   <button type="submit" [disabled]="!registerForm.valid" class="btn button">S'inscrire</button>
