@@ -7,6 +7,7 @@
       <th>Description</th>
       <th>Panne</th>
       <th>Statut</th>
+      <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -14,6 +15,7 @@
       <td>{{ participation.demande?.description }}</td>
       <td>{{ participation.demande?.panne?.nom}}</td>
       <td>{{ participation.status }}</td>
+      <button class="btn btn-danger" (click)="cancelRequest(participation.id)">Annuler</button>
     </tr>
     </tbody>
   </table>
