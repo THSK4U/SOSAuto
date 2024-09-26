@@ -14,6 +14,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {NavbarComponent} from "./navbar/navbar.component";
 import { HomeComponent } from './home/home.component';
+import { HistoriqueComponent } from './historique/historique.component';
+import { ParticipationDemandeComponent } from './participation-demande/participation-demande.component';
 
 
 
@@ -24,7 +26,9 @@ import { HomeComponent } from './home/home.component';
     ListSuggestionsComponent,
     CreatdemandeComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    HistoriqueComponent,
+    ParticipationDemandeComponent
   ],
   imports: [
     CommonModule,

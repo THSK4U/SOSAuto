@@ -5,6 +5,7 @@ app{
 .map-container {
     position: absolute;
     top: 0;
+  z-index: 10;
 }
 
 .map-background {
