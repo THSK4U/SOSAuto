@@ -83,6 +83,14 @@ public class ParticipationService implements IParticipationService {
     }
 
     @Override
+    public List<ParticipationDTO> getByDemande_AutomobilistId(Long id) {
+        List<Participation> participations = repository.findParticipationsByautomobiliste_id(id);
+        return participations.stream()
+                .map(mapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public ParticipationDTO acceptParticipation(Long participationId) {
         Participation participation = repository.findById(participationId)
                 .orElseThrow(() -> new EntityNotFoundException("Participation not found with id: " + participationId));

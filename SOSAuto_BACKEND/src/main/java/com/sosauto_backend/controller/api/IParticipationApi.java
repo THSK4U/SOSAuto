@@ -41,6 +41,10 @@ public interface IParticipationApi {
     @GetMapping(value = APP_ADMIN_MECH + "/Participation/Mecanicien/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     List<ParticipationDTO> getALLParticipationByIdMecanicien(@PathVariable("id") Long id);
 
+    //By Automobiliste
+    @GetMapping(value = APP_ADMIN_MECH + "/Participation/Automobiliste/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<ParticipationDTO> getALLParticipationByIdAutomobilist(@PathVariable("id") Long id);
+
     @PostMapping(value = APP_MECH +"/accept/{participationId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ParticipationDTO> acceptParticipation(@PathVariable Long participationId);
     @PostMapping(value = APP_MECH +"/reject/{participationId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

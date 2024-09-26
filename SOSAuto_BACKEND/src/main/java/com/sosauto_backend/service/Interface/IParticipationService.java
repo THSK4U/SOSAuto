@@ -27,6 +27,9 @@ public interface IParticipationService {
     //By ID Mecanicien
     List<ParticipationDTO> getByMecanicienId(Long id);
 
+    //By ID Demande.AutomobilistId
+    List<ParticipationDTO> getByDemande_AutomobilistId(Long id);
+
     //Accept ou reject
     ParticipationDTO acceptParticipation(Long participationId);
     ParticipationDTO rejectParticipation(Long participationId);
