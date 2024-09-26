@@ -10,6 +10,7 @@ import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
 import { acceptParticipation } from '../fn/operations/accept-participation';
+import { getAllParticipationByIdAutomobilist } from '../fn/operations/get-all-participation-by-id-automobilist';
 import { AcceptParticipation$Params } from '../fn/operations/accept-participation';
 import { AdministrateurDto } from '../models/administrateur-dto';
 import { annulerParticipation } from '../fn/operations/annuler-participation';
@@ -99,11 +100,45 @@ import { SupprimerParticipationByDemande$Params } from '../fn/operations/supprim
 import { supprimerVehicule } from '../fn/operations/supprimer-vehicule';
 import { SupprimerVehicule$Params } from '../fn/operations/supprimer-vehicule';
 import { VehiculeDto } from '../models/vehicule-dto';
+import {GetAllParticipationByIdAutomobilist$Params} from "../fn/operations/get-all-participation-by-id-automobilist";
 
 @Injectable({ providedIn: 'root' })
 export class ApiService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
+  }
+
+  /** Path part for operation `getAllParticipationByIdAutomobilist()` */
+  static readonly GetAllParticipationByIdAutomobilistPath = '/mechadmin/Participation/Automobiliste/{id}';
+
+  /**
+   * GET mechadmin/Participation/Automobiliste/{id}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getAllParticipationByIdAutomobilist()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllParticipationByIdAutomobilist$Response(params: GetAllParticipationByIdAutomobilist$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ParticipationDto>>> {
+    return getAllParticipationByIdAutomobilist(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * GET mechadmin/Participation/Automobiliste/{id}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getAllParticipationByIdAutomobilist$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllParticipationByIdAutomobilist(params: GetAllParticipationByIdAutomobilist$Params, context?: HttpContext): Observable<Array<ParticipationDto>> {
+    return this.getAllParticipationByIdAutomobilist$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<ParticipationDto>>): Array<ParticipationDto> => r.body)
+    );
   }
 
   /** Path part for operation `getParticipationById()` */
