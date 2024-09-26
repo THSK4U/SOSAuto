@@ -28,7 +28,19 @@ app-form-demande{
   position: absolute;
   z-index: 10;
 }
+.modal.show .modal-dialog {
+  z-index: 1;
+  height: 90%;
+  width: 100%;
+  transform: none;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
+}
+.modal-content{
+  box-shadow: 0 9px 181px 320px rgba(0, 0, 0, 0.1);
+}
 app-creatdemande {
   transform: translateX(-50%);
   z-index: 10;
@@ -42,3 +54,4 @@ app-creatdemande {
   display: flex;
   justify-content: center;
 }
+
