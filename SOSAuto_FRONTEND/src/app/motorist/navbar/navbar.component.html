@@ -9,21 +9,25 @@
 
 
     <div class="" id="navbarNav">
+
+
       <ul class="navbar-nav" id="leftNav">
 
-        <li class="nav-item">
-          <a class="nav-link" id="sidebar-toggle" ><i data-feather="arrow-left" ></i></a>
-        </li>
 
+
+        <li class="nav-item">
+          <button class="navbar-toggler" id="dropdownMenuButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="/mecanicien">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/historique">Historique</a>
         </li>
-        <button class="btn " routerLink="/mecanicien">Mécanician</button>
-        <button class="btn" routerLink="/automobiliste">Automobiliste</button>
-        <button class="btn" routerLink="/admin">admin</button>
+
 
       </ul>
     </div>
@@ -53,8 +57,8 @@
         <!--          </div>-->
         <!--        </li>-->
         <li>
-          <button class="btn text-danger" (click)="logout()">
-            Déconnexion
+          <button mat-button class="btn btn-danger text-danger" (click)="logout()">
+            <mat-icon>logout</mat-icon> Déconnexion
           </button>
         </li>
 

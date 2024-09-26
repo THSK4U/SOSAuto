@@ -4,4 +4,38 @@
 .logo img{
   height: 80px;
 }
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
 
+.nav-link {
+  margin-right: 15px;
+}
+
+.navbar-brand img {
+  max-height: 50px;
+}
+
+@media (max-width: 992px) {
+  #headerNav {
+    margin-top: 0rem;
+  }
+  .navbar-nav .nav-item {
+    margin-left: 10px;
+  }
+  .navbar-nav {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (min-width: 993px) {
+  .navbar-nav {
+    flex-direction: row;
+  }
+
+  #headerNav {
+    margin-top: 0;
+  }
+}
