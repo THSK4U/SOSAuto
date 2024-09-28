@@ -9,7 +9,7 @@ import { RequestBuilder } from '../../request-builder';
 import { ParticipationDto } from '../../models/participation-dto';
 
 export interface RejectParticipation$Params {
-  participationId: number;
+  participationId?: number;
 }
 
 export function rejectParticipation(http: HttpClient, rootUrl: string, params: RejectParticipation$Params, context?: HttpContext): Observable<StrictHttpResponse<ParticipationDto>> {
