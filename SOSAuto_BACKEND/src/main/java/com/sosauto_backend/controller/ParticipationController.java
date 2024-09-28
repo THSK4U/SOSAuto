@@ -54,6 +54,11 @@ public class ParticipationController implements IParticipationApi {
     }
 
     @Override
+    public List<ParticipationDTO> getALLParticipationByIDDemande(Long id) {
+        return Service.getALLByDemandeID(id);
+    }
+
+    @Override
     public ResponseEntity<ParticipationDTO> acceptParticipation(Long participationId) {
         ParticipationDTO participation = Service.acceptParticipation(participationId);
         return ResponseEntity.ok(participation);
