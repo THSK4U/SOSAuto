@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ApiService} from "../../services/services/api.service";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -8,16 +8,22 @@ import {CreerDemande$Params} from "../../services/fn/operations/creer-demande";
 import {CreerParticipation$Params} from "../../services/fn/operations/creer-participation";
 import {AnnulerParticipation$Params} from "../../services/fn/operations/annuler-participation";
 import {ToastrService} from "ngx-toastr";
+import {GetParticipationById$Params} from "../../services/fn/operations/get-participation-by-id";
+import {interval, Subscription} from "rxjs";
+import {switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-participation',
   templateUrl: './participation.component.html',
   styleUrls: ['./participation.component.scss']
 })
-export class ParticipationComponent implements OnInit{
+export class ParticipationComponent implements OnInit,OnDestroy{
   demandeid: number = 0;
   participation: ParticipationDto[] = [];
   createdParticipationId: number = 0;
+  refreshSubscription?: Subscription;
+
+
   constructor(
     private service: ApiService,
     private http: HttpClient,
@@ -29,7 +35,20 @@ export class ParticipationComponent implements OnInit{
 
   ngOnInit(): void {
     this.demandeid = Number(this.route.snapshot.paramMap.get('demandeid'));
-    this.creerParticipation()
+    this.creerParticipation();
+  }
+
+  ngOnDestroy(): void {
+    if (this.refreshSubscription) {
+      this.refreshSubscription.unsubscribe();
+    }
+  }
+
+  startAutoRefresh(participationId: number): void {
+    // Refresh every 10 seconds
+    this.refreshSubscription = interval(10000)
+      .pipe(switchMap(() => this.checkParticipationStatus(participationId)))
+      .subscribe();
   }
 
   creerParticipation(){
@@ -45,6 +64,7 @@ export class ParticipationComponent implements OnInit{
         this.createdParticipationId = response.body.id!;
         this.toastr.success('Participation créée avec succès', 'succès!');
         console.log('Participation créée avec succès', this.createdParticipationId);
+        this.startAutoRefresh(this.createdParticipationId);
       },(error) => {
         this.toastr.error('Erreur lors de la mise à jour de la disponibilité', 'Erreur!');
         console.error('La création de la demande a échoué:', error);
@@ -67,6 +87,21 @@ export class ParticipationComponent implements OnInit{
           console.error('L\'annulation de la participation a échoué:', error);
         }
       );
+  }
 
+  checkParticipationStatus(participationId: number) {
+    const requestParams: GetParticipationById$Params = {
+      id: participationId
+    };
+    return this.service.getParticipationById$Response(requestParams).pipe(
+      switchMap((response) => {
+        const participation = response.body;
+        if (participation.status === 'ANNULER') {
+          this.toastr.warning('Votre participation a été annulée par l\'automobiliste', 'Avertissement!');
+          this.router.navigate(['/mecanicien']);
+        }
+        return [];
+      })
+    );
   }
 }
