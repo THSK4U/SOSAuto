@@ -26,4 +26,5 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
     void deleteByDemande_DemandeidAndMecanicien_Personneid(Long demandeId, Long personneId);
 
 
+    List<Participation> findAllByDemande_Demandeid(Long id);
 }
