@@ -1,0 +1,21 @@
+<section class="offer-section">
+  <main class="offer-main">
+    <ng-container *ngIf="participations.length > 0; else noParticipations">
+        <ng-container  *ngFor="let participation of participations">
+          <article class="offer-card" *ngIf="participation.status === 'EN_ATTENTE'">
+          <div class="offer-details">
+          <h2 class="offer-name">{{ participation.mecanicien?.nom }} {{participation.mecanicien?.prenom}}</h2>
+          <p class="offer-job">{{ participation.mecanicien?.numTelephone }}</p>
+        </div>
+        <div class="offer-actions">
+          <button class="btn btn-accept" aria-label="Accepter l'offre" (click)="acceptOffer(participation?.id)">Accepté</button>
+          <button class="btn btn-cancel" aria-label="Annuler l'offre" (click)="cancelOffer(participation?.id)">Annuler</button>
+        </div>
+          </article>
+        </ng-container>
+    </ng-container>
+    <ng-template #noParticipations>
+      <p class="no-offers-message">Aucune offre disponible pour le moment.</p>
+    </ng-template>
+  </main>
+</section>

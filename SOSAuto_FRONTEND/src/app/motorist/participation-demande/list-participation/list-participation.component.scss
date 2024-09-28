@@ -1,0 +1,88 @@
+.offer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Comfortaa', sans-serif;
+}
+
+.offer-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.offer-title {
+  font-size: 24px;
+  color: #333;
+}
+
+.offer-main {
+  width: 100%;
+  max-width: 600px;
+}
+
+.offer-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.offer-details {
+  flex: 1;
+}
+
+.offer-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.offer-job {
+  font-size: 14px;
+  color: #d50101;
+  margin: 5px 0 0;
+}
+
+.offer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-accept {
+  background-color: #22c55e;
+  color: white;
+
+  &:hover {
+    background-color: #1ca04b;
+  }
+}
+
+.btn-cancel {
+  background-color: #b81031;
+  color: white;
+
+  &:hover {
+    background-color: #9a0d29;
+  }
+}
+
+.no-offers-message {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}

@@ -28,7 +28,8 @@ import { DisponibiliteComponent } from './disponibilite/disponibilite.component'
     ParticipationComponent,
     ListParticipationComponent,
     DisponibiliteComponent
-  ],exports: [
+  ], exports: [
+        ListParticipationComponent
     ],
   imports: [
     CommonModule,

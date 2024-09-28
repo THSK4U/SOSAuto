@@ -5,6 +5,9 @@ import {MapComponent} from "./mechanic/map/map.component";
 import {SigninComponent} from "./authentication/signin/signin.component";
 import {SignupComponent} from "./authentication/signup/signup.component";
 import {HomeComponent} from "./home/home.component";
+import {
+  ListParticipationComponent
+} from "./motorist/participation-demande/list-participation/list-participation.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +18,8 @@ const routes: Routes = [
   { path: 'login', component: SigninComponent},
   { path: 'register', component: SignupComponent},
   {path: 'MAP', component: MapComponent},
+  {path: 'part', component: ListParticipationComponent}
+
 ];
 
 @NgModule({

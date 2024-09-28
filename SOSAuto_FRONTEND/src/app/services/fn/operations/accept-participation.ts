@@ -9,7 +9,7 @@ import { RequestBuilder } from '../../request-builder';
 import { ParticipationDto } from '../../models/participation-dto';
 
 export interface AcceptParticipation$Params {
-  participationId: number;
+  participationId?: number;
 }
 
 export function acceptParticipation(http: HttpClient, rootUrl: string, params: AcceptParticipation$Params, context?: HttpContext): Observable<StrictHttpResponse<ParticipationDto>> {
@@ -28,4 +28,4 @@ export function acceptParticipation(http: HttpClient, rootUrl: string, params: A
   );
 }
 
-acceptParticipation.PATH = '/mechanic/accept/{participationId}';
+acceptParticipation.PATH = '/automobiliste/accept/{participationId}';

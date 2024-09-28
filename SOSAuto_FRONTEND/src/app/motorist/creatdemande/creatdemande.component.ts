@@ -7,6 +7,7 @@ import { SharedDataService } from "../../services/token/share-data.service";
 import {PanneDto} from "../../services/models/panne-dto";
 import {TokenService} from "../../services/token/token.service";
 import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-creatdemande',
@@ -23,7 +24,8 @@ export class CreatdemandeComponent implements OnInit{
   constructor(private service: ApiService,
               private sharedDataService: SharedDataService,
               private tokenService: TokenService,
-              private toastr: ToastrService
+              private toastr: ToastrService,
+              private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +57,7 @@ export class CreatdemandeComponent implements OnInit{
         (response: StrictHttpResponse<DemandeDepannageDto>) => {
           this.toastr.success('Demande créée avec succès', 'succès!');
           console.log('Demande créée avec succès', response.body);
-          window.location.reload();
+          this.router.navigate(['automobiliste/participation', response.body.demandeid]);
         },
         (error) => {
           this.toastr.error('La création de la demande a échoué', 'échoué!');

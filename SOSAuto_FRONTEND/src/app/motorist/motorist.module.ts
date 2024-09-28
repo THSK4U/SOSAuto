@@ -16,6 +16,7 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import { HomeComponent } from './home/home.component';
 import { HistoriqueComponent } from './historique/historique.component';
 import { ParticipationDemandeComponent } from './participation-demande/participation-demande.component';
+import { ListParticipationComponent } from './participation-demande/list-participation/list-participation.component';
 
 
 
@@ -28,7 +29,8 @@ import { ParticipationDemandeComponent } from './participation-demande/participa
     NavbarComponent,
     HomeComponent,
     HistoriqueComponent,
-    ParticipationDemandeComponent
+    ParticipationDemandeComponent,
+    ListParticipationComponent
   ],
   imports: [
     CommonModule,

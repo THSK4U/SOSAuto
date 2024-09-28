@@ -3,7 +3,6 @@ import {ApiService} from "../../../services/services/api.service";
 import {Router} from "@angular/router";
 import {TokenService} from "../../../services/token/token.service";
 import {ParticipationDto} from "../../../services/models/participation-dto";
-import {ParticipationComponent} from "../participation.component";
 import {AnnulerParticipation$Params} from "../../../services/fn/operations/annuler-participation";
 import {ToastrService} from "ngx-toastr";
 
@@ -47,7 +46,7 @@ export class ListParticipationComponent implements OnInit{
       (response) => {
         this.toastr.warning('La participation a été annulée', 'Avertissement!');
         console.log('Participation annulée avec succès');
-          window.location.reload();
+        window.location.reload();
       },
       (error) => {
         this.toastr.error('L\'annulation de la participation a échoué', 'Erreur!');
