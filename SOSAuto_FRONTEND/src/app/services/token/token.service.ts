@@ -43,4 +43,9 @@ export class TokenService {
     localStorage.removeItem('jwt');
     this.router.navigate(['/']);
   }
+
+  isLoggedIn(): boolean {
+    return !!this.token;
+  }
+
 }
