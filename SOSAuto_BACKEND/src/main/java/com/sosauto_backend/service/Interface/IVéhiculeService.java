@@ -1,6 +1,6 @@
 package com.sosauto_backend.service.Interface;
 
-import com.sosauto_backend.model.Dto.VéhiculeDTO;
+import com.sosauto_backend.model.Dto.VehiculeDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,17 +8,17 @@ import java.util.List;
 @Service
 public interface IVéhiculeService {
     //Creer
-    VéhiculeDTO creer(VéhiculeDTO personne);
+    VehiculeDTO creer(VehiculeDTO personne);
 
     //mettre A Jour
-    VéhiculeDTO mettreAJour(Long id, VéhiculeDTO DTO);
+    VehiculeDTO mettreAJour(Long id, VehiculeDTO dto);
 
     //supprimer
     void supprimer(Long id);
 
     //consulter Tous
-    List<VéhiculeDTO> voirTous();
+    List<VehiculeDTO> voirTous();
 
     //By ID
-    VéhiculeDTO getById(Long id);
+    VehiculeDTO getById(Long id);
 }

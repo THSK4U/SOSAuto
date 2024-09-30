@@ -19,76 +19,110 @@ import java.util.Optional;
 public class MecanicienService implements IMecanicienService {
 
     @Autowired
-    private MecanicienMapper Mapper;
+    private MecanicienMapper mapper;
 
     @Autowired
-    private MecanicienRepository Repository;
+    private MecanicienRepository repository;
 
     @Autowired
-    private IAuthenticationService authenticationService;
+    private IAuthenticationService authenticationservice;
+
 
 
     @Override
-    public AuthResponse creer(MecanicienDTO Mecanicien) {
-        Mecanicien.setDisponible(Disponibilite.INDISPONIBLE);
-        return authenticationService.registerMecanicien(Mecanicien);
+    public AuthResponse creer(MecanicienDTO mecanicien) {
+        try {
+            mecanicien.setDisponible(Disponibilite.INDISPONIBLE);
+            return authenticationservice.registerMecanicien(mecanicien);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la création du mécanicien : " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public MecanicienDTO getById(Long id) {
-        Optional<Mecanicien> mecanicien = Repository.findById(id);
-        return mecanicien.map(Mapper::toDTO).orElse(null);
+        try {
+            Optional<Mecanicien> mecanicien = repository.findById(id);
+            return mecanicien.map(mapper::toDTO).orElse(null);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération du mécanicien par ID : " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
-    public MecanicienDTO mettreAJourdisponibilite(Long id, MecanicienDTO DTO) {
-        Optional<Mecanicien> optional = Repository.findById(id);
-        if (optional.isPresent()) {
-            Mecanicien mecanicien = optional.get();
-            mecanicien.setDisponible(DTO.getDisponible());
-            return Mapper.toDTO(Repository.save(mecanicien));
-        } else {
-            return null;
+    public MecanicienDTO mettreAJourdisponibilite(Long id, MecanicienDTO dto) {
+        try {
+            Optional<Mecanicien> optional = repository.findById(id);
+            if (optional.isPresent()) {
+                Mecanicien mecanicien = optional.get();
+                mecanicien.setDisponible(dto.getDisponible());
+                return mapper.toDTO(repository.save(mecanicien));
+            } else {
+                return null; // Or throw an exception for mechanic not found
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la mise à jour de la disponibilité du mécanicien : " + e.getMessage());
+            throw e;
         }
     }
 
     @Override
     public List<MecanicienDTO> getDisponibilite() {
-        List<Mecanicien> mecanicien = Repository.getAllByDisponible(Disponibilite.DISPONIBLE);
-        return mecanicien.stream()
-                .map(Mapper::toDTO)
-                .toList();
+        try {
+            List<Mecanicien> mecanicien = repository.getAllByDisponible(Disponibilite.DISPONIBLE);
+            return mecanicien.stream()
+                    .map(mapper::toDTO)
+                    .toList();
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération des mécaniciens disponibles : " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public List<MecanicienDTO> voirTous() {
-        List<Mecanicien> mecanicien = Repository.findAll();
-        return mecanicien.stream()
-                .map(Mapper::toDTO)
-                .toList();
+        try {
+            List<Mecanicien> mecanicien = repository.findAll();
+            return mecanicien.stream()
+                    .map(mapper::toDTO)
+                    .toList();
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération de tous les mécaniciens : " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
-    public MecanicienDTO mettreAJour(Long id, MecanicienDTO DTO) {
-        Optional<Mecanicien> optional = Repository.findById(id);
-        if (optional.isPresent()) {
-            Mecanicien mecanicien = optional.get();
-            mecanicien.setEmail(DTO.getEmail());
-            mecanicien.setNom(DTO.getNom());
-            mecanicien.setPrenom(DTO.getPrenom());
-            mecanicien.setPassword(DTO.getPassword());
+    public MecanicienDTO mettreAJour(Long id, MecanicienDTO dto) {
+        try {
+            Optional<Mecanicien> optional = repository.findById(id);
+            if (optional.isPresent()) {
+                Mecanicien mecanicien = optional.get();
+                mecanicien.setEmail(dto.getEmail());
+                mecanicien.setNom(dto.getNom());
+                mecanicien.setPrenom(dto.getPrenom());
+                mecanicien.setPassword(dto.getPassword()); // Consider hashing the password
 
-            Mecanicien updated = Repository.save(mecanicien);
-            return Mapper.toDTO(updated);
-        } else {
-            return null;
+                Mecanicien updated = repository.save(mecanicien);
+                return mapper.toDTO(updated);
+            } else {
+                return null; // Or throw an exception for mechanic not found
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la mise à jour du mécanicien : " + e.getMessage());
+            throw e;
         }
     }
 
     @Override
     public void supprimer(Long id) {
-        Repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la suppression du mécanicien : " + e.getMessage());
+            throw e;
+        }
     }
-
-
 }

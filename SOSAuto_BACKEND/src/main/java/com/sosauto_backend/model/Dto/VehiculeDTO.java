@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Data
-public class VéhiculeDTO {
+public class VehiculeDTO {
 
-    private Long véhiculeid;
+    private Long vehiculeid;
     private String marque;
     private String modele;
-    private int année;
+    private int annee;
     private String matricule;
     private String couleur;
     @JsonIgnore

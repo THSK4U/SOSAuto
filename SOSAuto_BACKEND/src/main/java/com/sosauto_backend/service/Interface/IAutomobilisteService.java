@@ -10,7 +10,7 @@ public interface IAutomobilisteService {
     AuthResponse creer(AutomobilisteDTO personne);
 
     //mettre A Jour
-    AutomobilisteDTO mettreAJour(Long id, AutomobilisteDTO DTO);
+    AutomobilisteDTO mettreAJour(Long id, AutomobilisteDTO dto);
 
     //supprimer
     void supprimer(Long id);

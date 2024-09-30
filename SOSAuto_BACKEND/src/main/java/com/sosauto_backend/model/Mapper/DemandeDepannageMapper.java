@@ -9,8 +9,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface DemandeDepannageMapper {
 
-    DemandeDepannage toEntity(DemandeDepannageDTO DTO);
+    DemandeDepannage toEntity(DemandeDepannageDTO dto);
     DemandeDepannageDTO toDTO(DemandeDepannage entity);
-    List<DemandeDepannageDTO> toDTOList(List<DemandeDepannage> All);
-    List<DemandeDepannage> toEntityList(List<DemandeDepannageDTO> AllDTOs);
+    List<DemandeDepannageDTO> toDTOList(List<DemandeDepannage> all);
+    List<DemandeDepannage> toEntityList(List<DemandeDepannageDTO> alldtos);
 }

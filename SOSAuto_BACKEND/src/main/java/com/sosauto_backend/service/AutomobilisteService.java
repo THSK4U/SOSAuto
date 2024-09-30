@@ -18,54 +18,77 @@ import java.util.stream.Collectors;
 public class AutomobilisteService implements IAutomobilisteService {
 
     @Autowired
-    private AutomobilisteMapper Mapper;
+    private AutomobilisteMapper mapper;
 
     @Autowired
-    private AutomobilisteRepository Repository;
+    private AutomobilisteRepository repository;
 
     @Autowired
-    private IAuthenticationService authenticationService;
+    private IAuthenticationService authenticationservice;
 
     @Override
-    public AuthResponse creer(AutomobilisteDTO Automobiliste) {
-        return authenticationService.registerAutomobiliste(Automobiliste);
+    public AuthResponse creer(AutomobilisteDTO automobiliste) {
+        try {
+            return authenticationservice.registerAutomobiliste(automobiliste);
+        } catch (Exception e) {
+            System.err.println("Error creating automobilist: " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public AutomobilisteDTO getById(Long id) {
-        Optional<Automobiliste> automobiliste = Repository.findById(id);
-        return automobiliste.map(Mapper::toDTO).orElse(null);
+        try {
+            Optional<Automobiliste> automobiliste = repository.findById(id);
+            return automobiliste.map(mapper::toDTO).orElse(null);
+        } catch (Exception e) {
+            System.err.println("Error getting automobilist by ID: " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public List<AutomobilisteDTO> voirTous() {
-        List<Automobiliste> automobiliste = Repository.findAll();
-        return automobiliste.stream()
-                .map(Mapper::toDTO)
-                .collect(Collectors.toList());
+        try {
+            List<Automobiliste> automobiliste = repository.findAll();
+            return automobiliste.stream()
+                    .map(mapper::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.err.println("Error getting all automobilists: " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
-    public AutomobilisteDTO mettreAJour(Long id, AutomobilisteDTO DTO) {
-        Optional<Automobiliste> optional = Repository.findById(id);
-        if (optional.isPresent()) {
-            Automobiliste automobiliste = optional.get();
-            automobiliste.setEmail(DTO.getEmail());
-            automobiliste.setNom(DTO.getNom());
-            automobiliste.setPrenom(DTO.getPrenom());
-            automobiliste.setPassword(DTO.getPassword());
+    public AutomobilisteDTO mettreAJour(Long id, AutomobilisteDTO dto) {
+        try {
+            Optional<Automobiliste> optional = repository.findById(id);
+            if (optional.isPresent()) {
+                Automobiliste automobiliste = optional.get();
+                automobiliste.setEmail(dto.getEmail());
+                automobiliste.setNom(dto.getNom());
+                automobiliste.setPrenom(dto.getPrenom());
+                automobiliste.setPassword(dto.getPassword());
 
-
-            Automobiliste updated = Repository.save(automobiliste);
-            return Mapper.toDTO(updated);
-        } else {
-            return null;
+                Automobiliste updated = repository.save(automobiliste);
+                return mapper.toDTO(updated);
+            } else {
+                return null; // Or throw an exception indicating the automobilist was not found
+            }
+        } catch (Exception e) {
+            System.err.println("Error updating automobilist: " + e.getMessage());
+            throw e;
         }
     }
 
     @Override
     public void supprimer(Long id) {
-        Repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (Exception e) {
+            System.err.println("Error deleting automobilist: " + e.getMessage());
+            throw e;
+        }
     }
-
 }

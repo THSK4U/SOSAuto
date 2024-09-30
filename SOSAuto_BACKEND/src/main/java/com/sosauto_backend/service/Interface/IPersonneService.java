@@ -3,7 +3,6 @@ package com.sosauto_backend.service.Interface;
 
 import com.sosauto_backend.model.Dto.PersonneDTO;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ public interface IPersonneService {
     PersonneDTO creer(PersonneDTO personne);
 
     //mettre A Jour
-    PersonneDTO mettreAJour(Long id, PersonneDTO DTO);
+    PersonneDTO mettreAJour(Long id, PersonneDTO dto);
 
     //supprimer
     void supprimer(Long id);
@@ -24,5 +23,5 @@ public interface IPersonneService {
     PersonneDTO getById(Long id);
 
     //Spring Security
-    UserDetails loadUserByUsername(String numTelephone);
+    UserDetails loadUserByUsername(String numtelephone);
 }

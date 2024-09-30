@@ -22,9 +22,9 @@ public class Mecanicien extends Personne{
     @Enumerated(EnumType.STRING)
     private Disponibilite disponible;
 
-    @OneToMany(mappedBy = "mécanicien",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "mecanicien",cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<DemandeDepannage> demandeDepannage;
+    private List<DemandeDepannage> demandedepannage;
 
     @OneToMany(mappedBy = "mecanicien")
     @JsonIgnore

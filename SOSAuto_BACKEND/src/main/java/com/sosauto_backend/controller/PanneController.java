@@ -12,30 +12,30 @@ import java.util.List;
 public class PanneController implements IPanneApi {
 
     @Autowired
-    private PanneService Service;
+    private PanneService service;
 
     @Override
     public PanneDTO creerPanne(PanneDTO panne) {
-        return Service.creer(panne);
+        return service.creer(panne);
     }
 
     @Override
     public void supprimerPanne(Long id) {
-        Service.supprimer(id);
+        service.supprimer(id);
     }
 
     @Override
     public List<PanneDTO> getAllPanne() {
-        return Service.voirTous();
+        return service.voirTous();
     }
 
     @Override
     public PanneDTO mettreAjourPanne(Long id, PanneDTO panne) {
-        return Service.mettreAJour(id, panne);
+        return service.mettreAJour(id, panne);
     }
 
     @Override
     public PanneDTO getPanneById(Long id) {
-        return Service.getById(id);
+        return service.getById(id);
     }
 }

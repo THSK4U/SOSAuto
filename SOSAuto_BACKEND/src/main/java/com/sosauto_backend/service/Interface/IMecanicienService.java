@@ -10,7 +10,7 @@ public interface IMecanicienService {
     AuthResponse creer(MecanicienDTO personne);
 
     //mettre A Jour
-    MecanicienDTO mettreAJour(Long id, MecanicienDTO DTO);
+    MecanicienDTO mettreAJour(Long id, MecanicienDTO dto);
 
     //supprimer
     void supprimer(Long id);
@@ -22,7 +22,7 @@ public interface IMecanicienService {
     MecanicienDTO getById(Long id);
 
     //mettre A Jour
-    MecanicienDTO mettreAJourdisponibilite(Long id, MecanicienDTO DTO);
+    MecanicienDTO mettreAJourdisponibilite(Long id, MecanicienDTO dto);
 
     //get Disponibilite
     List<MecanicienDTO> getDisponibilite();

@@ -1,7 +1,7 @@
 package com.sosauto_backend.controller.api;
 
 
-import com.sosauto_backend.model.Dto.VéhiculeDTO;
+import com.sosauto_backend.model.Dto.VehiculeDTO;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ public interface IVéhiculeApi {
 
     //creer
     @PostMapping(value = APP_AUTO +"/Vehicule/Creer", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    VéhiculeDTO creerVehicule(@RequestBody VéhiculeDTO vehicule);
+    VehiculeDTO creerVehicule(@RequestBody VehiculeDTO vehicule);
 
     //supprimer
     @DeleteMapping(value = APP_ADMIN_AUTO +"/Vehicule/Delete/{id}")
@@ -21,13 +21,13 @@ public interface IVéhiculeApi {
 
     //Tous
     @GetMapping(value = APP_ADMIN + "/Vehicule", produces = MediaType.APPLICATION_JSON_VALUE)
-    List<VéhiculeDTO> getAllVehicule();
+    List<VehiculeDTO> getAllVehicule();
 
     //mettre A Jour
     @PutMapping(value =APP_ADMIN_AUTO + "/Vehicule/MettreAjour/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    VéhiculeDTO mettreAjourVehicule(@PathVariable("id") Long id,@RequestBody VéhiculeDTO vehicule);
+    VehiculeDTO mettreAjourVehicule(@PathVariable("id") Long id, @RequestBody VehiculeDTO vehicule);
 
     //By id
     @GetMapping(value = APP_ADMIN_AUTO + "/Vehicule/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    VéhiculeDTO getVehiculeById(@PathVariable("id") Long id);
+    VehiculeDTO getVehiculeById(@PathVariable("id") Long id);
 }

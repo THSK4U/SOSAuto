@@ -1,21 +1,21 @@
 package com.sosauto_backend.controller;
 
 import com.sosauto_backend.controller.api.IVéhiculeApi;
-import com.sosauto_backend.model.Dto.VéhiculeDTO;
-import com.sosauto_backend.service.VéhiculeService;
+import com.sosauto_backend.model.Dto.VehiculeDTO;
+import com.sosauto_backend.service.VehiculeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-public class VéhiculeController implements IVéhiculeApi {
+public class VehiculeController implements IVéhiculeApi {
 
     @Autowired
-    private VéhiculeService Service;
+    private VehiculeService Service;
 
     @Override
-    public VéhiculeDTO creerVehicule(VéhiculeDTO vehicule) {
+    public VehiculeDTO creerVehicule(VehiculeDTO vehicule) {
         return Service.creer(vehicule);
     }
 
@@ -25,17 +25,17 @@ public class VéhiculeController implements IVéhiculeApi {
     }
 
     @Override
-    public List<VéhiculeDTO> getAllVehicule() {
+    public List<VehiculeDTO> getAllVehicule() {
         return Service.voirTous();
     }
 
     @Override
-    public VéhiculeDTO mettreAjourVehicule(Long id, VéhiculeDTO vehicule) {
+    public VehiculeDTO mettreAjourVehicule(Long id, VehiculeDTO vehicule) {
         return Service.mettreAJour(id, vehicule);
     }
 
     @Override
-    public VéhiculeDTO getVehiculeById(Long id) {
+    public VehiculeDTO getVehiculeById(Long id) {
         return Service.getById(id);
     }
 }

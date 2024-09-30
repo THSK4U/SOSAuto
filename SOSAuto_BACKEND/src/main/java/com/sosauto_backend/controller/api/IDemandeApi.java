@@ -12,7 +12,7 @@ public interface IDemandeApi {
 
     //creer
     @PostMapping(value = APP_AUTO +"/DemandeDepannage/Creer", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    DemandeDepannageDTO creerDemande(@RequestBody DemandeDepannageDTO Demande);
+    DemandeDepannageDTO creerDemande(@RequestBody DemandeDepannageDTO demande);
 
     //supprimer
     @DeleteMapping(value = APP_ADMIN_AUTO +"/DemandeDepannage/Delete/{id}")
@@ -24,7 +24,7 @@ public interface IDemandeApi {
 
     //mettre A Jour
     @PutMapping(value = APP_ADMIN_AUTO +"/DemandeDepannage/MettreAjour/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    DemandeDepannageDTO mettreAjourDemande(@PathVariable("id") Long id,@RequestBody DemandeDepannageDTO Demande);
+    DemandeDepannageDTO mettreAjourDemande(@PathVariable("id") Long id,@RequestBody DemandeDepannageDTO demande);
 
     //By id
     @GetMapping(value = APP_PERMITALLAuth + "/DemandeDepannage/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

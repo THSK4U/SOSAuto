@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdministrateurController implements IAdministrateurApi {
 
     @Autowired
-    private IAdministrateurService ServiceAdmin;
+    private IAdministrateurService serviceadmin;
 
     @Override
     public AuthResponse creerAdministrateur(AdministrateurDTO administrateurDTO) {
-        return ServiceAdmin.creer(administrateurDTO);
+        return serviceadmin.creer(administrateurDTO);
     }
 
     @Override
     public void supprimerAdministrateur(Long id) {
-        ServiceAdmin.supprimer(id);
+        serviceadmin.supprimer(id);
     }
 
     @Override
     public AdministrateurDTO mettreAJourAdministrateur(Long id, AdministrateurDTO administrateurDTO) {
-        return ServiceAdmin.mettreAJour(id, administrateurDTO);
+        return serviceadmin.mettreAJour(id, administrateurDTO);
     }
 }

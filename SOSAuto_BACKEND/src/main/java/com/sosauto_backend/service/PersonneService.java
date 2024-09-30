@@ -20,59 +20,87 @@ import java.util.stream.Collectors;
 @Service
 public class PersonneService implements IPersonneService, UserDetailsService {
     @Autowired
-    private PersonneMapper Mapper;
+    private PersonneMapper mapper;
     @Autowired
-    private PersonneRepository Repository;
+    private PersonneRepository repository;
 
     @Override
     public PersonneDTO creer(PersonneDTO personne) {
-        Personne technicien = Mapper.toEntity(personne);
-        Personne saved = Repository.save(technicien);
-        return Mapper.toDTO(saved);
+        try {
+            Personne technicien = mapper.toEntity(personne);
+            Personne saved = repository.save(technicien);
+            return mapper.toDTO(saved);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la création de la personne : " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public PersonneDTO getById(Long id) {
-        Optional<Personne> personne = Repository.findById(id);
-        return personne.map(Mapper::toDTO).orElse(null);
+        try {
+            Optional<Personne> personne = repository.findById(id);
+            return personne.map(mapper::toDTO).orElse(null);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération de la personne par ID : " + e.getMessage());
+            throw e;
+        }
     }
 
 
     @Override
     public List<PersonneDTO> voirTous() {
-        List<Personne> personne = Repository.findAll();
-        return personne.stream()
-                .map(Mapper::toDTO)
-                .collect(Collectors.toList());
+        try {
+            List<Personne> personne = repository.findAll();
+            return personne.stream()
+                    .map(mapper::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération de toutes les personnes : " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
-    public PersonneDTO mettreAJour(Long id, PersonneDTO DTO) {
-        Optional<Personne> optional = Repository.findById(id);
-        if (optional.isPresent()) {
-            Personne personne = optional.get();
-            personne.setNom(DTO.getNom());
-            personne.setPrenom(DTO.getPrenom());
-            personne.setEmail(DTO.getEmail());
-            personne.setPassword(DTO.getPassword());
+    public PersonneDTO mettreAJour(Long id, PersonneDTO dto) {
+        try {
+            Optional<Personne> optional = repository.findById(id);
+            if (optional.isPresent()) {
+                Personne personne = optional.get();
+                personne.setNom(dto.getNom());
+                personne.setPrenom(dto.getPrenom());
+                personne.setEmail(dto.getEmail());
+                personne.setPassword(dto.getPassword()); // Consider hashing the password if it's being updated
 
-            Personne updated = Repository.save(personne);
-            return Mapper.toDTO(updated);
-        } else {
-            return null;
+                Personne updated = repository.save(personne);
+                return mapper.toDTO(updated);
+            } else {
+                return null; // Or throw an exception for person not found
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la mise à jour de la personne : " + e.getMessage());
+            throw e;
         }
     }
 
     @Override
     public void supprimer(Long id) {
-        Repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la suppression de la personne : " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
-    public UserDetails loadUserByUsername(String numTelephone) throws UsernameNotFoundException {
-        return Repository.findBynumTelephone(numTelephone)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    public UserDetails loadUserByUsername(String numtelephone) throws UsernameNotFoundException {
+        try {
+            return repository.findBynumTelephone(numtelephone)
+                    .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé"));
+        } catch (Exception e) {
+            System.err.println("Erreur lors du chargement de l'utilisateur par nom d'utilisateur : " + e.getMessage());
+            throw e;
+        }
     }
-
-
 }

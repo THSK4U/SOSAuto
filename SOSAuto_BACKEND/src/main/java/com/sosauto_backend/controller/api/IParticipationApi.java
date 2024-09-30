@@ -14,7 +14,7 @@ public interface IParticipationApi {
 
     //creer
     @PostMapping(value = APP_MECH +"/Participation/Creer", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<ParticipationDTO> creerParticipation(@RequestBody ParticipationDTO Participation);
+    ResponseEntity<ParticipationDTO> creerParticipation(@RequestBody ParticipationDTO participation);
 
     //supprimer
     @DeleteMapping(value = APP_ADMIN_MECH + "/Participation/Delete/{id}")
@@ -31,7 +31,7 @@ public interface IParticipationApi {
 
     //mettre A Jour
     @PutMapping(value = APP_ADMIN_MECH + "/Participation/MettreAjour/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    ParticipationDTO mettreAjourParticipation(@PathVariable("id") Long id,@RequestBody ParticipationDTO Participation);
+    ParticipationDTO mettreAjourParticipation(@PathVariable("id") Long id,@RequestBody ParticipationDTO participation);
 
     //By id
     @GetMapping(value = APP_PERMITALLAuth + "/Participation/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -17,8 +17,8 @@ public class MecanicienController implements IMecanicienApi {
     private IMecanicienService service;
 
     @Override
-    public AuthResponse creerMecanicien(MecanicienDTO Mecanicien) {
-        return service.creer(Mecanicien);
+    public AuthResponse creerMecanicien(MecanicienDTO mecanicien) {
+        return service.creer(mecanicien);
     }
 
     @Override

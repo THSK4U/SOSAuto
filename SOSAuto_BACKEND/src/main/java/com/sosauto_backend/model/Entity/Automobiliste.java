@@ -18,7 +18,7 @@ public class Automobiliste extends Personne{
 
     @OneToMany(mappedBy = "automobiliste",cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Véhicule> véhicules;
+    private List<Vehicule> vehicules;
 
     @OneToMany(mappedBy = "automobiliste",cascade = CascadeType.ALL)
     @JsonIgnore

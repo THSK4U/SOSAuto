@@ -18,54 +18,77 @@ import java.util.stream.Collectors;
 public class AdministrateurService implements IAdministrateurService {
 
     @Autowired
-    private AdministrateurMapper Mapper;
+    private AdministrateurMapper mapper;
 
     @Autowired
-    private AdministrateurRepository Repository;
+    private AdministrateurRepository repository;
 
     @Autowired
-    private IAuthenticationService authenticationService;
+    private IAuthenticationService authenticationservice;
 
     @Override
-    public AuthResponse creer(AdministrateurDTO Administrateur) {
-        return authenticationService.registerAdmin(Administrateur);
+    public AuthResponse creer(AdministrateurDTO administrateur) {
+        try {
+            return authenticationservice.registerAdmin(administrateur);
+        } catch (Exception e) {
+            System.err.println("Error creating administrator: " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public AdministrateurDTO getById(Long id) {
-        Optional<Administrateur> administrateur = Repository.findById(id);
-        return administrateur.map(Mapper::toDTO).orElse(null);
+        try {
+            Optional<Administrateur> administrateur = repository.findById(id);
+            return administrateur.map(mapper::toDTO).orElse(null);
+        } catch (Exception e) {
+            System.err.println("Error getting administrator by ID: " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public List<AdministrateurDTO> voirTous() {
-        List<Administrateur> administrateur = Repository.findAll();
-        return administrateur.stream()
-                .map(Mapper::toDTO)
-                .collect(Collectors.toList());
+        try {
+            List<Administrateur> administrateur = repository.findAll();
+            return administrateur.stream()
+                    .map(mapper::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.err.println("Error getting all administrators: " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
-    public AdministrateurDTO mettreAJour(Long id, AdministrateurDTO DTO) {
-        Optional<Administrateur> optional = Repository.findById(id);
-        if (optional.isPresent()) {
-            Administrateur administrateur = optional.get();
-            administrateur.setEmail(DTO.getEmail());
-            administrateur.setNom(DTO.getNom());
-            administrateur.setPrenom(DTO.getPrenom());
-            administrateur.setPassword(DTO.getPassword());
+    public AdministrateurDTO mettreAJour(Long id, AdministrateurDTO dto) {
+        try {
+            Optional<Administrateur> optional = repository.findById(id);
+            if (optional.isPresent()) {
+                Administrateur administrateur = optional.get();
+                administrateur.setEmail(dto.getEmail());
+                administrateur.setNom(dto.getNom());
+                administrateur.setPrenom(dto.getPrenom());
+                administrateur.setPassword(dto.getPassword());
 
-
-            Administrateur updated = Repository.save(administrateur);
-            return Mapper.toDTO(updated);
-        } else {
-            return null;
+                Administrateur updated = repository.save(administrateur);
+                return mapper.toDTO(updated);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            System.err.println("Error updating administrator: " + e.getMessage());
+            throw e;
         }
     }
 
     @Override
     public void supprimer(Long id) {
-        Repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (Exception e) {
+            System.err.println("Error deleting administrator: " + e.getMessage());
+            throw e;
+        }
     }
-
 }

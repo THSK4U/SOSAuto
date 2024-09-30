@@ -18,64 +18,92 @@ import java.util.stream.Collectors;
 public class DemandeService implements IDemandeService {
 
     @Autowired
-    private DemandeDepannageMapper Mapper;
+    private DemandeDepannageMapper mapper;
 
     @Autowired
-    private DemandeDepannageRepository Repository;
+    private DemandeDepannageRepository repository;
 
     @Override
-    public DemandeDepannageDTO creer(DemandeDepannageDTO DemandeDePannage) {
-        DemandeDepannage DemandeDePannages = Mapper.toEntity(DemandeDePannage);
-        DemandeDePannages.setEtat(EtatPanne.A_FAIRE);
-        DemandeDepannage saved = Repository.save(DemandeDePannages);
-        return Mapper.toDTO(saved);
+    public DemandeDepannageDTO creer(DemandeDepannageDTO demandedepannage) {
+        try {
+            DemandeDepannage DemandeDePannages = mapper.toEntity(demandedepannage);
+            DemandeDePannages.setEtat(EtatPanne.A_FAIRE);
+            DemandeDepannage saved = repository.save(DemandeDePannages);
+            return mapper.toDTO(saved);
+        } catch (Exception e) {
+            System.err.println("Error creating breakdown request: " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public DemandeDepannageDTO getById(Long id) {
-        Optional<DemandeDepannage> DemandeDePannage = Repository.findById(id);
-        return DemandeDePannage.map(Mapper::toDTO).orElse(null);
+        try {
+            Optional<DemandeDepannage> DemandeDePannage = repository.findById(id);
+            return DemandeDePannage.map(mapper::toDTO).orElse(null);
+        } catch (Exception e) {
+            System.err.println("Error getting breakdown request by ID: " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public List<DemandeDepannageDTO> getALLByAutomobiliste(Long id) {
-        List<DemandeDepannage> DemandeDePannage = Repository.getALLByAutomobiliste_Personneid(id);
-        return DemandeDePannage.stream()
-                .map(Mapper::toDTO)
-                .collect(Collectors.toList());
+        try {
+            List<DemandeDepannage> DemandeDePannage = repository.getALLByAutomobiliste_Personneid(id);
+            return DemandeDePannage.stream()
+                    .map(mapper::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.err.println("Error getting breakdown requests by automobilist ID: " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public List<DemandeDepannageDTO> voirTous() {
-        List<DemandeDepannage> DemandeDePannage = Repository.findAll();
-        return DemandeDePannage.stream()
-                .map(Mapper::toDTO)
-                .collect(Collectors.toList());
+        try {
+            List<DemandeDepannage> DemandeDePannage = repository.findAll();
+            return DemandeDePannage.stream()
+                    .map(mapper::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.err.println("Error getting all breakdown requests: " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
-    public DemandeDepannageDTO mettreAJour(Long id, DemandeDepannageDTO DTO) {
-        Optional<DemandeDepannage> optional = Repository.findById(id);
-        if (optional.isPresent()) {
-            DemandeDepannage demandedepannage = optional.get();
-            demandedepannage.setLongitude(DTO.getLongitude());
-            demandedepannage.setLatitude(DTO.getLatitude());
-            demandedepannage.setEtat(DTO.getEtat());
-            demandedepannage.setMecanicien(DTO.getMecanicien());
-            demandedepannage.setPanne(DTO.getPanne());
-            demandedepannage.setDescription(DTO.getDescription());
+    public DemandeDepannageDTO mettreAJour(Long id, DemandeDepannageDTO dto) {
+        try {
+            Optional<DemandeDepannage> optional = repository.findById(id);
+            if (optional.isPresent()) {
+                DemandeDepannage demandedepannage = optional.get();
+                demandedepannage.setLongitude(dto.getLongitude());
+                demandedepannage.setLatitude(dto.getLatitude());
+                demandedepannage.setEtat(dto.getEtat());
+                demandedepannage.setMecanicien(dto.getMecanicien());
+                demandedepannage.setPanne(dto.getPanne());
+                demandedepannage.setDescription(dto.getDescription());
 
-            DemandeDepannage updated = Repository.save(demandedepannage);
-            return Mapper.toDTO(updated);
-        } else {
-            throw new EntityNotFoundException("DemandeDepannage with ID " + id + " not found");
+                DemandeDepannage updated = repository.save(demandedepannage);
+                return mapper.toDTO(updated);
+            } else {
+                throw new EntityNotFoundException("DemandeDepannage with ID " + id + " not found");
+            }
+        } catch (Exception e) {
+            System.err.println("Error updating breakdown request: " + e.getMessage());
+            throw e;
         }
     }
 
     @Override
     public void supprimer(Long id) {
-        Repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (Exception e) {
+            System.err.println("Error deleting breakdown request: " + e.getMessage());
+            throw e;
+        }
     }
-
 }
-

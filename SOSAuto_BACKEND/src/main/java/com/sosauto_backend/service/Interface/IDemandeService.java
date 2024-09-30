@@ -9,7 +9,7 @@ public interface IDemandeService {
     DemandeDepannageDTO creer(DemandeDepannageDTO personne);
 
     //mettre A Jour
-    DemandeDepannageDTO mettreAJour(Long id, DemandeDepannageDTO DTO);
+    DemandeDepannageDTO mettreAJour(Long id, DemandeDepannageDTO dto);
 
     //supprimer
     void supprimer(Long id);

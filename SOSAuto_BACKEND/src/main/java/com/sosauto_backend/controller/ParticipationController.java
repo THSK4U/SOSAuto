@@ -2,7 +2,6 @@ package com.sosauto_backend.controller;
 
 import com.sosauto_backend.controller.api.IParticipationApi;
 import com.sosauto_backend.model.Dto.ParticipationDTO;
-import com.sosauto_backend.model.Entity.Participation;
 import com.sosauto_backend.service.ParticipationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,65 +12,65 @@ import java.util.List;
 @RestController
 public class ParticipationController implements IParticipationApi {
     @Autowired
-    private ParticipationService Service;
+    private ParticipationService service;
     @Override
-    public ResponseEntity<ParticipationDTO> creerParticipation(ParticipationDTO Participation) {
-        ParticipationDTO test = Service.creer(Participation);
+    public ResponseEntity<ParticipationDTO> creerParticipation(ParticipationDTO participation) {
+        ParticipationDTO test = service.creer(participation);
         return ResponseEntity.ok(test);
     }
 
     @Override
     public void supprimerParticipation(Long id) {
-        Service.supprimer(id);
+        service.supprimer(id);
     }
 
     @Override
-    public void supprimerParticipationByDemande(Long demandeId, Long mecanicienId) { Service.supprimerByDemande(demandeId, mecanicienId); }
+    public void supprimerParticipationByDemande(Long demandeId, Long mecanicienId) { service.supprimerByDemande(demandeId, mecanicienId); }
 
     @Override
     public List<ParticipationDTO> getAllParticipation() {
-        return Service.voirTous();
+        return service.voirTous();
     }
 
     @Override
-    public ParticipationDTO mettreAjourParticipation(Long id, ParticipationDTO Participation) {
-        return Service.mettreAJour(id, Participation);
+    public ParticipationDTO mettreAjourParticipation(Long id, ParticipationDTO participation) {
+        return service.mettreAJour(id, participation);
     }
 
     @Override
     public ParticipationDTO getParticipationById(Long id) {
-        return Service.getById(id);
+        return service.getById(id);
     }
 
     @Override
     public List<ParticipationDTO> getALLParticipationByIdMecanicien(Long id) {
-        return Service.getByMecanicienId(id);
+        return service.getByMecanicienId(id);
     }
 
     @Override
     public List<ParticipationDTO> getALLParticipationByIdAutomobilist(Long id) {
-        return Service.getByDemande_AutomobilistId(id);
+        return service.getByDemande_AutomobilistId(id);
     }
 
     @Override
     public List<ParticipationDTO> getALLParticipationByIDDemande(Long id) {
-        return Service.getALLByDemandeID(id);
+        return service.getALLByDemandeID(id);
     }
 
     @Override
     public ResponseEntity<ParticipationDTO> acceptParticipation(Long participationId) {
-        ParticipationDTO participation = Service.acceptParticipation(participationId);
+        ParticipationDTO participation = service.acceptParticipation(participationId);
         return ResponseEntity.ok(participation);
     }
 
     @Override
     public ResponseEntity<ParticipationDTO> rejectParticipation(Long participationId) {
-        ParticipationDTO participation = Service.rejectParticipation(participationId);
+        ParticipationDTO participation = service.rejectParticipation(participationId);
         return ResponseEntity.ok(participation);
     }
 
     @Override
     public ParticipationDTO annulerParticipation(Long id) {
-        return Service.annulerParticipation(id);
+        return service.annulerParticipation(id);
     }
 }

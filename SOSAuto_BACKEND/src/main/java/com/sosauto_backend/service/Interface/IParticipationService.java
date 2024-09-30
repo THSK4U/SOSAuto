@@ -10,13 +10,13 @@ public interface IParticipationService {
     ParticipationDTO creer(ParticipationDTO participation);
 
     //mettre A Jour
-    ParticipationDTO mettreAJour(Long id, ParticipationDTO DTO);
+    ParticipationDTO mettreAJour(Long id, ParticipationDTO dto);
 
     //supprimer
     void supprimer(Long id);
 
     //supprimer BY Demande Id
-    void supprimerByDemande(Long demandeId, Long mecanicienId);
+    void supprimerByDemande(Long demandeId, Long mecanicienid);
 
     //consulter Tous
     List<ParticipationDTO> voirTous();
@@ -34,10 +34,10 @@ public interface IParticipationService {
     List<ParticipationDTO> getALLByDemandeID(Long id);
 
     //Accept ou reject
-    ParticipationDTO acceptParticipation(Long participationId);
-    ParticipationDTO rejectParticipation(Long participationId);
+    ParticipationDTO acceptParticipation(Long participationid);
+    ParticipationDTO rejectParticipation(Long participationid);
 
     //Annuler Participation
-    ParticipationDTO annulerParticipation(Long participationId);
+    ParticipationDTO annulerParticipation(Long participationid);
 
 }

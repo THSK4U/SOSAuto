@@ -9,8 +9,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface AutomobilisteMapper {
 
-    Automobiliste toEntity(AutomobilisteDTO DTO);
+    Automobiliste toEntity(AutomobilisteDTO dto);
     AutomobilisteDTO toDTO(Automobiliste entity);
-    List<AutomobilisteDTO> toDTOList(List<Automobiliste> All);
-    List<Automobiliste> toEntityList(List<AutomobilisteDTO> AllDTOs);
+    List<AutomobilisteDTO> toDTOList(List<Automobiliste> all);
+    List<Automobiliste> toEntityList(List<AutomobilisteDTO> alldtos);
 }

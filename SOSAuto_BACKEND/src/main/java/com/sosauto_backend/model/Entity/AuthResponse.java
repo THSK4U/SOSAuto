@@ -11,6 +11,6 @@ public class AuthResponse {
     @JsonProperty("jwt")
     private String jwt;
     @JsonProperty("message")
-    private String Message;
+    private String message;
 
 }

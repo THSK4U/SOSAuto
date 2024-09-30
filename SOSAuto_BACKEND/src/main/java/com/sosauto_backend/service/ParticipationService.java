@@ -24,109 +24,168 @@ public class ParticipationService implements IParticipationService {
     private ParticipationRepository repository;
 
     @Override
-    public ParticipationDTO creer(ParticipationDTO participationDTO) {
-        Participation participation = mapper.toEntity(participationDTO);
-        participation.setStatus(StatutParticipation.EN_ATTENTE);
-        Participation saved = repository.save(participation);
-        return mapper.toDTO(saved);
+    public ParticipationDTO creer(ParticipationDTO participationdto) {
+        try {
+            Participation participation = mapper.toEntity(participationdto);
+            participation.setStatus(StatutParticipation.EN_ATTENTE);
+            Participation saved = repository.save(participation);
+            return mapper.toDTO(saved);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la création de la participation : " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
-    public ParticipationDTO mettreAJour(Long id, ParticipationDTO participationDTO) {
-        Optional<Participation> optionalParticipation = repository.findById(id);
-        if (optionalParticipation.isPresent()) {
-            Participation participation = optionalParticipation.get();
-            participation.setDemande(participationDTO.getDemande());
-            participation.setStatus(participationDTO.getStatus());
-            Participation updated = repository.save(participation);
-            return mapper.toDTO(updated);
-        } else {
-            throw new EntityNotFoundException("Participation not found with id: " + id);
+    public ParticipationDTO mettreAJour(Long id, ParticipationDTO participationdto) {
+        try {
+            Optional<Participation> optionalParticipation = repository.findById(id);
+            if (optionalParticipation.isPresent()) {
+                Participation participation = optionalParticipation.get();
+                participation.setDemande(participationdto.getDemande());
+                participation.setStatus(participationdto.getStatus());
+                Participation updated = repository.save(participation);
+                return mapper.toDTO(updated);
+            } else {
+                throw new EntityNotFoundException("Participation non trouvée avec l'ID : " + id);
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la mise à jour de la participation : " + e.getMessage());
+            throw e;
         }
     }
 
     @Override
     public void supprimer(Long id) {
-        if (repository.existsById(id)) {
-            repository.deleteById(id);
-        } else {
-            throw new EntityNotFoundException("Participation not found with id: " + id);
+        try {
+            if (repository.existsById(id)) {
+                repository.deleteById(id);
+            } else {
+                throw new EntityNotFoundException("Participation non trouvée avec l'ID : " + id);
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la suppression de la participation : " + e.getMessage());
+            throw e;
         }
     }
 
     @Override
-    public void supprimerByDemande(Long demandeId, Long mecanicienId) {
-        repository.deleteByDemande_DemandeidAndMecanicien_Personneid(demandeId, mecanicienId);
+    public void supprimerByDemande(Long demandeid, Long mecanicienid) {
+        try {
+            repository.deleteByDemande_DemandeidAndMecanicien_Personneid(demandeid, mecanicienid);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la suppression de la participation par demande : " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public List<ParticipationDTO> voirTous() {
-        List<Participation> participations = repository.findAll();
-        return participations.stream()
-                .map(mapper::toDTO)
-                .collect(Collectors.toList());
+        try {
+            List<Participation> participations = repository.findAll();
+            return participations.stream()
+                    .map(mapper::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération de toutes les participations : " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public ParticipationDTO getById(Long id) {
-        return repository.findById(id)
-                .map(mapper::toDTO)
-                .orElseThrow(() -> new EntityNotFoundException("Participation not found with id: " + id));
+        try {
+            return repository.findById(id)
+                    .map(mapper::toDTO)
+                    .orElseThrow(() -> new EntityNotFoundException("Participation non trouvée avec l'ID : " + id));
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération de la participation par ID : " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public List<ParticipationDTO> getByMecanicienId(Long id) {
-        List<Participation> participations = repository.getAllByMecanicien_Personneid(id);
-        return participations.stream()
-                .map(mapper::toDTO)
-                .collect(Collectors.toList());
+        try {
+            List<Participation> participations = repository.getAllByMecanicien_Personneid(id);
+            return participations.stream()
+                    .map(mapper::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération des participations par ID du mécanicien : " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public List<ParticipationDTO> getByDemande_AutomobilistId(Long id) {
-        List<Participation> participations = repository.findParticipationsByautomobiliste_id(id);
-        return participations.stream()
-                .map(mapper::toDTO)
-                .collect(Collectors.toList());
+        try {
+            List<Participation> participations = repository.findParticipationsByautomobiliste_id(id);
+            return participations.stream()
+                    .map(mapper::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération des participations par ID de l'automobiliste : " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public List<ParticipationDTO> getALLByDemandeID(Long id) {
-        List<Participation> participations = repository.findAllByDemande_Demandeid(id);
-        return participations.stream()
-                .map(mapper::toDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public ParticipationDTO acceptParticipation(Long participationId) {
-        Participation participation = repository.findById(participationId)
-                .orElseThrow(() -> new EntityNotFoundException("Participation not found with id: " + participationId));
-        participation.setStatus(StatutParticipation.ACCEPTE);
-        Participation updated = repository.save(participation);
-        return mapper.toDTO(updated);
-    }
-
-    @Override
-    public ParticipationDTO rejectParticipation(Long participationId) {
-        Participation participation = repository.findById(participationId)
-                .orElseThrow(() -> new EntityNotFoundException("Participation not found with id: " + participationId));
-        participation.setStatus(StatutParticipation.REFUSE);
-        Participation updated = repository.save(participation);
-        return mapper.toDTO(updated);
-    }
-
-    @Override
-    public ParticipationDTO annulerParticipation(Long participationId) {
-        Optional<Participation> optionalParticipation = repository.findById(participationId);
-        if (optionalParticipation.isPresent()) {
-            Participation participation = optionalParticipation.get();
-            participation.setStatus(StatutParticipation.ANNULER);
-            Participation updated = repository.save(participation);
-            return mapper.toDTO(updated);
-        } else {
-            throw new EntityNotFoundException("Participation not found with id: " + participationId);
+        try {
+            List<Participation> participations = repository.findAllByDemande_Demandeid(id);
+            return participations.stream()
+                    .map(mapper::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération de toutes les participations par ID de la demande : " + e.getMessage());
+            throw e;
         }
     }
 
+    @Override
+    public ParticipationDTO acceptParticipation(Long participationid) {
+        try {
+            Participation participation = repository.findById(participationid)
+                    .orElseThrow(() -> new EntityNotFoundException("Participation non trouvée avec l'ID : " + participationid));
+            participation.setStatus(StatutParticipation.ACCEPTE);
+            Participation updated = repository.save(participation);
+            return mapper.toDTO(updated);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de l'acceptation de la participation : " + e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public ParticipationDTO rejectParticipation(Long participationid) {
+        try {
+            Participation participation = repository.findById(participationid)
+                    .orElseThrow(() -> new EntityNotFoundException("Participation non trouvée avec l'ID : " + participationid));
+            participation.setStatus(StatutParticipation.REFUSE);
+            Participation updated = repository.save(participation);
+            return mapper.toDTO(updated);
+        } catch (Exception e) {
+            System.err.println("Erreur lors du refus de la participation : " + e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public ParticipationDTO annulerParticipation(Long participationid) {
+        try {
+            Optional<Participation> optionalParticipation = repository.findById(participationid);
+            if (optionalParticipation.isPresent()) {
+                Participation participation = optionalParticipation.get();
+                participation.setStatus(StatutParticipation.ANNULER);
+                Participation updated = repository.save(participation);
+                return mapper.toDTO(updated);
+            } else {
+                throw new EntityNotFoundException("Participation non trouvée avec l'ID : " + participationid);
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de l'annulation de la participation : " + e.getMessage());
+            throw e;
+        }
+    }
 }

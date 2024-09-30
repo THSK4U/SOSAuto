@@ -9,7 +9,7 @@ public interface IPanneService {
     PanneDTO creer(PanneDTO personne);
 
     //mettre A Jour
-    PanneDTO mettreAJour(Long id, PanneDTO DTO);
+    PanneDTO mettreAJour(Long id, PanneDTO dto);
 
     //supprimer
     void supprimer(Long id);

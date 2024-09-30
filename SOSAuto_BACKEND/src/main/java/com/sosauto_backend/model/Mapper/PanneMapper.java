@@ -9,8 +9,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PanneMapper {
 
-    Panne toEntity(PanneDTO DTO);
+    Panne toEntity(PanneDTO dto);
     PanneDTO toDTO(Panne entity);
-    List<PanneDTO> toDTOList(List<Panne> All);
-    List<Panne> toEntityList(List<PanneDTO> AllsDTOs);
+    List<PanneDTO> toDTOList(List<Panne> all);
+    List<Panne> toEntityList(List<PanneDTO> alldtos);
 }

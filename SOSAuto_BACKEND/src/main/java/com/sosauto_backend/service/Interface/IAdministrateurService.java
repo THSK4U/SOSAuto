@@ -10,7 +10,7 @@ public interface IAdministrateurService {
     AuthResponse creer(AdministrateurDTO personne);
 
     //mettre A Jour
-    AdministrateurDTO mettreAJour(Long id, AdministrateurDTO DTO);
+    AdministrateurDTO mettreAJour(Long id, AdministrateurDTO dto);
 
     //supprimer
     void supprimer(Long id);

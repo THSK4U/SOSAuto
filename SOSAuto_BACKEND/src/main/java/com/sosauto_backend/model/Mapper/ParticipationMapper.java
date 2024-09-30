@@ -8,9 +8,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ParticipationMapper {
-    Participation toEntity(ParticipationDTO DTO);
+    Participation toEntity(ParticipationDTO dto);
     ParticipationDTO toDTO(Participation entity);
-    List<ParticipationDTO> toDTOList(List<Participation> All);
-    List<Participation> toEntityList(List<ParticipationDTO> AllsDTOs);
+    List<ParticipationDTO> toDTOList(List<Participation> all);
+    List<Participation> toEntityList(List<ParticipationDTO> alldto);
 
 }

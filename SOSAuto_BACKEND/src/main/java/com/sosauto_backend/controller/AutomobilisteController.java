@@ -13,30 +13,30 @@ import java.util.List;
 public class AutomobilisteController implements IAutomobilisteApi {
 
     @Autowired
-    private AutomobilisteService ServiceAuto;
+    private AutomobilisteService serviceauto;
 
     @Override
     public AuthResponse creerAutomobiliste(AutomobilisteDTO automobiliste) {
-        return ServiceAuto.creer(automobiliste);
+        return serviceauto.creer(automobiliste);
     }
 
     @Override
     public void supprimerAutomobiliste(Long id) {
-        ServiceAuto.supprimer(id);
+        serviceauto.supprimer(id);
     }
 
     @Override
     public List<AutomobilisteDTO> getAllAutomobiliste() {
-        return ServiceAuto.voirTous();
+        return serviceauto.voirTous();
     }
 
     @Override
     public AutomobilisteDTO mettreAjourAutomobiliste(Long id, AutomobilisteDTO automobiliste) {
-        return ServiceAuto.mettreAJour(id, automobiliste);
+        return serviceauto.mettreAJour(id, automobiliste);
     }
 
     @Override
     public AutomobilisteDTO getAutomobilisteById(Long id) {
-        return ServiceAuto.getById(id);
+        return serviceauto.getById(id);
     }
 }
