@@ -27,7 +27,7 @@ public interface IDemandeApi {
     DemandeDepannageDTO mettreAjourDemande(@PathVariable("id") Long id,@RequestBody DemandeDepannageDTO demande);
 
     //By id
-    @GetMapping(value = APP_PERMITALLAuth + "/DemandeDepannage/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_PERMITALL_AUTH + "/DemandeDepannage/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     DemandeDepannageDTO getDemandeById(@PathVariable("id") Long id);
 
     //Tous BY Automobiliste

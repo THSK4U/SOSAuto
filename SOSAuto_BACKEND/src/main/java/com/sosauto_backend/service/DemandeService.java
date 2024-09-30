@@ -26,9 +26,9 @@ public class DemandeService implements IDemandeService {
     @Override
     public DemandeDepannageDTO creer(DemandeDepannageDTO demandedepannage) {
         try {
-            DemandeDepannage DemandeDePannages = mapper.toEntity(demandedepannage);
-            DemandeDePannages.setEtat(EtatPanne.A_FAIRE);
-            DemandeDepannage saved = repository.save(DemandeDePannages);
+            DemandeDepannage demandedepannages = mapper.toEntity(demandedepannage);
+            demandedepannages.setEtat(EtatPanne.A_FAIRE);
+            DemandeDepannage saved = repository.save(demandedepannages);
             return mapper.toDTO(saved);
         } catch (Exception e) {
             System.err.println("Error creating breakdown request: " + e.getMessage());
@@ -39,8 +39,8 @@ public class DemandeService implements IDemandeService {
     @Override
     public DemandeDepannageDTO getById(Long id) {
         try {
-            Optional<DemandeDepannage> DemandeDePannage = repository.findById(id);
-            return DemandeDePannage.map(mapper::toDTO).orElse(null);
+            Optional<DemandeDepannage> demandedepannage = repository.findById(id);
+            return demandedepannage.map(mapper::toDTO).orElse(null);
         } catch (Exception e) {
             System.err.println("Error getting breakdown request by ID: " + e.getMessage());
             throw e;
@@ -50,8 +50,8 @@ public class DemandeService implements IDemandeService {
     @Override
     public List<DemandeDepannageDTO> getALLByAutomobiliste(Long id) {
         try {
-            List<DemandeDepannage> DemandeDePannage = repository.getALLByAutomobiliste_Personneid(id);
-            return DemandeDePannage.stream()
+            List<DemandeDepannage> demandedepannage = repository.getALLByAutomobiliste_Personneid(id);
+            return demandedepannage.stream()
                     .map(mapper::toDTO)
                     .collect(Collectors.toList());
         } catch (Exception e) {
@@ -63,8 +63,8 @@ public class DemandeService implements IDemandeService {
     @Override
     public List<DemandeDepannageDTO> voirTous() {
         try {
-            List<DemandeDepannage> DemandeDePannage = repository.findAll();
-            return DemandeDePannage.stream()
+            List<DemandeDepannage> demandedepannage = repository.findAll();
+            return demandedepannage.stream()
                     .map(mapper::toDTO)
                     .collect(Collectors.toList());
         } catch (Exception e) {

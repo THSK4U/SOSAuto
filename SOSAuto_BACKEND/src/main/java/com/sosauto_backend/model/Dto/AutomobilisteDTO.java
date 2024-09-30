@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class AutomobilisteDTO extends PersonneDTO {
 
-    private List<VehiculeDTO> véhicules;
+    private List<VehiculeDTO> vehicules;
     private List<DemandeDepannage> demandeDepannage;
 
 }

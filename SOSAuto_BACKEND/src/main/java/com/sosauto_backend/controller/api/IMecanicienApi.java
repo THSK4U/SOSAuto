@@ -29,7 +29,7 @@ public interface IMecanicienApi {
     MecanicienDTO mettreAjourMecanicien(@PathVariable("id") Long id, @RequestBody MecanicienDTO mecanicien);
 
     //By id
-    @GetMapping(value = APP_PERMITALLAuth + "/Mecanicien/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_PERMITALL_AUTH + "/Mecanicien/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     MecanicienDTO getMecanicienById(@PathVariable("id") Long id);
 
     //mettre A Jour Disponibilite

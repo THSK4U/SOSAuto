@@ -11,6 +11,6 @@ public interface MecanicienMapper {
 
     Mecanicien toEntity(MecanicienDTO dto);
     MecanicienDTO toDTO(Mecanicien entity);
-    List<MecanicienDTO> toDTOList(List<Mecanicien> All);
-    List<Mecanicien> toEntityList(List<MecanicienDTO> AllDTOs);
+    List<MecanicienDTO> toDTOList(List<Mecanicien> all);
+    List<Mecanicien> toEntityList(List<MecanicienDTO> alldtos);
 }

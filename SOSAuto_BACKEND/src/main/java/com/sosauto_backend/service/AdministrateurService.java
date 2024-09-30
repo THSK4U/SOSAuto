@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class AdministrateurService implements IAdministrateurService {
@@ -53,7 +52,7 @@ public class AdministrateurService implements IAdministrateurService {
             List<Administrateur> administrateur = repository.findAll();
             return administrateur.stream()
                     .map(mapper::toDTO)
-                    .collect(Collectors.toList());
+                    .toList();
         } catch (Exception e) {
             System.err.println("Error getting all administrators: " + e.getMessage());
             throw e;

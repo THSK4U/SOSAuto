@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class VehiculeService implements IVéhiculeService {
@@ -38,8 +37,8 @@ public class VehiculeService implements IVéhiculeService {
     @Override
     public VehiculeDTO getById(Long id) {
         try {
-            Optional<Vehicule> Vehicule = repository.findById(id);
-            return Vehicule.map(mapper::toDTO).orElse(null);
+            Optional<Vehicule> vehicule = repository.findById(id);
+            return vehicule.map(mapper::toDTO).orElse(null);
         } catch (Exception e) {
             System.err.println("Erreur lors de la récupération du véhicule par ID : " + e.getMessage());
             throw e;
@@ -49,10 +48,10 @@ public class VehiculeService implements IVéhiculeService {
     @Override
     public List<VehiculeDTO> voirTous() {
         try {
-            List<Vehicule> Vehicule = repository.findAll();
-            return Vehicule.stream()
+            List<Vehicule> vehicule = repository.findAll();
+            return vehicule.stream()
                     .map(mapper::toDTO)
-                    .collect(Collectors.toList());
+                    .toList();
         } catch (Exception e) {
             System.err.println("Erreur lors de la récupération de tous les véhicules : " + e.getMessage());
             throw e;
@@ -64,14 +63,14 @@ public class VehiculeService implements IVéhiculeService {
         try {
             Optional<Vehicule> optional = repository.findById(id);
             if (optional.isPresent()) {
-                Vehicule Vehicule = optional.get();
-                Vehicule.setAnnée(dto.getAnnee());
-                Vehicule.setModele(dto.getModele());
-                Vehicule.setCouleur(dto.getCouleur());
-                Vehicule.setMarque(dto.getMarque());
-                Vehicule.setMatricule(dto.getMatricule());
+                Vehicule vehicule = optional.get();
+                vehicule.setAnnée(dto.getAnnee());
+                vehicule.setModele(dto.getModele());
+                vehicule.setCouleur(dto.getCouleur());
+                vehicule.setMarque(dto.getMarque());
+                vehicule.setMatricule(dto.getMatricule());
 
-                Vehicule updated = repository.save(Vehicule);
+                Vehicule updated = repository.save(vehicule);
                 return mapper.toDTO(updated);
             } else {
                 return null; // Or throw an exception for vehicle not found

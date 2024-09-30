@@ -110,7 +110,7 @@ public class ParticipationService implements IParticipationService {
             List<Participation> participations = repository.getAllByMecanicien_Personneid(id);
             return participations.stream()
                     .map(mapper::toDTO)
-                    .collect(Collectors.toList());
+                    .toList();
         } catch (Exception e) {
             System.err.println("Erreur lors de la récupération des participations par ID du mécanicien : " + e.getMessage());
             throw e;
@@ -123,7 +123,7 @@ public class ParticipationService implements IParticipationService {
             List<Participation> participations = repository.findParticipationsByautomobiliste_id(id);
             return participations.stream()
                     .map(mapper::toDTO)
-                    .collect(Collectors.toList());
+                    .toList();
         } catch (Exception e) {
             System.err.println("Erreur lors de la récupération des participations par ID de l'automobiliste : " + e.getMessage());
             throw e;
@@ -136,7 +136,7 @@ public class ParticipationService implements IParticipationService {
             List<Participation> participations = repository.findAllByDemande_Demandeid(id);
             return participations.stream()
                     .map(mapper::toDTO)
-                    .collect(Collectors.toList());
+                    .toList();
         } catch (Exception e) {
             System.err.println("Erreur lors de la récupération de toutes les participations par ID de la demande : " + e.getMessage());
             throw e;

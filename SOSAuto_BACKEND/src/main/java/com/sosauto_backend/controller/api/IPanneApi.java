@@ -28,6 +28,6 @@ public interface IPanneApi {
     PanneDTO mettreAjourPanne(@PathVariable("id") Long id,@RequestBody PanneDTO panne);
 
     //By id
-    @GetMapping(value = APP_PERMITALLAuth + "/Panne/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_PERMITALL_AUTH + "/Panne/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     PanneDTO getPanneById(@PathVariable("id") Long id);
 }

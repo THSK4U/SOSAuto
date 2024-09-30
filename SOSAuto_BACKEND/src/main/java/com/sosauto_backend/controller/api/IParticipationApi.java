@@ -34,7 +34,7 @@ public interface IParticipationApi {
     ParticipationDTO mettreAjourParticipation(@PathVariable("id") Long id,@RequestBody ParticipationDTO participation);
 
     //By id
-    @GetMapping(value = APP_PERMITALLAuth + "/Participation/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_PERMITALL_AUTH + "/Participation/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     ParticipationDTO getParticipationById(@PathVariable("id") Long id);
 
     //By Mecanicienid

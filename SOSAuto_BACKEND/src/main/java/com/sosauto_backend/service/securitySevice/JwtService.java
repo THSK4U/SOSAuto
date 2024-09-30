@@ -21,12 +21,7 @@ public class JwtService {
 
     @Value("${security.jwt.secret-key}")
     private String secretKey;
-
-    public void validateToken(String token){
-        Jwts.parser().setSigningKey(getSigninKey())
-                .build()
-                .parseClaimsJws(token);
-    }
+    
 
     public String extractnumTelephone(String token) {
         return extractClaim(token, Claims::getSubject);

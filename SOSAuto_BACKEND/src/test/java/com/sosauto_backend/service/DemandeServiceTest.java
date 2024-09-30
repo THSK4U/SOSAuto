@@ -2,7 +2,6 @@ package com.sosauto_backend.service;
 
 import com.sosauto_backend.model.Dto.DemandeDepannageDTO;
 import com.sosauto_backend.model.Entity.DemandeDepannage;
-import com.sosauto_backend.model.Enum.EtatPanne;
 import com.sosauto_backend.model.Mapper.DemandeDepannageMapper;
 import com.sosauto_backend.respository.DemandeDepannageRepository;
 import org.junit.jupiter.api.Test;
@@ -22,10 +21,10 @@ import static org.mockito.Mockito.*;
 class DemandeServiceTest {
 
     @Mock
-    private DemandeDepannageRepository Repository;
+    private DemandeDepannageRepository repository;
 
     @InjectMocks
-    private DemandeService Service;
+    private DemandeService service;
 
     @Mock
     private DemandeDepannageMapper mapper;
@@ -36,15 +35,15 @@ class DemandeServiceTest {
         DemandeDepannage demandeDepannage = new DemandeDepannage();
 
         when(mapper.toEntity(demandeDepannageDTO)).thenReturn(demandeDepannage);
-        when(Repository.save(demandeDepannage)).thenReturn(demandeDepannage);
+        when(repository.save(demandeDepannage)).thenReturn(demandeDepannage);
         when(mapper.toDTO(demandeDepannage)).thenReturn(demandeDepannageDTO);
 
-        DemandeDepannageDTO result = Service.creer(demandeDepannageDTO);
+        DemandeDepannageDTO result = service.creer(demandeDepannageDTO);
 
         assertNotNull(result);
         assertEquals(demandeDepannageDTO, result);
         verify(mapper, times(1)).toEntity(demandeDepannageDTO);
-        verify(Repository, times(1)).save(demandeDepannage);
+        verify(repository, times(1)).save(demandeDepannage);
         verify(mapper, times(1)).toDTO(demandeDepannage);
     }
 
@@ -54,14 +53,14 @@ class DemandeServiceTest {
         DemandeDepannageDTO demandeDepannageDTO = new DemandeDepannageDTO();
         DemandeDepannage demandeDepannage = new DemandeDepannage();
 
-        when(Repository.findById(1L)).thenReturn(Optional.of(demandeDepannage));
+        when(repository.findById(1L)).thenReturn(Optional.of(demandeDepannage));
         when(mapper.toDTO(demandeDepannage)).thenReturn(demandeDepannageDTO);
 
-        DemandeDepannageDTO result = Service.getById(1L);
+        DemandeDepannageDTO result = service.getById(1L);
 
         assertNotNull(result);
         assertEquals(demandeDepannageDTO, result);
-        verify(Repository, times(1)).findById(1L);
+        verify(repository, times(1)).findById(1L);
         verify(mapper, times(1)).toDTO(demandeDepannage);
     }
 
@@ -69,19 +68,19 @@ class DemandeServiceTest {
     void voirTous() {
         DemandeDepannage demande = new DemandeDepannage();
 
-        when(Repository.findAll()).thenReturn(Collections.singletonList(demande));
+        when(repository.findAll()).thenReturn(Collections.singletonList(demande));
 
-        List<DemandeDepannageDTO> tachesList = Service.voirTous();
+        List<DemandeDepannageDTO> tachesList = service.voirTous();
 
         assertNotNull(tachesList);
 
-        verify(Repository, times(1)).findAll();
+        verify(repository, times(1)).findAll();
     }
 
     @Test
     void supprimer() {
-        Service.supprimer(1L);
+        service.supprimer(1L);
 
-        verify(Repository, times(1)).deleteById(1L);
+        verify(repository, times(1)).deleteById(1L);
     }
 }

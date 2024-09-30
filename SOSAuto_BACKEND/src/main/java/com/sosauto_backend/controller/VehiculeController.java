@@ -12,30 +12,30 @@ import java.util.List;
 public class VehiculeController implements IVéhiculeApi {
 
     @Autowired
-    private VehiculeService Service;
+    private VehiculeService service;
 
     @Override
     public VehiculeDTO creerVehicule(VehiculeDTO vehicule) {
-        return Service.creer(vehicule);
+        return service.creer(vehicule);
     }
 
     @Override
     public void supprimerVehicule(Long id) {
-        Service.supprimer(id);
+        service.supprimer(id);
     }
 
     @Override
     public List<VehiculeDTO> getAllVehicule() {
-        return Service.voirTous();
+        return service.voirTous();
     }
 
     @Override
     public VehiculeDTO mettreAjourVehicule(Long id, VehiculeDTO vehicule) {
-        return Service.mettreAJour(id, vehicule);
+        return service.mettreAJour(id, vehicule);
     }
 
     @Override
     public VehiculeDTO getVehiculeById(Long id) {
-        return Service.getById(id);
+        return service.getById(id);
     }
 }

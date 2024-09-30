@@ -67,23 +67,23 @@ public class AuthenticationService implements IAuthenticationService {
                 return new AuthResponse(null, "Numéro de téléphone déjà existant");
             }
 
-            Mecanicien Mech = new Mecanicien();
+            Mecanicien mech = new Mecanicien();
 
-            Mech.setNom(request.getNom());
-            Mech.setPrenom(request.getPrenom());
-            Mech.setEmail(request.getEmail());
-            Mech.setPassword(passwordencoder.encode(request.getPassword()));
-            Mech.setRole(Role.MECA);
-            Mech.setNationalIdCardUrl(request.getNationalIdCardUrl());
-            Mech.setNumTelephone(request.getNumTelephone());
-            Mech.setDisponible(Disponibilite.INDISPONIBLE);
-            Mech.setLatitude(request.getLatitude());
-            Mech.setLongitude(request.getLongitude());
-            Mech.setProofOfProfessionUrl(request.getProofOfProfessionUrl());
+            mech.setNom(request.getNom());
+            mech.setPrenom(request.getPrenom());
+            mech.setEmail(request.getEmail());
+            mech.setPassword(passwordencoder.encode(request.getPassword()));
+            mech.setRole(Role.MECA);
+            mech.setNationalIdCardUrl(request.getNationalIdCardUrl());
+            mech.setNumTelephone(request.getNumTelephone());
+            mech.setDisponible(Disponibilite.INDISPONIBLE);
+            mech.setLatitude(request.getLatitude());
+            mech.setLongitude(request.getLongitude());
+            mech.setProofOfProfessionUrl(request.getProofOfProfessionUrl());
 
-            mechrepository.save(Mech);
+            mechrepository.save(mech);
 
-            return new AuthResponse(jwtservice.generateToken(Mech), "L'inscription du mécanicien a été réussie");
+            return new AuthResponse(jwtservice.generateToken(mech), "L'inscription du mécanicien a été réussie");
         } catch (Exception e) {
             System.err.println("Error registering mechanic: " + e.getMessage());
             throw e;
