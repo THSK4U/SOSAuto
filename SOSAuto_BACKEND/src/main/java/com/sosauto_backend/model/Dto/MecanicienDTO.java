@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Data
-public class MécanicienDTO extends PersonneDTO {
+public class MecanicienDTO extends PersonneDTO {
     private Double latitude;
     private Double longitude;
     private String proofOfProfessionUrl;

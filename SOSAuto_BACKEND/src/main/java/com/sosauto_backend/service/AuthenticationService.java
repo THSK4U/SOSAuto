@@ -7,7 +7,7 @@ import com.sosauto_backend.model.Enum.Disponibilite;
 import com.sosauto_backend.model.Enum.Role;
 import com.sosauto_backend.respository.AdministrateurRepository;
 import com.sosauto_backend.respository.AutomobilisteRepository;
-import com.sosauto_backend.respository.MécanicienRepository;
+import com.sosauto_backend.respository.MecanicienRepository;
 import com.sosauto_backend.respository.PersonneRepository;
 import com.sosauto_backend.service.Interface.IAuthenticationService;
 import com.sosauto_backend.service.securitySevice.JwtService;
@@ -24,7 +24,7 @@ public class AuthenticationService implements IAuthenticationService {
     //DAO
     private final PersonneRepository Persrepository;
     private final AutomobilisteRepository AutoRepository;
-    private final MécanicienRepository MechRepository;
+    private final MecanicienRepository MechRepository;
     private final AdministrateurRepository administrateurRepository;
 //
 
@@ -56,12 +56,12 @@ public class AuthenticationService implements IAuthenticationService {
     }
 
     @Override
-    public AuthResponse registerMecanicien(MécanicienDTO request) {
+    public AuthResponse registerMecanicien(MecanicienDTO request) {
         if (MechRepository.findBynumTelephone(request.getNumTelephone()).isPresent()) {
             return new AuthResponse(null, "Numéro de téléphone déjà existant");
         }
 
-        Mécanicien Mech = new Mécanicien();
+        Mecanicien Mech = new Mecanicien();
 
         Mech.setNom(request.getNom());
         Mech.setPrenom(request.getPrenom());

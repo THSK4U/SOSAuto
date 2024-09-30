@@ -21,7 +21,7 @@ public class Participation {
 
     @ManyToOne
     @JoinColumn(name = "mecanicien_id")
-    private Mécanicien mecanicien;
+    private Mecanicien mecanicien;
 
     @Enumerated(EnumType.STRING)
     private StatutParticipation status;

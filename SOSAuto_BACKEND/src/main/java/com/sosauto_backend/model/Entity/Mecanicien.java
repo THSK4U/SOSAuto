@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @DiscriminatorValue(value = "MECA")
-public class Mécanicien extends Personne{
+public class Mecanicien extends Personne{
     private Double latitude;
     private Double longitude;
     private String proofOfProfessionUrl;

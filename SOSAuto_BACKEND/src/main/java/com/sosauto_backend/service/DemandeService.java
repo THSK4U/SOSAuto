@@ -4,7 +4,6 @@ import com.sosauto_backend.model.Dto.DemandeDepannageDTO;
 import com.sosauto_backend.model.Entity.DemandeDepannage;
 import com.sosauto_backend.model.Enum.EtatPanne;
 import com.sosauto_backend.model.Mapper.DemandeDepannageMapper;
-import com.sosauto_backend.model.Mapper.MécanicienMapper;
 import com.sosauto_backend.respository.DemandeDepannageRepository;
 import com.sosauto_backend.service.Interface.IDemandeService;
 import jakarta.persistence.EntityNotFoundException;
@@ -62,7 +61,7 @@ public class DemandeService implements IDemandeService {
             demandedepannage.setLongitude(DTO.getLongitude());
             demandedepannage.setLatitude(DTO.getLatitude());
             demandedepannage.setEtat(DTO.getEtat());
-            demandedepannage.setMécanicien(DTO.getMécanicien());
+            demandedepannage.setMecanicien(DTO.getMecanicien());
             demandedepannage.setPanne(DTO.getPanne());
             demandedepannage.setDescription(DTO.getDescription());
 

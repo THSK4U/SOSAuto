@@ -15,8 +15,8 @@ public class DemandeController implements IDemandeApi {
     private IDemandeService service;
 
     @Override
-    public DemandeDepannageDTO creerDemande(DemandeDepannageDTO Demande) {
-        return service.creer(Demande);
+    public DemandeDepannageDTO creerDemande(DemandeDepannageDTO demande) {
+        return service.creer(demande);
     }
 
     @Override
@@ -30,8 +30,8 @@ public class DemandeController implements IDemandeApi {
     }
 
     @Override
-    public DemandeDepannageDTO mettreAjourDemande(Long id, DemandeDepannageDTO Demande) {
-        return service.mettreAJour(id,Demande);
+    public DemandeDepannageDTO mettreAjourDemande(Long id, DemandeDepannageDTO demande) {
+        return service.mettreAJour(id,demande);
     }
 
     @Override

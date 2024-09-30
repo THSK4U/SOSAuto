@@ -1,7 +1,6 @@
 package com.sosauto_backend.model.Dto;
 
-import com.sosauto_backend.model.Entity.Automobiliste;
-import com.sosauto_backend.model.Entity.Mécanicien;
+import com.sosauto_backend.model.Entity.Mecanicien;
 import com.sosauto_backend.model.Entity.Panne;
 import com.sosauto_backend.model.Enum.EtatPanne;
 import lombok.Data;
@@ -18,6 +17,6 @@ public class DemandeDepannageDTO {
     private String description;
     private EtatPanne etat;
     private AutomobilisteDTO automobiliste;
-    private Mécanicien mécanicien;
+    private Mecanicien mecanicien;
     private Panne panne;
 }
