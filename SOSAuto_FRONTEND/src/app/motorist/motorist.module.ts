@@ -31,6 +31,11 @@ import { ListParticipationComponent } from './participation-demande/list-partici
     HistoriqueComponent,
     ParticipationDemandeComponent,
     ListParticipationComponent
+  ], exports: [
+    ListParticipationComponent,
+    HomeComponent,
+    HistoriqueComponent,
+    ParticipationDemandeComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +49,7 @@ import { ListParticipationComponent } from './participation-demande/list-partici
     MatInputModule,
     MatDialogModule,
     FormsModule,
+
 
   ]
 })

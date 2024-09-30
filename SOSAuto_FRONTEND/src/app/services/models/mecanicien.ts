@@ -1,5 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
+import {Role} from "./Role";
+
 export interface Mecanicien {
   disponible?: 'INDISPONIBLE' | 'DISPONIBLE';
   email?: string;
@@ -12,5 +14,5 @@ export interface Mecanicien {
   personneid?: number;
   prenom?: string;
   proofOfProfessionUrl?: string;
-  role?: 'ADMIN' | 'AUTO' | 'MECA';
+  role?: Role;
 }

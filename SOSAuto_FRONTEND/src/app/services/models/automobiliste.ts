@@ -1,5 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
+import {Role} from "./Role";
+
 export interface Automobiliste {
   email?: string;
   nationalIdCardUrl?: string;
@@ -8,5 +10,5 @@ export interface Automobiliste {
   password?: string;
   personneid?: number;
   prenom?: string;
-  role?: 'ADMIN' | 'AUTO' | 'MECA';
+  role?: Role;
 }

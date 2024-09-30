@@ -1,5 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
+import {Role} from "./Role";
+
 export interface AdministrateurDto {
   email?: string;
   nationalIdCardUrl?: string;
@@ -8,6 +10,6 @@ export interface AdministrateurDto {
   password?: string;
   personneid?: number;
   prenom?: string;
-  role?: 'ADMIN' | 'AUTO' | 'MECA';
+  role?: Role;
   username?: string;
 }

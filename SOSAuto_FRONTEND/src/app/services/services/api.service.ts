@@ -103,11 +103,46 @@ import { VehiculeDto } from '../models/vehicule-dto';
 import { getAllParticipationByIdDemande } from '../fn/operations/get-all-participation-by-id-demande';
 import {GetAllParticipationByIdAutomobilist$Params} from "../fn/operations/get-all-participation-by-id-automobilist";
 import {GetAllParticipationByIdDemande$Params} from "../fn/operations/get-all-participation-by-id-demande";
+import { getAllDemandeByAutomobiliste } from '../fn/operations/get-all-demande-by-automobiliste';
+import { GetAllDemandeByAutomobiliste$Params } from '../fn/operations/get-all-demande-by-automobiliste';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
+  }
+
+  /** Path part for operation `getAllDemandeByAutomobiliste()` */
+  static readonly GetAllDemandeByAutomobilistePath = '/automobiliste/DemandeDepannage/Automobiliste/{id}';
+
+  /**
+   * GET automobiliste/DemandeDepannage/Automobiliste/{id}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getAllDemandeByAutomobiliste()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllDemandeByAutomobiliste$Response(params: GetAllDemandeByAutomobiliste$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<DemandeDepannageDto>>> {
+    return getAllDemandeByAutomobiliste(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * GET automobiliste/DemandeDepannage/Automobiliste/{id}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getAllDemandeByAutomobiliste$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllDemandeByAutomobiliste(params: GetAllDemandeByAutomobiliste$Params, context?: HttpContext): Observable<Array<DemandeDepannageDto>> {
+    return this.getAllDemandeByAutomobiliste$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<DemandeDepannageDto>>): Array<DemandeDepannageDto> => r.body)
+    );
   }
 
   /** Path part for operation `getAllParticipationByIdDemande()` */

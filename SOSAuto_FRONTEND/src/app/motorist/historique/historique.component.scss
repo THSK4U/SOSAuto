@@ -1,0 +1,81 @@
+// SCSS for the Demande page
+
+$primary-color: #ff5733; // لون أساسي
+$secondary-color: #f8f9fa; // لون خلفية خفيفة
+$table-header-color: #ffe0b2; // لون رأس الجدول
+$table-row-color: #fff; // لون صف الجدول
+$table-row-hover-color: #f1f1f1; // لون صف الجدول عند التحويم
+$button-danger-color: #d9534f; // لون زر الإلغاء
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
+  h2 {
+    text-align: center;
+    color: $primary-color;
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: $secondary-color;
+    border-radius: 5px;
+    overflow: hidden;
+
+    thead {
+      background-color: $table-header-color;
+
+      th {
+        padding: 15px;
+        text-align: left;
+        font-weight: bold;
+        color: #333;
+      }
+    }
+
+    tbody {
+      tr {
+        background-color: $table-row-color;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: $table-row-hover-color;
+        }
+
+        td {
+          padding: 15px;
+          border-bottom: 1px solid #ddd;
+
+          &:last-child {
+            text-align: center;
+          }
+        }
+
+        .btn-danger {
+          background-color: $button-danger-color;
+          border: none;
+          color: white;
+          padding: 10px 15px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: darken($button-danger-color, 10%);
+          }
+        }
+      }
+    }
+  }
+
+  .no-participations {
+    text-align: center;
+    color: #777;
+    font-size: 1.2rem;
+    margin-top: 20px;
+  }
+}

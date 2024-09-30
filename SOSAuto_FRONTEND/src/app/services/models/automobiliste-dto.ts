@@ -2,6 +2,7 @@
 /* eslint-disable */
 import { DemandeDepannage } from '../models/demande-depannage';
 import { VehiculeDto } from '../models/vehicule-dto';
+import {Role} from "./Role";
 export interface AutomobilisteDto {
   demandeDepannage?: Array<DemandeDepannage>;
   email?: string;
@@ -11,6 +12,6 @@ export interface AutomobilisteDto {
   password?: string;
   personneid?: number;
   prenom?: string;
-  role?: 'ADMIN' | 'AUTO' | 'MECA';
+  role?: Role;
   'véhicules'?: Array<VehiculeDto>;
 }

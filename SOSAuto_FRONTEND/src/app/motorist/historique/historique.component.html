@@ -1,1 +1,28 @@
-<p>historique works!</p>
+<div class="bee-container">
+  <h2>Liste des Demandes</h2>
+
+  <table class="bee-table">
+    <thead>
+    <tr>
+      <th>Description</th>
+      <th>Panne</th>
+      <th>Statut</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let demande of demandes">
+      <td>{{ demande.description }}</td>
+      <td>{{ demande.panne?.nom }}</td>
+      <td>{{ demande.etat }}</td>
+      <td>
+        <button class="btn btn-danger" >Annuler</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="demandes.length === 0">
+    Aucune demande trouvée.
+  </div>
+</div>

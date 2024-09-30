@@ -2,7 +2,13 @@ import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors
+} from "@angular/common/http";
 import {MechanicModule} from "./mechanic/mechanic.module";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
@@ -20,6 +26,7 @@ import {MatRadioModule} from "@angular/material/radio";
 import { HomeComponent } from './home/home.component';
 import { MecanicienComponent } from './authentication/signup/mecanicien/mecanicien.component';
 import { AutomobilisteComponent } from './authentication/signup/automobiliste/automobiliste.component';
+import {AuthInterceptor} from "./services/token/interceptor/auth.interceptor";
 
 registerLocaleData(localeFr);
 
@@ -50,9 +57,8 @@ registerLocaleData(localeFr);
     FormsModule,
   ],
   providers: [
-    HttpClient,
-    { provide: LOCALE_ID, useValue: 'fr-FR' }
-  ],
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
+    provideHttpClient(withInterceptors([AuthInterceptor])),  ],
   exports: [
 
   ],
