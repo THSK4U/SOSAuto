@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class MecanicienService implements IMecanicienService {
@@ -30,15 +29,15 @@ public class MecanicienService implements IMecanicienService {
 
 
     @Override
-    public AuthResponse creer(MecanicienDTO Mécanicien) {
-        Mécanicien.setDisponible(Disponibilite.INDISPONIBLE);
-        return authenticationService.registerMecanicien(Mécanicien);
+    public AuthResponse creer(MecanicienDTO Mecanicien) {
+        Mecanicien.setDisponible(Disponibilite.INDISPONIBLE);
+        return authenticationService.registerMecanicien(Mecanicien);
     }
 
     @Override
     public MecanicienDTO getById(Long id) {
-        Optional<Mecanicien> mécanicien = Repository.findById(id);
-        return mécanicien.map(Mapper::toDTO).orElse(null);
+        Optional<Mecanicien> mecanicien = Repository.findById(id);
+        return mecanicien.map(Mapper::toDTO).orElse(null);
     }
 
     @Override
@@ -58,7 +57,7 @@ public class MecanicienService implements IMecanicienService {
         List<Mecanicien> mecanicien = Repository.getAllByDisponible(Disponibilite.DISPONIBLE);
         return mecanicien.stream()
                 .map(Mapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -66,7 +65,7 @@ public class MecanicienService implements IMecanicienService {
         List<Mecanicien> mecanicien = Repository.findAll();
         return mecanicien.stream()
                 .map(Mapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
