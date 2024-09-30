@@ -19,4 +19,7 @@ public interface IDemandeService {
 
     //By ID
     DemandeDepannageDTO getById(Long id);
+
+    //Get ALL By Automobiliste
+    List<DemandeDepannageDTO> getALLByAutomobiliste(Long id);
 }

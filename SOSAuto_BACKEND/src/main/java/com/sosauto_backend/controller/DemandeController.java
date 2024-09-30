@@ -38,4 +38,9 @@ public class DemandeController implements IDemandeApi {
     public DemandeDepannageDTO getDemandeById(Long id) {
         return service.getById(id);
     }
+
+    @Override
+    public List<DemandeDepannageDTO> getAllDemandeByAutomobiliste(Long id) {
+        return service.getALLByAutomobiliste(id);
+    }
 }

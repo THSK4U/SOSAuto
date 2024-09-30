@@ -39,6 +39,14 @@ public class DemandeService implements IDemandeService {
     }
 
     @Override
+    public List<DemandeDepannageDTO> getALLByAutomobiliste(Long id) {
+        List<DemandeDepannage> DemandeDePannage = Repository.getALLByAutomobiliste_Personneid(id);
+        return DemandeDePannage.stream()
+                .map(Mapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<DemandeDepannageDTO> voirTous() {
         List<DemandeDepannage> DemandeDePannage = Repository.findAll();
         return DemandeDePannage.stream()

@@ -29,4 +29,8 @@ public interface IDemandeApi {
     //By id
     @GetMapping(value = APP_PERMITALLAuth + "/DemandeDepannage/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     DemandeDepannageDTO getDemandeById(@PathVariable("id") Long id);
+
+    //Tous BY Automobiliste
+    @GetMapping(value = APP_AUTO + "/DemandeDepannage/Automobiliste/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<DemandeDepannageDTO> getAllDemandeByAutomobiliste(@PathVariable("id") Long id);
 }
