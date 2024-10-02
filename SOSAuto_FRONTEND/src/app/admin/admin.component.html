@@ -1,1 +1,20 @@
-<p>admin works!</p>
+<div class="admin-dashboard">
+  <aside class="sidebar">
+    <h1>SOSAuto Admin</h1>
+    <nav>
+      <ul>
+        <li><a routerLink="dashboard">Tableau de bord</a></li>
+        <li><a routerLink="mecanicien">Gestion des utilisateurs</a></li>
+        <li><a routerLink="automobiliste">Statistiques et rapports</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main class="main-content">
+    <header class="header">
+      <h2>{{ title }}</h2>
+    </header>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

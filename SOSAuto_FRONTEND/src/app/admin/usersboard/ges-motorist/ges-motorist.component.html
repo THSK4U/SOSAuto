@@ -1,0 +1,30 @@
+<div class="users">
+  <h2>Gestion des Automobilistes</h2>
+  <div class="table-container">
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Rôle</th>
+        <th>Numero de Telephone</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of automobilistes">
+        <td>{{ user.personneid }}</td>
+        <td>{{ user.nom }} {{ user.prenom }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.numTelephone }}</td>
+        <td>
+          <button class="btn-edit">Modifier</button>
+          <button class="btn-delete">Supprimer</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

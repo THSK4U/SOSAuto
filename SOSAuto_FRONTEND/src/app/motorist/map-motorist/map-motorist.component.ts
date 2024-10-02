@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as mapboxgl from "mapbox-gl";
 import {ApiService} from "../../services/services/api.service";
 import * as MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
@@ -146,7 +146,6 @@ export class MapMotoristComponent {
               </h6>
               <h6 class="card-subtitle mb-2 text-danger">${List.disponible || 'Unknown'}</h6>
               <p class="card-text">${List.numTelephone || 'Unknown'}</p>
-              <a href="#" class="btn btn-success mt-2">Demande</a>
             </div>
           `))
           .addTo(this.map);

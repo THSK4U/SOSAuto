@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { ParticipationComponent } from './participation/participation.component';
 import { ListParticipationComponent } from './participation/list-participation/list-participation.component';
 import { DisponibiliteComponent } from './disponibilite/disponibilite.component';
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -28,11 +29,12 @@ import { DisponibiliteComponent } from './disponibilite/disponibilite.component'
   ], exports: [
         ListParticipationComponent
     ],
-  imports: [
-    CommonModule,
-    MechanicRoutingModule,
-    MatIconModule,
+    imports: [
+        CommonModule,
+        MechanicRoutingModule,
+        MatIconModule,
+        MatButtonModule,
 
-  ]
+    ]
 })
 export class MechanicModule { }

@@ -16,8 +16,6 @@ const routes: Routes = [
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) , canActivate: [authGuard], data: { expectedRole: Role.ADMIN }},
   { path: 'login', component: SigninComponent},
   { path: 'register', component: SignupComponent},
-  {path: 'MAP', component: MapComponent},
-
 ];
 
 @NgModule({

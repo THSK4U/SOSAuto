@@ -38,7 +38,6 @@ registerLocaleData(localeFr);
     HomeComponent,
     MecanicienComponent,
     AutomobilisteComponent,
-
   ],
   imports: [
     BrowserModule,
