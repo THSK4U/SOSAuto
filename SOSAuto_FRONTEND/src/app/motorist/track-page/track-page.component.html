@@ -1,0 +1,24 @@
+<div class="container">
+  <h2 class="text-center mt-4">Suivi de l'arrivée du mécanicien</h2>
+
+
+  <div class="mechanic-info mt-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ mecanicien?.nom?.toUpperCase() }} {{ mecanicien?.prenom?.toUpperCase() }}</h5>
+        <p class="card-text">
+          <strong>Téléphone :</strong> {{ mecanicien?.numTelephone || 'Inconnu' }} <br>
+          <strong>Temps estimé d'arrivée :</strong> {{ estimatedTime || 'Non disponible' }}
+        </p>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" [style.width]="progress + '%'"  aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-buttons mt-3">
+    <button class="btn btn-danger" (click)="cancelRequest()">Annuler la demande</button>
+    <button class="btn btn-primary" (click)="contactMechanic()">Appeler le mécanicien</button>
+  </div>
+</div>
