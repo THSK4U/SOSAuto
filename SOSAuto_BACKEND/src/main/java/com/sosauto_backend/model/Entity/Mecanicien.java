@@ -26,7 +26,7 @@ public class Mecanicien extends Personne{
     @JsonIgnore
     private List<DemandeDepannage> demandedepannage;
 
-    @OneToMany(mappedBy = "mecanicien")
+    @OneToMany(mappedBy = "mecanicien", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Participation> participation;
 }
