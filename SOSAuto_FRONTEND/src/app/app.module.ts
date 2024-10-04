@@ -27,6 +27,7 @@ import { HomeComponent } from './home/home.component';
 import { MecanicienComponent } from './authentication/signup/mecanicien/mecanicien.component';
 import { AutomobilisteComponent } from './authentication/signup/automobiliste/automobiliste.component';
 import {AuthInterceptor} from "./services/token/interceptor/auth.interceptor";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 registerLocaleData(localeFr);
 
@@ -45,6 +46,7 @@ registerLocaleData(localeFr);
     HttpClientModule,
     MechanicModule,
     MatIconModule,
+    MatPaginatorModule,
     MatInputModule,
     ReactiveFormsModule,
     MatCardModule,
