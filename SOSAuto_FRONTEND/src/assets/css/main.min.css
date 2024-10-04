@@ -714,7 +714,7 @@ body.sidebar-hidden .page-header .navbar #navbarNav #leftNav>li>a#sidebar-toggle
 }
 .page-sidebar .accordion-menu>li.active-page ul li a.active {
   font-weight: 500;
-  color: #3d3d3d
+  color: #f3f4f7
 }
 .page-sidebar .accordion-menu>li>a:hover svg {
   margin-left: 5px
@@ -1829,7 +1829,7 @@ body.error-page .container {
 }
 .email-list li.active a {
   margin-bottom: 5px;
-  background: #f3f6f9
+  background: #f3f4f7
 }
 .open-email-content {
   max-height: calc(100vh - 207px);

@@ -8,7 +8,7 @@ import { RequestBuilder } from '../../request-builder';
 
 
 export interface SupprimerMecanicien$Params {
-  id: number;
+  id?: number;
 }
 
 export function supprimerMecanicien(http: HttpClient, rootUrl: string, params: SupprimerMecanicien$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {

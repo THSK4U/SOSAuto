@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import {
   GetAllParticipationByIdDemande$Params
 } from "../../../services/fn/operations/get-all-participation-by-id-demande";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ParticipationDto} from "../../../services/models/participation-dto";
 import {AcceptParticipation$Params} from "../../../services/fn/operations/accept-participation";
 import {RejectParticipation$Params} from "../../../services/fn/operations/reject-participation";
@@ -28,6 +28,7 @@ export class ListParticipationComponent implements OnInit, OnDestroy {
   constructor(
     private service: ApiService,
     private tokenService: TokenService,
+    private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,
   ) {}
@@ -82,7 +83,7 @@ export class ListParticipationComponent implements OnInit, OnDestroy {
       );
   }
 
-  acceptOffer(id?: number) {
+  acceptOffer(id?: number, personneid?: number) {
     if (!id) {
       console.error('ID de participation invalide');
       this.toastr.error('ID de participation invalide', 'Erreur!');
@@ -94,9 +95,8 @@ export class ListParticipationComponent implements OnInit, OnDestroy {
     this.service.acceptParticipation$Response(request).subscribe(
       (response) => {
         this.toastr.success('Offre acceptée avec succès', 'Succès!');
-        console.log('Participation acceptée:', response);
-        this.getAllParticipationByID().subscribe();
-      },
+        this.router.navigate(['/automobiliste/tracknumber', personneid]);
+        },
       (error) => {
         this.toastr.error('Erreur lors de l\'acceptation de l\'offre', 'Erreur!');
         console.error('Erreur lors de l\'acceptation de la participation:', error);

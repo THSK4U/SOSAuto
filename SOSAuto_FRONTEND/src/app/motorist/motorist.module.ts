@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { HistoriqueComponent } from './historique/historique.component';
 import { ParticipationDemandeComponent } from './participation-demande/participation-demande.component';
 import { ListParticipationComponent } from './participation-demande/list-participation/list-participation.component';
+import { TrackPageComponent } from './track-page/track-page.component';
 
 
 
@@ -30,7 +31,8 @@ import { ListParticipationComponent } from './participation-demande/list-partici
     HomeComponent,
     HistoriqueComponent,
     ParticipationDemandeComponent,
-    ListParticipationComponent
+    ListParticipationComponent,
+    TrackPageComponent
   ], exports: [
     ListParticipationComponent,
     HomeComponent,

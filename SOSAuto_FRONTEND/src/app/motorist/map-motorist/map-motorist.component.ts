@@ -72,7 +72,6 @@ export class MapMotoristComponent {
   }
 
 
-  // Continuous location update every time user moves
   private setupGeolocation(): void {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(

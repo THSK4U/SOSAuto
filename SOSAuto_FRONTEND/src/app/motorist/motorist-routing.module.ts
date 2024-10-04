@@ -6,6 +6,7 @@ import {ProfileComponent} from "../mechanic/profile/profile.component";
 import {HistoriqueComponent} from "./historique/historique.component";
 import {ParticipationDemandeComponent} from "./participation-demande/participation-demande.component";
 import {ListParticipationComponent} from "./participation-demande/list-participation/list-participation.component";
+import {TrackPageComponent} from "./track-page/track-page.component";
 
 const routes: Routes = [
   {
@@ -13,8 +14,9 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'profile', component: ProfileComponent },
-      {path: 'historique', component: HistoriqueComponent},
-      {path: 'participation/:id', component: ParticipationDemandeComponent}
+      { path: 'historique', component: HistoriqueComponent},
+      { path: 'participation/:id', component: ParticipationDemandeComponent},
+      { path: 'tracknumber/:id', component: TrackPageComponent }
     ]
   }
 ];

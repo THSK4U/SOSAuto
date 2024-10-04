@@ -8,7 +8,7 @@
   <div class="form-group">
     <label for="panneid">Le panne :</label>
     <select id="panneid" name="panneid" [(ngModel)]="panne.panneid" class="form-control" required>
-      <option *ngFor="let panne of pannes" [value]="panne.panneid">{{ panne.nom }}</option>
+      <option *ngFor="let panne of pannes" [value]="panne.panneid" [title]="panne.description">{{ panne.nom }}</option>
     </select>
   </div>
 

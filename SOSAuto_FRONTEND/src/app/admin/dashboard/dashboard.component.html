@@ -1,17 +1,34 @@
-<div class="dashboard">
-  <h2>Tableau de bord</h2>
-  <div class="stats">
-    <div class="stat-card">
-      <h3>Utilisateurs totaux</h3>
-      <p>{{ totalUsers }}</p>
-    </div>
-    <div class="stat-card">
-      <h3>Demandes actives</h3>
-      <p>{{ activeRequests }}</p>
-    </div>
-    <div class="stat-card">
-      <h3>Mécaniciens Actifs</h3>
-      <p>{{ avtiveMecanics }}</p>
-    </div>
+<!-- MAIN -->
+
+
+  <ul class="box-info">
+    <li>
+      <i class='bx bxs-calendar-check' ></i>
+      <span class="text">
+          <h3>1020</h3>
+          <p>New Order</p>
+        </span>
+    </li>
+    <li>
+      <i class='bx bxs-group' ></i>
+      <span class="text">
+          <h3>2834</h3>
+          <p>Visitors</p>
+        </span>
+    </li>
+    <li>
+      <i class='bx bxs-dollar-circle' ></i>
+      <span class="text">
+          <h3>$2543</h3>
+          <p>Total Sales</p>
+        </span>
+    </li>
+  </ul>
+
+
+  <div class="table-data">
+    <app-ges-motorist class="List"></app-ges-motorist>
+
+    <app-ges-mecaniciens class="List"></app-ges-mecaniciens>
   </div>
-</div>
+<!-- MAIN -->

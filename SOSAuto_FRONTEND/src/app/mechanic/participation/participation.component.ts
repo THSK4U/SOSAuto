@@ -46,7 +46,7 @@ export class ParticipationComponent implements OnInit,OnDestroy{
 
   startAutoRefresh(participationId: number): void {
     // Refresh every 10 seconds
-    this.refreshSubscription = interval(10000)
+    this.refreshSubscription = interval(5000)
       .pipe(switchMap(() => this.checkParticipationStatus(participationId)))
       .subscribe();
   }
@@ -68,6 +68,7 @@ export class ParticipationComponent implements OnInit,OnDestroy{
       },(error) => {
         this.toastr.error('Erreur lors de la mise à jour de la disponibilité', 'Erreur!');
         console.error('La création de la demande a échoué:', error);
+        this.router.navigate(['/mecanicien']);
     }
     )
   }
@@ -96,7 +97,20 @@ export class ParticipationComponent implements OnInit,OnDestroy{
     return this.service.getParticipationById$Response(requestParams).pipe(
       switchMap((response) => {
         const participation = response.body;
-        if (participation.status === 'ANNULER') {
+
+        if (!participation) {
+          this.toastr.error('Participation non trouvée', 'Erreur!');
+          this.router.navigate(['/mecanicien']);
+          return [];
+        }
+
+        if (participation.status === 'ACCEPTE') {
+          this.toastr.success('Votre offre a été acceptée par l\'automobiliste', 'Succès!');
+          if(participation.demande){
+            this.router.navigate(['demande-detail', participation.demande.demandeid]);
+
+          }
+        } else if (participation.status === 'ANNULER') {
           this.toastr.warning('Votre participation a été annulée par l\'automobiliste', 'Avertissement!');
           this.router.navigate(['/mecanicien']);
         }

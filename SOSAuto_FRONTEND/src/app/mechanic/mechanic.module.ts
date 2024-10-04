@@ -13,6 +13,7 @@ import { ParticipationComponent } from './participation/participation.component'
 import { ListParticipationComponent } from './participation/list-participation/list-participation.component';
 import { DisponibiliteComponent } from './disponibilite/disponibilite.component';
 import {MatButtonModule} from "@angular/material/button";
+import { DemandedetailComponent } from './demandedetail/demandedetail.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {MatButtonModule} from "@angular/material/button";
     HomeComponent,
     ParticipationComponent,
     ListParticipationComponent,
-    DisponibiliteComponent
+    DisponibiliteComponent,
+    DemandedetailComponent
   ], exports: [
         ListParticipationComponent
     ],

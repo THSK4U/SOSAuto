@@ -8,7 +8,7 @@
           <p class="offer-job">{{ participation.mecanicien?.numTelephone }}</p>
         </div>
         <div class="offer-actions">
-          <button class="btn btn-accept" aria-label="Accepter l'offre" (click)="acceptOffer(participation?.id)">Accepté</button>
+          <button class="btn btn-accept" aria-label="Accepter l'offre" (click)="acceptOffer(participation?.id , participation.mecanicien?.personneid)">Accepté</button>
           <button class="btn btn-cancel" aria-label="Annuler l'offre" (click)="cancelOffer(participation?.id)">Annuler</button>
         </div>
           </article>
