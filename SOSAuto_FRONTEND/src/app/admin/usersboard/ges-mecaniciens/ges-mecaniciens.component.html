@@ -1,32 +1,48 @@
-<div class="users">
-  <h2>Gestion des Mecaniciens</h2>
-  <div class="table-container">
-    <table>
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Email</th>
-        <th>Rôle</th>
-        <th>Numero de Telephone</th>
-        <th>Disponibilité</th>
-        <th>Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let user of mecaniciens">
-        <td>{{ user.personneid }}</td>
-        <td>{{ user.nom }} {{user.prenom}}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.role }}</td>
-        <td>{{ user.numTelephone }}</td>
-        <td>{{ user.disponible }}</td>
-        <td>
-          <button class="btn-edit">Modifier</button>
-          <button class="btn-delete">Supprimer</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="order-container">
+  <h3 class="order-title">Mécanicien</h3>
+  <table class="order-table">
+    <thead>
+    <tr>
+      <th>Utilisateur</th>
+      <th>Statut</th>
+      <th>E-mail</th>
+      <th>Téléphone</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of displayedMecanicien">
+      <td class="user-info" >
+        <img src="assets/images/WHITE.png" alt="User Avatar" class="user-avatar">
+        <span class="user-name">{{ user.nom }} {{ user.prenom }}</span>
+      </td>
+      <td><span class="status completed">Completed</span></td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.numTelephone }}</td>
+      <td>
+        <i class='btn text-danger bx bxs-trash' (click)="openDialog(user.personneid)"></i>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <mat-paginator [length]="length"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="[5, 7 , 10, 20]"
+                 (page)="onPageChange($event)"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+
+
+  <ng-template #confirmDeleteTemplate>
+    <div class="confirm-delete-dialog">
+      <h2 mat-dialog-title>Confirmer la suppression</h2>
+      <mat-dialog-content>Êtes-vous sûr de vouloir supprimer cet Mécanicien?</mat-dialog-content>
+      <mat-dialog-actions>
+        <button mat-button (click)="dialogRef.close(false)">Annuler</button>
+        <button mat-button class="btn btn-danger" (click)="dialogRef.close(true)">Supprimer</button>
+      </mat-dialog-actions>
+    </div>
+  </ng-template>
+
+
 </div>
