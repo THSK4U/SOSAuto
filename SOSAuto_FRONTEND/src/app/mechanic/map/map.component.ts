@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { DemandeDepannageDto } from "../../services/models/demande-depannage-dto";
@@ -6,13 +6,15 @@ import { ApiService } from "../../services/services/api.service";
 // @ts-ignore
 import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
 import {Router} from "@angular/router";
+import {interval, Observable, Subscription, throwError} from "rxjs";
+import {catchError, switchMap, tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
 
   private readonly mapboxAccessToken = 'pk.eyJ1Ijoic29zYXV0byIsImEiOiJjbTBlZmhudTkwNm16MmpzN3RkZDJiZ2MzIn0.NCq9laQd2WA2o0fdBKhfOw';
   private map!: mapboxgl.Map;
@@ -20,6 +22,8 @@ export class MapComponent implements OnInit {
   private KM!: number;
   private userLng!: number;
   private userLat!: number;
+  private refreshSubscription?: Subscription;
+
 
 
   constructor(private apiService: ApiService,
@@ -33,7 +37,28 @@ export class MapComponent implements OnInit {
     this.addControls();
     this.setupGeolocation();
     this.loadDemandes();
+    this.startAutoRefresh();
 
+  }
+  ngOnDestroy(): void {
+    if (this.refreshSubscription) {
+      this.refreshSubscription.unsubscribe();
+    }
+  }
+  startAutoRefresh(): void {
+    // 10 seconds
+    this.refreshSubscription = interval(10000)
+      .pipe(
+        switchMap(() => this.loadDemandes())
+      )
+      .subscribe(
+        () => {
+          console.log('Data refreshed');
+        },
+        error => {
+          console.error('Error refreshing data:', error);
+        }
+      );
   }
 
   private initializeMap(): void {
@@ -101,18 +126,20 @@ export class MapComponent implements OnInit {
     alert('Could not retrieve your location. Please make sure location services are enabled.');
   }
 
-  private loadDemandes(): void {
-    this.apiService.getAllDemande().subscribe(
-      (demandes) => {
-        this.demandes = demandes.filter(demande => demande.etat === 'A_FAIRE');
-        console.log('Loaded demandes:', this.demandes);
-        this.addDemandeMarkers();
-      },
-      (error) => {
-        console.error('Error loading demandes:', error);
-      }
-    );
-  }
+loadDemandes(): Observable<any> {
+  return this.apiService.getAllDemande().pipe(
+    tap((demandes) => {
+      this.demandes = demandes.filter(demande => demande.etat === 'A_FAIRE');
+      console.log('Loaded demandes:', this.demandes);
+      this.addDemandeMarkers();
+      return this.demandes;
+    }),
+    catchError((error) => {
+      console.error('Error loading demandes:', error);
+      return throwError(() => error);
+    })
+  );
+}
 
   private addDemandeMarkers(): void {
 
