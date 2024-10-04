@@ -1,20 +1,85 @@
-<div class="admin-dashboard">
-  <aside class="sidebar">
-    <h1>SOSAuto Admin</h1>
-    <nav>
-      <ul>
-        <li><a routerLink="dashboard">Tableau de bord</a></li>
-        <li><a routerLink="mecanicien">Gestion des utilisateurs</a></li>
-        <li><a routerLink="automobiliste">Statistiques et rapports</a></li>
-      </ul>
-    </nav>
-  </aside>
-  <main class="main-content">
-    <header class="header">
-      <h2>{{ title }}</h2>
-    </header>
-    <div class="content">
-      <router-outlet></router-outlet>
+<!-- SIDEBAR -->
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
+  <a href="/admin" class="brand">
+    <i class='bx bxs-smile'></i>
+    <span class="text">SOSAdmin</span>
+  </a>
+  <ul class="side-menu top">
+    <li [class.active]="activeLinkIndex === 0">
+    <a routerLink="/admin">
+        <i class='bx bxs-dashboard' ></i>
+        <span class="text">Dashboard</span>
+      </a>
+    </li>
+    <li [class.active]="activeLinkIndex === 1">
+    <a routerLink="mecanicien">
+        <i class='bx bxs-shopping-bag-alt' ></i>
+        <span class="text">Mécanicien</span>
+      </a>
+    </li>
+    <li [class.active]="activeLinkIndex === 2">
+    <a routerLink="automobiliste">
+        <i class='bx bxs-doughnut-chart' ></i>
+        <span class="text">Automobiliste</span>
+      </a>
+    </li>
+
+  </ul>
+  <ul class="side-menu">
+
+    <li>
+      <a href="#" class="logout">
+        <i class='bx bxs-log-out-circle' ></i>
+        <span class="text">Logout</span>
+      </a>
+    </li>
+  </ul>
+</section>
+<!-- SIDEBAR -->
+
+
+
+<!-- CONTENT -->
+<section id="content">
+  <!-- NAVBAR -->
+  <nav>
+    <i (click)="addToggle()" class='bx bx-menu' ></i>
+    <form action="#">
+      <div class="form-input">
+        <input type="search" placeholder="Search...">
+        <button type="button" class="search-btn"><i class='bx bx-search' ></i></button>
+      </div>
+    </form>
+    <a href="#" class="notification">
+      <i class='bx bxs-bell' ></i>
+      <span class="num">8</span>
+    </a>
+    <a href="#" class="profile">
+      <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
+    </a>
+  </nav>
+  <!-- NAVBAR -->
+  <main>
+    <div class="head-title">
+      <div class="left">
+        <h1>Dashboard</h1>
+        <ul class="breadcrumb">
+          <li>
+            <a href="#">Dashboard</a>
+          </li>
+          <li><i class='bx bx-chevron-right' ></i></li>
+          <li>
+            <a class="active">{{ path }}</a>
+          </li>
+        </ul>
+      </div>
+      <a href="#" class="btn-download">
+        <i class='bx bxs-cloud-download' ></i>
+        <span class="text">Download PDF</span>
+      </a>
     </div>
+  <router-outlet></router-outlet>
   </main>
-</div>
+</section>
+
+<!-- CONTENT -->

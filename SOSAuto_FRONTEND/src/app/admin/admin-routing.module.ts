@@ -15,8 +15,7 @@ const routes: Routes = [
       { path: 'automobiliste', component: GesMotoristComponent},
     ]
   },
-  { path: 'gestion/mecanicien', component: GesMecaniciensComponent },
-  {path: 'gestion/automobiliste', component: GesMotoristComponent},
+
 ];
 
 @NgModule({
