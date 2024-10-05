@@ -82,6 +82,27 @@ public class MecanicienService implements IMecanicienService {
     }
 
     @Override
+    public MecanicienDTO addNotation(Long mecanicienId, Double newRating) {
+        try {
+            Optional<Mecanicien> optional = repository.findById(mecanicienId);
+            if (optional.isPresent()) {
+                Mecanicien mecanicien = optional.get();
+                if (mecanicien.getNotation() == null) {
+                    mecanicien.setNotation(newRating);
+                } else {
+                    mecanicien.setNotation((mecanicien.getNotation() + newRating) / 2);
+                }
+                return mapper.toDTO(repository.save(mecanicien));
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la mise à jour de la notation du mécanicien : " + e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
     public List<MecanicienDTO> voirTous() {
         try {
             List<Mecanicien> mecanicien = repository.findAll();

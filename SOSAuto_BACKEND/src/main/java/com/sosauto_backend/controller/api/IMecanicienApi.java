@@ -40,4 +40,8 @@ public interface IMecanicienApi {
     @GetMapping(value = APP_ADMIN_AUTO + "/Mecanicien/Desponible", produces = MediaType.APPLICATION_JSON_VALUE)
     List<MecanicienDTO> getAllMecanicienDesponible();
 
+    //ajouter Notation
+    @PutMapping(value = APP_AUTO + "/Mecanicien/AddNotation/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    MecanicienDTO addNotation(@PathVariable("id") Long mecanicienId, @RequestBody Double newRating);
+
 }

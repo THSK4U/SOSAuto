@@ -26,4 +26,7 @@ public interface IMecanicienService {
 
     //get Disponibilite
     List<MecanicienDTO> getDisponibilite();
+
+    //add Notation
+    MecanicienDTO addNotation(Long mecanicienId, Double newRating);
 }

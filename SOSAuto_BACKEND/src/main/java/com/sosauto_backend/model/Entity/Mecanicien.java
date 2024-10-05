@@ -21,6 +21,7 @@ public class Mecanicien extends Personne{
     private String proofOfProfessionUrl;
     @Enumerated(EnumType.STRING)
     private Disponibilite disponible;
+    private Double Notation;
 
     @OneToMany(mappedBy = "mecanicien",cascade = CascadeType.ALL)
     @JsonIgnore

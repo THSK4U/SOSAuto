@@ -13,6 +13,7 @@ public class MecanicienDTO extends PersonneDTO {
     private Double longitude;
     private String proofOfProfessionUrl;
     private Disponibilite disponible;
+    private Double Notation;
     @JsonIgnore
     private List<DemandeDepannageDTO> tickets;
 }

@@ -50,5 +50,10 @@ public class MecanicienController implements IMecanicienApi {
     public List<MecanicienDTO> getAllMecanicienDesponible() {
         return service.getDisponibilite();
     }
+
+    @Override
+    public MecanicienDTO addNotation(Long mecanicienId, Double newRating) {
+        return service.addNotation(mecanicienId,newRating);
+    }
 }
 
