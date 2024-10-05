@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { GetDemandeById$Params } from '../../services/fn/operations/get-demande-by-id';
 import * as mapboxgl from 'mapbox-gl';
 import { DemandeDepannageDto } from '../../services/models/demande-depannage-dto';
+import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
 @Component({
   selector: 'app-demandedetail',
@@ -68,15 +69,32 @@ export class DemandedetailComponent implements OnInit {
     this.map.on('style.load', () => {
       this.map.setFog({});
     });
+
+    this.addControls();
+    this.setupGeolocation();
+  }
+
+  private addControls(): void {
+    const geocoder = new MapboxGeocoder({
+      accessToken: this.mapboxAccessToken,
+      mapboxgl: mapboxgl,
+      placeholder: 'Search for a location',
+      marker: false
+    });
+
+    this.map.addControl(geocoder, 'top-left');
+
     const geolocateControl = new mapboxgl.GeolocateControl({
       positionOptions: { enableHighAccuracy: true },
       trackUserLocation: true,
       showUserHeading: true,
-      showAccuracyCircle: false,
+      showAccuracyCircle: false
     });
 
     this.map.addControl(geolocateControl);
-    this.setupGeolocation();
+    this.map.on('load', () => {
+      geolocateControl.trigger();
+    });
   }
 
   private addDemandeMarkers(): void {
@@ -90,25 +108,13 @@ export class DemandedetailComponent implements OnInit {
 
         const marker = new mapboxgl.Marker({ element: markerElement })
           .setLngLat([demande.longitude, demande.latitude])
-          .setPopup(new mapboxgl.Popup().setHTML(`
-          <div class="card-body-mark text-center d-flex flex-column align-items-center border-radius: 10px">
-            <h5 class="card-title mb-2">
-              ${demande.automobiliste?.nom?.toUpperCase() || 'Unknown'}
-            </h5>
-            <h6 class="card-subtitle mb-2 text-danger">${demande.panne?.nom || 'Unknown'}</h6>
-            <p class="card-text">${demande.description || 'Unknown'}</p>
-          </div>
-        `))
           .addTo(this.map);
-
-        this.getDirections(demande.latitude, demande.longitude);
       }
     });
   }
-
   private setupGeolocation(): void {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
+      navigator.geolocation.watchPosition(
         this.setUserLocation.bind(this),
         this.handleLocationError.bind(this),
         { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
@@ -126,6 +132,14 @@ export class DemandedetailComponent implements OnInit {
       center: [this.userLng, this.userLat],
       zoom: 14,
     });
+
+    // Automatically get directions after setting user location
+    if (this.demandes && this.demandes.length > 0) {
+      const demande = this.demandes[0];
+      if (demande.latitude && demande.longitude) {
+        this.getDirections(demande.latitude, demande.longitude);
+      }
+    }
   }
 
   private handleLocationError(error: GeolocationPositionError): void {
@@ -149,7 +163,6 @@ export class DemandedetailComponent implements OnInit {
         console.error('Error fetching directions:', error);
       });
   }
-
   private drawRoute(route: any): void {
     if (this.map.getSource('route')) {
       this.map.removeLayer('route');
@@ -168,18 +181,24 @@ export class DemandedetailComponent implements OnInit {
       }
     });
 
-    this.map.addLayer({
-      id: 'route',
-      type: 'line',
-      source: 'route',
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round'
-      },
-      paint: {
-        'line-color': '#007bff',
-        'line-width': 5
-      }
-    });
+
+  this.map.addLayer({
+                      id: 'route',
+                      type: 'line',
+                      source: 'route',
+                      layout: {
+                        'line-join': 'round',
+                        'line-cap': 'round'
+                      },
+                      paint: {
+                        'line-color': '#3887be',
+                        'line-width': 5,
+                        'line-opacity': 0.75
+                      }
+                    });
+
   }
+
+
 }
+
