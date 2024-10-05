@@ -105,11 +105,45 @@ import {GetAllParticipationByIdAutomobilist$Params} from "../fn/operations/get-a
 import {GetAllParticipationByIdDemande$Params} from "../fn/operations/get-all-participation-by-id-demande";
 import { getAllDemandeByAutomobiliste } from '../fn/operations/get-all-demande-by-automobiliste';
 import { GetAllDemandeByAutomobiliste$Params } from '../fn/operations/get-all-demande-by-automobiliste';
+import {AddNotation$Params} from "../fn/operations/add-notation";
+import { addNotation } from '../fn/operations/add-notation';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
+  }
+  /** Path part for operation `addNotation()` */
+  static readonly AddNotationPath = '/automobiliste/Mecanicien/AddNotation/{id}';
+
+  /**
+   * PUT automobiliste/Mecanicien/AddNotation/{id}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `addNotation()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  addNotation$Response(params: AddNotation$Params, context?: HttpContext): Observable<StrictHttpResponse<MecanicienDto>> {
+    return addNotation(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * PUT automobiliste/Mecanicien/AddNotation/{id}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `addNotation$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  addNotation(params: AddNotation$Params, context?: HttpContext): Observable<MecanicienDto> {
+    return this.addNotation$Response(params, context).pipe(
+      map((r: StrictHttpResponse<MecanicienDto>): MecanicienDto => r.body)
+    );
   }
 
   /** Path part for operation `getAllDemandeByAutomobiliste()` */
