@@ -1,5 +1,6 @@
 package com.sosauto_backend.service;
 
+import com.sosauto_backend.exception.CustomServiceException;
 import com.sosauto_backend.model.dto.AdministrateurDTO;
 import com.sosauto_backend.model.entity.Administrateur;
 import com.sosauto_backend.model.entity.AuthResponse;
@@ -30,8 +31,8 @@ public class AdministrateurService implements IAdministrateurService {
         try {
             return authenticationservice.registerAdmin(administrateur);
         } catch (Exception e) {
-            System.err.println("Error creating administrator: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error creating administrator", e);
+
         }
     }
 
@@ -41,8 +42,8 @@ public class AdministrateurService implements IAdministrateurService {
             Optional<Administrateur> administrateur = repository.findById(id);
             return administrateur.map(mapper::toDTO).orElse(null);
         } catch (Exception e) {
-            System.err.println("Error getting administrator by ID: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error getting administrator by ID", e);
+
         }
     }
 
@@ -54,8 +55,8 @@ public class AdministrateurService implements IAdministrateurService {
                     .map(mapper::toDTO)
                     .toList();
         } catch (Exception e) {
-            System.err.println("Error getting all administrators: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error getting all administrators", e);
+
         }
     }
 
@@ -76,8 +77,8 @@ public class AdministrateurService implements IAdministrateurService {
                 return null;
             }
         } catch (Exception e) {
-            System.err.println("Error updating administrator: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error updating administrator", e);
+
         }
     }
 
@@ -86,8 +87,8 @@ public class AdministrateurService implements IAdministrateurService {
         try {
             repository.deleteById(id);
         } catch (Exception e) {
-            System.err.println("Error deleting administrator: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error deleting administrator", e);
+
         }
     }
 }

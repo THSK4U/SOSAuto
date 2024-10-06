@@ -1,6 +1,7 @@
 package com.sosauto_backend.service;
 
 
+import com.sosauto_backend.exception.CustomServiceException;
 import com.sosauto_backend.model.dto.PersonneDTO;
 import com.sosauto_backend.model.entity.Personne;
 import com.sosauto_backend.model.mapper.PersonneMapper;
@@ -31,8 +32,7 @@ public class PersonneService implements IPersonneService, UserDetailsService {
             Personne saved = repository.save(technicien);
             return mapper.toDTO(saved);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la création de la personne : " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Erreur lors de la création de la personne : " + e.getMessage(), e);
         }
     }
 
@@ -42,8 +42,7 @@ public class PersonneService implements IPersonneService, UserDetailsService {
             Optional<Personne> personne = repository.findById(id);
             return personne.map(mapper::toDTO).orElse(null);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération de la personne par ID : " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Erreur lors de la récupération de la personne par ID : " + e.getMessage(), e);
         }
     }
 
@@ -56,8 +55,8 @@ public class PersonneService implements IPersonneService, UserDetailsService {
                     .map(mapper::toDTO)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération de toutes les personnes : " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Erreur lors de la récupération de toutes les personnes : " + e.getMessage(), e);
+
         }
     }
 
@@ -78,8 +77,8 @@ public class PersonneService implements IPersonneService, UserDetailsService {
                 return null; // Or throw an exception for person not found
             }
         } catch (Exception e) {
-            System.err.println("Erreur lors de la mise à jour de la personne : " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Erreur lors de la mise à jour de la personne : " + e.getMessage(), e);
+
         }
     }
 
@@ -88,8 +87,8 @@ public class PersonneService implements IPersonneService, UserDetailsService {
         try {
             repository.deleteById(id);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la suppression de la personne : " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Erreur lors de la suppression de la personne : " + e.getMessage(), e);
+
         }
     }
 
@@ -99,8 +98,8 @@ public class PersonneService implements IPersonneService, UserDetailsService {
             return repository.findBynumTelephone(numtelephone)
                     .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé"));
         } catch (Exception e) {
-            System.err.println("Erreur lors du chargement de l'utilisateur par nom d'utilisateur : " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Erreur lors du chargement de l'utilisateur par nom d'utilisateur : " + e.getMessage(), e);
+
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.sosauto_backend.service;
 
+import com.sosauto_backend.exception.CustomServiceException;
 import com.sosauto_backend.model.dto.ParticipationDTO;
 import com.sosauto_backend.model.entity.Participation;
 import com.sosauto_backend.model.enums.StatutParticipation;
@@ -33,8 +34,9 @@ public class ParticipationService implements IParticipationService {
             Participation saved = repository.save(participation);
             return mapper.toDTO(saved);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la création de la participation : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de la création de la participation : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
+
         }
     }
 
@@ -52,8 +54,8 @@ public class ParticipationService implements IParticipationService {
                 throw new EntityNotFoundException(PARTICIPATION_NOT_FOUND + id);
             }
         } catch (Exception e) {
-            System.err.println("Erreur lors de la mise à jour de la participation : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de la mise à jour de la participation : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -66,8 +68,8 @@ public class ParticipationService implements IParticipationService {
                 throw new EntityNotFoundException(PARTICIPATION_NOT_FOUND + id);
             }
         } catch (Exception e) {
-            System.err.println("Erreur lors de la suppression de la participation : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de la suppression de la participation : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -76,8 +78,8 @@ public class ParticipationService implements IParticipationService {
         try {
             repository.deleteByDemande_DemandeidAndMecanicien_Personneid(demandeid, mecanicienid);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la suppression de la participation par demande : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de la suppression de la participation par demande : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -89,8 +91,8 @@ public class ParticipationService implements IParticipationService {
                     .map(mapper::toDTO)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération de toutes les participations : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de la récupération de toutes les participations : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -101,8 +103,8 @@ public class ParticipationService implements IParticipationService {
                     .map(mapper::toDTO)
                     .orElseThrow(() -> new EntityNotFoundException(PARTICIPATION_NOT_FOUND + id));
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération de la participation par ID : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de la récupération de la participation par ID : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -114,8 +116,8 @@ public class ParticipationService implements IParticipationService {
                     .map(mapper::toDTO)
                     .toList();
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération des participations par ID du mécanicien : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de la récupération des participations par ID du mécanicien : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -127,8 +129,8 @@ public class ParticipationService implements IParticipationService {
                     .map(mapper::toDTO)
                     .toList();
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération des participations par ID de l'automobiliste : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de la récupération des participations par ID de l'automobiliste : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -140,8 +142,8 @@ public class ParticipationService implements IParticipationService {
                     .map(mapper::toDTO)
                     .toList();
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération de toutes les participations par ID de la demande : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de la récupération de toutes les participations par ID de la demande : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -154,8 +156,8 @@ public class ParticipationService implements IParticipationService {
             Participation updated = repository.save(participation);
             return mapper.toDTO(updated);
         } catch (Exception e) {
-            System.err.println("Erreur lors de l'acceptation de la participation : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de l'acceptation de la participation : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -168,8 +170,8 @@ public class ParticipationService implements IParticipationService {
             Participation updated = repository.save(participation);
             return mapper.toDTO(updated);
         } catch (Exception e) {
-            System.err.println("Erreur lors du refus de la participation : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors du refus de la participation : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -186,8 +188,8 @@ public class ParticipationService implements IParticipationService {
                 throw new EntityNotFoundException(PARTICIPATION_NOT_FOUND + participationid);
             }
         } catch (Exception e) {
-            System.err.println("Erreur lors de l'annulation de la participation : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de l'annulation de la participation : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 }

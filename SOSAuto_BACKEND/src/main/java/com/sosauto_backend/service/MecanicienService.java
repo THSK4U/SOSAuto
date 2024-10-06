@@ -1,6 +1,7 @@
 package com.sosauto_backend.service;
 
 
+import com.sosauto_backend.exception.CustomServiceException;
 import com.sosauto_backend.model.dto.MecanicienDTO;
 import com.sosauto_backend.model.entity.AuthResponse;
 import com.sosauto_backend.model.entity.Mecanicien;
@@ -11,8 +12,6 @@ import com.sosauto_backend.service.Interface.IAuthenticationService;
 import com.sosauto_backend.service.Interface.IMecanicienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +27,6 @@ public class MecanicienService implements IMecanicienService {
     @Autowired
     private IAuthenticationService authenticationservice;
 
-    private static final Logger logger = LoggerFactory.getLogger(MecanicienService.class);
 
     @Override
     public AuthResponse creer(MecanicienDTO mecanicien) {
@@ -36,8 +34,8 @@ public class MecanicienService implements IMecanicienService {
             mecanicien.setDisponible(Disponibilite.INDISPONIBLE);
             return authenticationservice.registerMecanicien(mecanicien);
         } catch (Exception e) {
-            logger.error("Erreur lors de la création du mécanicien : {}", e.getMessage(), e);
-            throw e;
+            String errorMessage = String.format("Erreur lors de la création du mécanicien");
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -47,8 +45,8 @@ public class MecanicienService implements IMecanicienService {
             Optional<Mecanicien> mecanicien = repository.findById(id);
             return mecanicien.map(mapper::toDTO).orElse(null);
         } catch (Exception e) {
-            logger.error("Erreur lors de la récupération du mécanicien par ID : {}", e.getMessage(), e);
-            throw e;
+            String errorMessage = String.format("Erreur lors de la récupération du mécanicien par ID");
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -64,8 +62,8 @@ public class MecanicienService implements IMecanicienService {
                 return null; // Mecanicien nonTrouvé
             }
         } catch (Exception e) {
-            logger.error("Erreur lors de la mise à jour de la disponibilité du mécanicien : {}", e.getMessage(), e);
-            throw e;
+            String errorMessage = String.format("Erreur lors de la mise à jour de la disponibilité du mécanicien");
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -77,8 +75,8 @@ public class MecanicienService implements IMecanicienService {
                     .map(mapper::toDTO)
                     .toList();
         } catch (Exception e) {
-            logger.error("Erreur lors de la récupération des mécaniciens disponibles : {}", e.getMessage(), e);
-            throw e;
+            String errorMessage = String.format("Erreur lors de la récupération des mécaniciens disponibles");
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -98,8 +96,8 @@ public class MecanicienService implements IMecanicienService {
                 return null;
             }
         } catch (Exception e) {
-            logger.error("Erreur lors de la mise à jour de la notation du mécanicien : {}", e.getMessage(), e);
-            throw e;
+            String errorMessage = String.format("Erreur lors de la mise à jour de la notation du mécanicien avec l'ID : {}", mecanicienId);
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -111,8 +109,8 @@ public class MecanicienService implements IMecanicienService {
                     .map(mapper::toDTO)
                     .toList();
         } catch (Exception e) {
-            logger.error("Erreur lors de la récupération de tous les mécaniciens : {}", e.getMessage(), e);
-            throw e;
+            String errorMessage = String.format("Erreur lors de la récupération de tous les mécaniciens");
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -133,8 +131,8 @@ public class MecanicienService implements IMecanicienService {
                 return null; // Or throw an exception for mechanic not found
             }
         } catch (Exception e) {
-            logger.error("Erreur lors de la mise à jour du mécanicien : {}", e.getMessage(), e);
-            throw e;
+            String errorMessage = String.format("Erreur lors de la mise à jour du mécanicien : %d", id);
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -143,8 +141,8 @@ public class MecanicienService implements IMecanicienService {
         try {
             repository.deleteById(id);
         } catch (Exception e) {
-            logger.error("Erreur lors de la suppression du mécanicien : {}", e.getMessage(), e);
-            throw e;
+            String errorMessage = String.format("Erreur lors de la suppression du mécanicien : %d", id);
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 }

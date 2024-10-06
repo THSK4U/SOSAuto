@@ -1,5 +1,6 @@
 package com.sosauto_backend.service;
 
+import com.sosauto_backend.exception.CustomServiceException;
 import com.sosauto_backend.model.dto.DemandeDepannageDTO;
 import com.sosauto_backend.model.entity.DemandeDepannage;
 import com.sosauto_backend.model.enums.EtatPanne;
@@ -9,8 +10,6 @@ import com.sosauto_backend.service.Interface.IDemandeService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 import java.util.List;
@@ -26,7 +25,6 @@ public class DemandeService implements IDemandeService {
     @Autowired
     private DemandeDepannageRepository repository;
 
-    private static final Logger logger = LoggerFactory.getLogger(DemandeService.class);
 
     @Override
     public DemandeDepannageDTO creer(DemandeDepannageDTO demandedepannage) {
@@ -36,8 +34,7 @@ public class DemandeService implements IDemandeService {
             DemandeDepannage saved = repository.save(demandedepannages);
             return mapper.toDTO(saved);
         } catch (Exception e) {
-            logger.error("Error creating breakdown request: {}", e.getMessage(), e);
-            throw e;
+            throw new CustomServiceException("Erreur lors de la création de la demande de dépannage.", e);
         }
     }
 
@@ -47,8 +44,7 @@ public class DemandeService implements IDemandeService {
             Optional<DemandeDepannage> demandedepannage = repository.findById(id);
             return demandedepannage.map(mapper::toDTO).orElse(null);
         } catch (Exception e) {
-            logger.error("Error getting breakdown request by ID: {}", e.getMessage(), e);
-            throw e;
+            throw new CustomServiceException("Erreur lors de la récupération de la demande de dépannage par ID.", e);
         }
     }
 
@@ -60,8 +56,7 @@ public class DemandeService implements IDemandeService {
                     .map(mapper::toDTO)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            logger.error("Error getting breakdown requests by automobilist ID: {}", e.getMessage(), e);
-            throw e;
+            throw new CustomServiceException("Erreur lors de la récupération des demandes de dépannage par ID d'automobiliste.", e);
         }
     }
 
@@ -74,8 +69,8 @@ public class DemandeService implements IDemandeService {
             DemandeDepannage updated = repository.save(demande);
             return mapper.toDTO(updated);
         } catch (Exception e) {
-            logger.error("Erreur lors de la terminaison de la demande : {}", e.getMessage(), e);
-            throw e;
+            throw new CustomServiceException("Erreur lors de la terminaison de la demande de dépannage.", e);
+
         }
     }
 
@@ -87,8 +82,8 @@ public class DemandeService implements IDemandeService {
                     .map(mapper::toDTO)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            logger.error("Error getting all breakdown requests: {}", e.getMessage(), e);
-            throw e;
+            throw new CustomServiceException("Erreur lors de la récupération de toutes les demandes de dépannage.", e);
+
         }
     }
 
@@ -111,8 +106,8 @@ public class DemandeService implements IDemandeService {
                 throw new EntityNotFoundException("DemandeDepannage with ID " + id + " not found");
             }
         } catch (Exception e) {
-            logger.error("Error updating breakdown request: {}", e.getMessage(), e);
-            throw e;
+            throw new CustomServiceException("Erreur lors de la mise à jour de la demande de dépannage.", e);
+
         }
     }
 
@@ -121,8 +116,8 @@ public class DemandeService implements IDemandeService {
         try {
             repository.deleteById(id);
         } catch (Exception e) {
-            logger.error("Error deleting breakdown request: {}", e.getMessage(), e);
-            throw e;
+            throw new CustomServiceException("Erreur lors de la suppression de la demande de dépannage.", e);
+
         }
     }
 }

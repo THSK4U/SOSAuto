@@ -1,5 +1,6 @@
 package com.sosauto_backend.service;
 
+import com.sosauto_backend.exception.CustomServiceException;
 import com.sosauto_backend.model.dto.AutomobilisteDTO;
 import com.sosauto_backend.model.entity.AuthResponse;
 import com.sosauto_backend.model.entity.Automobiliste;
@@ -31,8 +32,8 @@ public class AutomobilisteService implements IAutomobilisteService {
         try {
             return authenticationservice.registerAutomobiliste(automobiliste);
         } catch (Exception e) {
-            System.err.println("Error creating automobilist: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error creating automobilist", e);
+
         }
     }
 
@@ -42,8 +43,8 @@ public class AutomobilisteService implements IAutomobilisteService {
             Optional<Automobiliste> automobiliste = repository.findById(id);
             return automobiliste.map(mapper::toDTO).orElse(null);
         } catch (Exception e) {
-            System.err.println("Error getting automobilist by ID: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error getting automobilist by ID", e);
+
         }
     }
 
@@ -55,8 +56,8 @@ public class AutomobilisteService implements IAutomobilisteService {
                     .map(mapper::toDTO)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            System.err.println("Error getting all automobilists: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error getting all automobilists", e);
+
         }
     }
 
@@ -77,8 +78,8 @@ public class AutomobilisteService implements IAutomobilisteService {
                 return null; // Or throw an exception indicating the automobilist was not found
             }
         } catch (Exception e) {
-            System.err.println("Error updating automobilist: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error updating automobilist", e);
+
         }
     }
 
@@ -87,8 +88,8 @@ public class AutomobilisteService implements IAutomobilisteService {
         try {
             repository.deleteById(id);
         } catch (Exception e) {
-            System.err.println("Error deleting automobilist: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error deleting automobilist", e);
+
         }
     }
 }

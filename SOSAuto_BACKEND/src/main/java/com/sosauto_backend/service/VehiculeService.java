@@ -2,6 +2,7 @@ package com.sosauto_backend.service;
 
 
 
+import com.sosauto_backend.exception.CustomServiceException;
 import com.sosauto_backend.model.dto.VehiculeDTO;
 import com.sosauto_backend.model.entity.Vehicule;
 import com.sosauto_backend.model.mapper.vehiculeMapper;
@@ -29,8 +30,7 @@ public class VehiculeService implements IvehiculeService {
             Vehicule saved = repository.save(entityvehicule);
             return mapper.toDTO(saved);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la création du véhicule : " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Erreur lors de la création du véhicule : " + e.getMessage(), e);
         }
     }
 
@@ -40,8 +40,7 @@ public class VehiculeService implements IvehiculeService {
             Optional<Vehicule> vehicule = repository.findById(id);
             return vehicule.map(mapper::toDTO).orElse(null);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération du véhicule par ID : " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Erreur lors de la récupération du véhicule par ID : " + e.getMessage(), e);
         }
     }
 
@@ -53,8 +52,7 @@ public class VehiculeService implements IvehiculeService {
                     .map(mapper::toDTO)
                     .toList();
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération de tous les véhicules : " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Erreur lors de la récupération de tous les véhicules : " + e.getMessage(), e);
         }
     }
 
@@ -76,8 +74,7 @@ public class VehiculeService implements IvehiculeService {
                 return null; // Or throw an exception for vehicle not found
             }
         } catch (Exception e) {
-            System.err.println("Erreur lors de la mise à jour du véhicule : " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Erreur lors de la mise à jour du véhicule : " + e.getMessage(), e);
         }
     }
 
@@ -86,8 +83,7 @@ public class VehiculeService implements IvehiculeService {
         try {
             repository.deleteById(id);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la suppression du véhicule : " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Erreur lors de la suppression du véhicule : " + e.getMessage(), e);
         }
     }
 }

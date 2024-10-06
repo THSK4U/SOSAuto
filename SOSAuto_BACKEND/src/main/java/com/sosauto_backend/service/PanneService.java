@@ -1,5 +1,6 @@
 package com.sosauto_backend.service;
 
+import com.sosauto_backend.exception.CustomServiceException;
 import com.sosauto_backend.model.dto.PanneDTO;
 import com.sosauto_backend.model.entity.Panne;
 import com.sosauto_backend.model.mapper.PanneMapper;
@@ -29,8 +30,8 @@ public class PanneService implements IPanneService {
             Panne saved = repository.save(pannes);
             return mapper.toDTO(saved);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la création de la panne : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de la création de la panne : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -53,8 +54,8 @@ public class PanneService implements IPanneService {
                     .map(mapper::toDTO)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération de toutes les pannes : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de la récupération de toutes les pannes : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -70,11 +71,11 @@ public class PanneService implements IPanneService {
                 Panne updated = repository.save(panne);
                 return mapper.toDTO(updated);
             } else {
-                return null; // Or throw an exception for panne not found
+                throw null;
             }
         } catch (Exception e) {
-            System.err.println("Erreur lors de la mise à jour de la panne : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de la mise à jour de la panne : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 
@@ -83,8 +84,8 @@ public class PanneService implements IPanneService {
         try {
             repository.deleteById(id);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la suppression de la panne : " + e.getMessage());
-            throw e;
+            String errorMessage = "Erreur lors de la suppression de la panne : " + e.getMessage();
+            throw new CustomServiceException(errorMessage, e);
         }
     }
 }

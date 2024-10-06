@@ -1,6 +1,7 @@
 package com.sosauto_backend.service;
 
 
+import com.sosauto_backend.exception.CustomServiceException;
 import com.sosauto_backend.model.dto.*;
 import com.sosauto_backend.model.entity.*;
 import com.sosauto_backend.model.enums.Disponibilite;
@@ -55,8 +56,8 @@ public class AuthenticationService implements IAuthenticationService {
 
             return new AuthResponse(jwtservice.generateToken(auto), "L'inscription de l'automobiliste a été réussie");
         } catch (Exception e) {
-            System.err.println("Error registering automobilist: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error registering automobilist", e);
+
         }
     }
 
@@ -85,8 +86,8 @@ public class AuthenticationService implements IAuthenticationService {
 
             return new AuthResponse(jwtservice.generateToken(mech), "L'inscription du mécanicien a été réussie");
         } catch (Exception e) {
-            System.err.println("Error registering mechanic: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error registering mechanic", e);
+
         }
     }
 
@@ -102,8 +103,8 @@ public class AuthenticationService implements IAuthenticationService {
             administrateurrepository.save(admin);
             return new AuthResponse(jwtservice.generateToken(admin), "L'inscription de l'administrateur a été spécie");
         } catch (Exception e) {
-            System.err.println("Error registering admin: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error registering admin", e);
+
         }
     }
 
@@ -123,8 +124,7 @@ public class AuthenticationService implements IAuthenticationService {
             // Generate JWT token for the authenticated user
             return new AuthResponse(jwtservice.generateToken(user), "Authentification réussie");
         } catch (Exception e) {
-            System.err.println("Error authenticating user: " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Error authenticating user", e);
         }
     }
 }
