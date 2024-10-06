@@ -83,19 +83,21 @@ export class ListParticipationComponent implements OnInit, OnDestroy {
       );
   }
 
-  acceptOffer(id?: number, personneid?: number) {
-    if (!id) {
+  acceptOffer(participationid?: number, personneid?: number) {
+    if (!participationid) {
       console.error('ID de participation invalide');
       this.toastr.error('ID de participation invalide', 'Erreur!');
       return;
     }
     const request: AcceptParticipation$Params = {
-      participationId: id,
+      participationId: participationid,
     };
     this.service.acceptParticipation$Response(request).subscribe(
       (response) => {
         this.toastr.success('Offre acceptée avec succès', 'Succès!');
-        this.router.navigate(['/automobiliste/tracknumber', personneid]);
+        this.router.navigate(['/automobiliste/tracknumber', personneid],
+          {queryParams: {demandeid:Number(this.route.snapshot.paramMap.get('id')),
+      }});
         },
       (error) => {
         this.toastr.error('Erreur lors de l\'acceptation de l\'offre', 'Erreur!');

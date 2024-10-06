@@ -5,7 +5,9 @@ import { SharedDataService } from '../../services/token/share-data.service';
 import {GetMecanicienById$Params} from "../../services/fn/operations/get-mecanicien-by-id";
 import {TokenService} from "../../services/token/token.service";
 import {MecanicienDto} from "../../services/models/mecanicien-dto";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {TerminerDemande$Params} from "../../services/fn/operations/terminer-demande";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-track-page',
@@ -14,12 +16,15 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class TrackPageComponent implements OnInit {
 
-  mecanicien?: MecanicienDto;
-  public progress: number = 0;
-  public estimatedTime: string = 'Non disponible';
+   mecanicien?: MecanicienDto;
+   progress: number = 0;
+   estimatedTime: string = 'Non disponible';
 
   constructor(private apiService: ApiService,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private router: Router,
+              private toastr: ToastrService,
+
   ) {}
 
   ngOnInit(): void {
@@ -56,9 +61,20 @@ export class TrackPageComponent implements OnInit {
     return `${remainingTime} minutes`;
   }
 
-  public cancelRequest(): void {
-    console.log('Demande annulée');
-    alert('La demande a été annulée avec succès');
+  public finirDemande(): void {
+    const demandeid = this.route.snapshot.queryParamMap.get('demandeid');
+    const paramres: TerminerDemande$Params = {
+      id: Number(demandeid),}
+ this.apiService.terminerDemande$Response(paramres).subscribe(
+     () => {
+       this.toastr.success(' Nous sommes ravis d\'avoir résolu votre problème', '😊'); // رسالة النجاح مع الإيموجي
+       this.router.navigate(['/automobiliste/notation', this.mecanicien?.personneid]);
+     },
+     (error) => {
+       this.toastr.error('La terminaison de la demande a échoué', 'Échoué!'); // رسالة الخطأ
+       console.error('Erreur lors de la terminaison de la demande :', error);
+     }
+   );
   }
 
   public contactMechanic(): void {

@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ApiService } from '../../services/services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { GetDemandeById$Params } from '../../services/fn/operations/get-demande-by-id';
 import * as mapboxgl from 'mapbox-gl';
 import { DemandeDepannageDto } from '../../services/models/demande-depannage-dto';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import {interval, Subscription} from "rxjs";
+import {switchMap} from "rxjs/operators";
+import {GetParticipationById$Params} from "../../services/fn/operations/get-participation-by-id";
 
 @Component({
   selector: 'app-demandedetail',
   templateUrl: './demandedetail.component.html',
   styleUrls: ['./demandedetail.component.scss']
 })
-export class DemandedetailComponent implements OnInit {
+export class DemandedetailComponent implements OnInit, OnDestroy {
 
   private readonly mapboxAccessToken = 'pk.eyJ1Ijoic29zYXV0byIsImEiOiJjbTBlZmhudTkwNm16MmpzN3RkZDJiZ2MzIn0.NCq9laQd2WA2o0fdBKhfOw';
   private map!: mapboxgl.Map;
@@ -20,11 +23,14 @@ export class DemandedetailComponent implements OnInit {
   private userLng!: number;
   demandeId: number | undefined;
   demandes!: DemandeDepannageDto[];
+  private refreshSubscription?: Subscription;
+
 
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,23 +39,48 @@ export class DemandedetailComponent implements OnInit {
     if (this.demandeId) {
       this.fetchDemandeDetails(this.demandeId);
       this.initializeMap();
+      this.startAutoRefresh(this.demandeId);
     } else {
       this.toastr.error('ID de demande invalide', 'Erreur!');
     }
   }
+  ngOnDestroy(): void {
+    if (this.refreshSubscription) {
+      this.refreshSubscription.unsubscribe();
+    }
+  }
+  startAutoRefresh(demandeId: number): void {
+    // Refresh every 10 seconds
+    this.refreshSubscription = interval(5000)
+      .pipe(switchMap(() => this.fetchDemandeDetails(demandeId)))
+      .subscribe();
+  }
 
-  fetchDemandeDetails(demandeId: number): void {
+
+  fetchDemandeDetails(demandeId: number) {
     const params: GetDemandeById$Params = { id: demandeId };
-    this.service.getDemandeById$Response(params).subscribe(
-      (response) => {
+
+    return this.service.getDemandeById$Response(params).pipe(
+      switchMap((response) => {
         this.demandes = [response.body] || [];
+        const bodydemande = response.body;
+
         this.addDemandeMarkers();
         console.log('Détails de la demande:', this.demandes);
-      },
-      (error) => {
-        this.toastr.error('Erreur lors de la récupération des détails de la demande', 'Erreur!');
-        console.error('Erreur:', error);
-      }
+
+        if (!this.demandes) {
+          this.toastr.error('Participation non trouvée', 'Erreur!');
+          this.router.navigate(['/mecanicien']);
+          return [];
+        }
+
+        if (bodydemande.etat === 'TERMINE') {
+          this.toastr.success('Votre offre a été Términe avec succès', 'Succès!');
+          this.router.navigate(['/mecanicien']);
+        }
+        return [];
+
+      })
     );
   }
 

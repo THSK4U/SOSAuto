@@ -107,11 +107,46 @@ import { getAllDemandeByAutomobiliste } from '../fn/operations/get-all-demande-b
 import { GetAllDemandeByAutomobiliste$Params } from '../fn/operations/get-all-demande-by-automobiliste';
 import {AddNotation$Params} from "../fn/operations/add-notation";
 import { addNotation } from '../fn/operations/add-notation';
+import { terminerDemande } from '../fn/operations/terminer-demande';
+import { TerminerDemande$Params } from '../fn/operations/terminer-demande';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
+  }
+
+  /** Path part for operation `terminerDemande()` */
+  static readonly TerminerDemandePath = '/mechadmin/DemandeDepannage/Terminer/{id}';
+
+  /**
+   * PUT mechadmin/DemandeDepannage/Terminer/{id}.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `terminerDemande()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  terminerDemande$Response(params: TerminerDemande$Params, context?: HttpContext): Observable<StrictHttpResponse<DemandeDepannageDto>> {
+    return terminerDemande(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * PUT mechadmin/DemandeDepannage/Terminer/{id}.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `terminerDemande$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  terminerDemande(params: TerminerDemande$Params, context?: HttpContext): Observable<DemandeDepannageDto> {
+    return this.terminerDemande$Response(params, context).pipe(
+      map((r: StrictHttpResponse<DemandeDepannageDto>): DemandeDepannageDto => r.body)
+    );
   }
   /** Path part for operation `addNotation()` */
   static readonly AddNotationPath = '/automobiliste/Mecanicien/AddNotation/{id}';

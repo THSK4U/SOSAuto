@@ -2,7 +2,7 @@
   <h2 class="text-center mt-4">Suivi de l'arrivée du mécanicien</h2>
 
 
-  <div class="mechanic-info mt-3">
+  <div class="mechanic-info mt-3 ">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">{{ mecanicien?.nom?.toUpperCase() }} {{ mecanicien?.prenom?.toUpperCase() }}</h5>
@@ -18,10 +18,10 @@
   </div>
 
   <div class="action-buttons">
-    <button class="btn btn-danger" (click)="cancelRequest()">Annuler la demande</button>
     <button class="btn btn-success" (click)="contactMechanic()">
       <div class='icone bx bxs-phone-call'></div>
       Appeler le mécanicien
     </button>
+    <button class="btn btn-danger" (click)="finirDemande()">Marquer comme terminé</button>
   </div>
 </div>

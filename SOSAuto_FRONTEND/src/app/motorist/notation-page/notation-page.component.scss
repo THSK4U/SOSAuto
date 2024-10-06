@@ -1,0 +1,94 @@
+.page-content {
+  padding: 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.notation-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .notation-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+
+    .mechanic-info {
+      display: flex;
+      align-items: center;
+
+      .mechanic-photo {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 15px;
+        border: 2px solid #ddd;
+      }
+
+      .mechanic-details {
+        h3 {
+          margin: 0;
+          font-size: 18px;
+          color: #333;
+        }
+
+        p {
+          margin: 5px 0 0;
+          color: #777;
+          font-size: 14px;
+        }
+      }
+    }
+
+    .rating-section {
+      display: flex;
+      align-items: center;
+
+      .rating-label {
+        font-weight: bold;
+        margin-right: 10px;
+        color: #333;
+      }
+
+      .stars {
+        display: flex;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .star-icon {
+          font-size: 20px;
+          color: #ffd700;
+          margin-right: 5px;
+
+          &.filled {
+            color: #ffd700;
+          }
+
+          &:not(.filled) {
+            color: #ccc;
+          }
+        }
+      }
+    }
+  }
+}

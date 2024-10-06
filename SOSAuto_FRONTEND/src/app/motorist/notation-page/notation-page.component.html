@@ -1,0 +1,27 @@
+<div class="page-content">
+  <div class="notation-container">
+    <h2>Notation des Mécaniciens</h2>
+    <div class="notation-card">
+      <div class="mechanic-info">
+        <div class="mechanic-details">
+          <h3>{{ mecanicien?.nom }} {{ mecanicien?.prenom }}</h3>
+          <p>{{ mecanicien?.numTelephone }}</p>
+        </div>
+      </div>
+      <div class="rating-section">
+        <span class="rating-label">Note :</span>
+        <div class="stars">
+          <div class="stars" *ngIf="mecanicien">
+            <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
+              <i
+                class="star-icon"
+                [class.filled]="i < selectedRating"
+                (click)="selectRating(i + 1)">★</i>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-warning" (click)="submitRating()">Envoyer Note</button>
+    </div>
+  </div>
+</div>

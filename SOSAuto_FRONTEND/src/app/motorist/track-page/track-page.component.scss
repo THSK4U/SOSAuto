@@ -2,5 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
-
+.card-body{
+  padding-bottom: 48px;
+}
+.card{
+  z-index: -1;
+  margin-bottom: -16px;
+}

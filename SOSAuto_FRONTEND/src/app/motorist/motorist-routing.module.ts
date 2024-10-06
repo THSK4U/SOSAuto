@@ -5,8 +5,8 @@ import {HomeComponent} from "../motorist/home/home.component";
 import {ProfileComponent} from "../mechanic/profile/profile.component";
 import {HistoriqueComponent} from "./historique/historique.component";
 import {ParticipationDemandeComponent} from "./participation-demande/participation-demande.component";
-import {ListParticipationComponent} from "./participation-demande/list-participation/list-participation.component";
 import {TrackPageComponent} from "./track-page/track-page.component";
+import {NotationPageComponent} from "./notation-page/notation-page.component";
 
 const routes: Routes = [
   {
@@ -16,7 +16,8 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'historique', component: HistoriqueComponent},
       { path: 'participation/:id', component: ParticipationDemandeComponent},
-      { path: 'tracknumber/:id', component: TrackPageComponent }
+      { path: 'tracknumber/:id', component: TrackPageComponent },
+      { path: 'notation/:personneid', component: NotationPageComponent}
     ]
   }
 ];

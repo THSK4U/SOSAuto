@@ -11,7 +11,7 @@ import { RequestBuilder } from '../../request-builder';
 import { MecanicienDto } from '../../models/mecanicien-dto';
 
 export interface AddNotation$Params {
-  id: number;
+  id?: number;
       body: number
 }
 
