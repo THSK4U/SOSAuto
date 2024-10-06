@@ -41,8 +41,8 @@ public class PanneService implements IPanneService {
             Optional<Panne> panne = repository.findById(id);
             return panne.map(mapper::toDTO).orElse(null);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération de la panne par ID : " + e.getMessage());
-            throw e;
+            throw new CustomServiceException("Erreur lors de la récupération de la panne", e);
+
         }
     }
 
@@ -71,7 +71,7 @@ public class PanneService implements IPanneService {
                 Panne updated = repository.save(panne);
                 return mapper.toDTO(updated);
             } else {
-                throw null;
+                throw new CustomServiceException("Panne with ID " + id + " not found.", null);
             }
         } catch (Exception e) {
             String errorMessage = "Erreur lors de la mise à jour de la panne : " + e.getMessage();
