@@ -1,11 +1,11 @@
 package com.sosauto_backend.service.Interface;
 
 
-import com.sosauto_backend.model.Dto.AdministrateurDTO;
-import com.sosauto_backend.model.Dto.AutomobilisteDTO;
-import com.sosauto_backend.model.Dto.MecanicienDTO;
-import com.sosauto_backend.model.Dto.PersonneDTO;
-import com.sosauto_backend.model.Entity.*;
+import com.sosauto_backend.model.dto.AdministrateurDTO;
+import com.sosauto_backend.model.dto.AutomobilisteDTO;
+import com.sosauto_backend.model.dto.MecanicienDTO;
+import com.sosauto_backend.model.dto.PersonneDTO;
+import com.sosauto_backend.model.entity.*;
 
 public interface IAuthenticationService {
 

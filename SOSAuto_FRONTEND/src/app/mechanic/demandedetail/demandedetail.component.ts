@@ -75,7 +75,7 @@ export class DemandedetailComponent implements OnInit, OnDestroy {
         }
 
         if (bodydemande.etat === 'TERMINE') {
-          this.toastr.success('Votre offre a été Términe avec succès', 'Succès!');
+          this.toastr.success('Merci beaucoup pour votre aide ! Le problème a été résolu avec succès. Nous vous sommes reconnaissants pour votre intervention rapide.', 'Succès !');
           this.router.navigate(['/mecanicien']);
         }
         return [];

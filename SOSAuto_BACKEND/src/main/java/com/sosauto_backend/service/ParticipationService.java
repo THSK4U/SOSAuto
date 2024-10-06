@@ -1,9 +1,9 @@
 package com.sosauto_backend.service;
 
-import com.sosauto_backend.model.Dto.ParticipationDTO;
-import com.sosauto_backend.model.Entity.Participation;
-import com.sosauto_backend.model.Enum.StatutParticipation;
-import com.sosauto_backend.model.Mapper.ParticipationMapper;
+import com.sosauto_backend.model.dto.ParticipationDTO;
+import com.sosauto_backend.model.entity.Participation;
+import com.sosauto_backend.model.enums.StatutParticipation;
+import com.sosauto_backend.model.mapper.ParticipationMapper;
 import com.sosauto_backend.respository.ParticipationRepository;
 import com.sosauto_backend.service.Interface.IParticipationService;
 import jakarta.persistence.EntityNotFoundException;
@@ -22,6 +22,8 @@ public class ParticipationService implements IParticipationService {
 
     @Autowired
     private ParticipationRepository repository;
+
+    private static final String PARTICIPATION_NOT_FOUND = "Participation non trouvée avec l'ID : ";
 
     @Override
     public ParticipationDTO creer(ParticipationDTO participationdto) {
@@ -47,7 +49,7 @@ public class ParticipationService implements IParticipationService {
                 Participation updated = repository.save(participation);
                 return mapper.toDTO(updated);
             } else {
-                throw new EntityNotFoundException("Participation non trouvée avec l'ID : " + id);
+                throw new EntityNotFoundException(PARTICIPATION_NOT_FOUND + id);
             }
         } catch (Exception e) {
             System.err.println("Erreur lors de la mise à jour de la participation : " + e.getMessage());
@@ -61,7 +63,7 @@ public class ParticipationService implements IParticipationService {
             if (repository.existsById(id)) {
                 repository.deleteById(id);
             } else {
-                throw new EntityNotFoundException("Participation non trouvée avec l'ID : " + id);
+                throw new EntityNotFoundException(PARTICIPATION_NOT_FOUND + id);
             }
         } catch (Exception e) {
             System.err.println("Erreur lors de la suppression de la participation : " + e.getMessage());
@@ -97,7 +99,7 @@ public class ParticipationService implements IParticipationService {
         try {
             return repository.findById(id)
                     .map(mapper::toDTO)
-                    .orElseThrow(() -> new EntityNotFoundException("Participation non trouvée avec l'ID : " + id));
+                    .orElseThrow(() -> new EntityNotFoundException(PARTICIPATION_NOT_FOUND + id));
         } catch (Exception e) {
             System.err.println("Erreur lors de la récupération de la participation par ID : " + e.getMessage());
             throw e;
@@ -147,7 +149,7 @@ public class ParticipationService implements IParticipationService {
     public ParticipationDTO acceptParticipation(Long participationid) {
         try {
             Participation participation = repository.findById(participationid)
-                    .orElseThrow(() -> new EntityNotFoundException("Participation non trouvée avec l'ID : " + participationid));
+                    .orElseThrow(() -> new EntityNotFoundException(PARTICIPATION_NOT_FOUND + participationid));
             participation.setStatus(StatutParticipation.ACCEPTE);
             Participation updated = repository.save(participation);
             return mapper.toDTO(updated);
@@ -161,7 +163,7 @@ public class ParticipationService implements IParticipationService {
     public ParticipationDTO rejectParticipation(Long participationid) {
         try {
             Participation participation = repository.findById(participationid)
-                    .orElseThrow(() -> new EntityNotFoundException("Participation non trouvée avec l'ID : " + participationid));
+                    .orElseThrow(() -> new EntityNotFoundException(PARTICIPATION_NOT_FOUND + participationid));
             participation.setStatus(StatutParticipation.REFUSE);
             Participation updated = repository.save(participation);
             return mapper.toDTO(updated);
@@ -181,7 +183,7 @@ public class ParticipationService implements IParticipationService {
                 Participation updated = repository.save(participation);
                 return mapper.toDTO(updated);
             } else {
-                throw new EntityNotFoundException("Participation non trouvée avec l'ID : " + participationid);
+                throw new EntityNotFoundException(PARTICIPATION_NOT_FOUND + participationid);
             }
         } catch (Exception e) {
             System.err.println("Erreur lors de l'annulation de la participation : " + e.getMessage());

@@ -1,7 +1,7 @@
 package com.sosauto_backend.service.Interface;
 
 
-import com.sosauto_backend.model.Dto.PersonneDTO;
+import com.sosauto_backend.model.dto.PersonneDTO;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;

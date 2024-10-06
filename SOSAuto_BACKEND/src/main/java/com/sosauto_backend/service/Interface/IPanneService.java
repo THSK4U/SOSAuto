@@ -1,6 +1,6 @@
 package com.sosauto_backend.service.Interface;
 
-import com.sosauto_backend.model.Dto.PanneDTO;
+import com.sosauto_backend.model.dto.PanneDTO;
 
 import java.util.List;
 

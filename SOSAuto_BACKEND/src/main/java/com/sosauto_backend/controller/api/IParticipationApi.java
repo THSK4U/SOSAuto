@@ -1,7 +1,7 @@
 package com.sosauto_backend.controller.api;
 
 
-import com.sosauto_backend.model.Dto.ParticipationDTO;
+import com.sosauto_backend.model.dto.ParticipationDTO;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,8 +1,8 @@
 package com.sosauto_backend.service;
 
-import com.sosauto_backend.model.Dto.ParticipationDTO;
-import com.sosauto_backend.model.Entity.Participation;
-import com.sosauto_backend.model.Mapper.ParticipationMapper;
+import com.sosauto_backend.model.dto.ParticipationDTO;
+import com.sosauto_backend.model.entity.Participation;
+import com.sosauto_backend.model.mapper.ParticipationMapper;
 import com.sosauto_backend.respository.ParticipationRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

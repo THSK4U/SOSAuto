@@ -1,7 +1,7 @@
 package com.sosauto_backend.service.securitySevice;
 
 
-import com.sosauto_backend.model.Entity.Personne;
+import com.sosauto_backend.model.entity.Personne;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;

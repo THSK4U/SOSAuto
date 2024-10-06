@@ -1,10 +1,10 @@
 package com.sosauto_backend.service;
 
 
-import com.sosauto_backend.model.Dto.*;
-import com.sosauto_backend.model.Entity.*;
-import com.sosauto_backend.model.Enum.Disponibilite;
-import com.sosauto_backend.model.Enum.Role;
+import com.sosauto_backend.model.dto.*;
+import com.sosauto_backend.model.entity.*;
+import com.sosauto_backend.model.enums.Disponibilite;
+import com.sosauto_backend.model.enums.Role;
 import com.sosauto_backend.respository.AdministrateurRepository;
 import com.sosauto_backend.respository.AutomobilisteRepository;
 import com.sosauto_backend.respository.MecanicienRepository;

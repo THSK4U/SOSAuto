@@ -1,8 +1,8 @@
 package com.sosauto_backend.controller;
 
 
-import com.sosauto_backend.model.Dto.PersonneDTO;
-import com.sosauto_backend.model.Entity.AuthResponse;
+import com.sosauto_backend.model.dto.PersonneDTO;
+import com.sosauto_backend.model.entity.AuthResponse;
 import com.sosauto_backend.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

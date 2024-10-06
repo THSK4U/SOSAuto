@@ -1,6 +1,6 @@
 package com.sosauto_backend.service.Interface;
 
-import com.sosauto_backend.model.Dto.DemandeDepannageDTO;
+import com.sosauto_backend.model.dto.DemandeDepannageDTO;
 
 import java.util.List;
 

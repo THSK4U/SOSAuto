@@ -1,9 +1,9 @@
 package com.sosauto_backend.service;
 
 
-import com.sosauto_backend.model.Dto.PersonneDTO;
-import com.sosauto_backend.model.Entity.Personne;
-import com.sosauto_backend.model.Mapper.PersonneMapper;
+import com.sosauto_backend.model.dto.PersonneDTO;
+import com.sosauto_backend.model.entity.Personne;
+import com.sosauto_backend.model.mapper.PersonneMapper;
 import com.sosauto_backend.respository.PersonneRepository;
 import com.sosauto_backend.service.Interface.IPersonneService;
 import org.springframework.beans.factory.annotation.Autowired;

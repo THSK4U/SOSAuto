@@ -1,11 +1,11 @@
 package com.sosauto_backend.service;
 
 
-import com.sosauto_backend.model.Dto.MecanicienDTO;
-import com.sosauto_backend.model.Entity.AuthResponse;
-import com.sosauto_backend.model.Entity.Mecanicien;
-import com.sosauto_backend.model.Enum.Disponibilite;
-import com.sosauto_backend.model.Mapper.MecanicienMapper;
+import com.sosauto_backend.model.dto.MecanicienDTO;
+import com.sosauto_backend.model.entity.AuthResponse;
+import com.sosauto_backend.model.entity.Mecanicien;
+import com.sosauto_backend.model.enums.Disponibilite;
+import com.sosauto_backend.model.mapper.MecanicienMapper;
 import com.sosauto_backend.respository.MecanicienRepository;
 import com.sosauto_backend.service.Interface.IAuthenticationService;
 import com.sosauto_backend.service.Interface.IMecanicienService;

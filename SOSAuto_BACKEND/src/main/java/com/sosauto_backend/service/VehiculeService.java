@@ -2,11 +2,11 @@ package com.sosauto_backend.service;
 
 
 
-import com.sosauto_backend.model.Dto.VehiculeDTO;
-import com.sosauto_backend.model.Entity.Vehicule;
-import com.sosauto_backend.model.Mapper.vehiculeMapper;
+import com.sosauto_backend.model.dto.VehiculeDTO;
+import com.sosauto_backend.model.entity.Vehicule;
+import com.sosauto_backend.model.mapper.vehiculeMapper;
 import com.sosauto_backend.respository.VehiculeRepository;
-import com.sosauto_backend.service.Interface.IVéhiculeService;
+import com.sosauto_backend.service.Interface.IvehiculeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class VehiculeService implements IVéhiculeService {
+public class VehiculeService implements IvehiculeService {
 
     @Autowired
     private vehiculeMapper mapper;
@@ -64,7 +64,7 @@ public class VehiculeService implements IVéhiculeService {
             Optional<Vehicule> optional = repository.findById(id);
             if (optional.isPresent()) {
                 Vehicule vehicule = optional.get();
-                vehicule.setAnnée(dto.getAnnee());
+                vehicule.setAnnee(dto.getAnnee());
                 vehicule.setModele(dto.getModele());
                 vehicule.setCouleur(dto.getCouleur());
                 vehicule.setMarque(dto.getMarque());

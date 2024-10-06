@@ -1,7 +1,7 @@
 package com.sosauto_backend.service.Interface;
 
 
-import com.sosauto_backend.model.Dto.ParticipationDTO;
+import com.sosauto_backend.model.dto.ParticipationDTO;
 
 import java.util.List;
 

@@ -1,10 +1,9 @@
 package com.sosauto_backend.respository;
 
 
-import com.sosauto_backend.model.Entity.Mecanicien;
-import com.sosauto_backend.model.Enum.Disponibilite;
+import com.sosauto_backend.model.entity.Mecanicien;
+import com.sosauto_backend.model.enums.Disponibilite;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

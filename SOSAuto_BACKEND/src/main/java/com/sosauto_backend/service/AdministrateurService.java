@@ -1,9 +1,9 @@
 package com.sosauto_backend.service;
 
-import com.sosauto_backend.model.Dto.AdministrateurDTO;
-import com.sosauto_backend.model.Entity.Administrateur;
-import com.sosauto_backend.model.Entity.AuthResponse;
-import com.sosauto_backend.model.Mapper.AdministrateurMapper;
+import com.sosauto_backend.model.dto.AdministrateurDTO;
+import com.sosauto_backend.model.entity.Administrateur;
+import com.sosauto_backend.model.entity.AuthResponse;
+import com.sosauto_backend.model.mapper.AdministrateurMapper;
 import com.sosauto_backend.respository.AdministrateurRepository;
 import com.sosauto_backend.service.Interface.IAdministrateurService;
 import com.sosauto_backend.service.Interface.IAuthenticationService;

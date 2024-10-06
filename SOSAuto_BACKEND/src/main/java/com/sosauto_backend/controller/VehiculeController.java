@@ -1,7 +1,7 @@
 package com.sosauto_backend.controller;
 
-import com.sosauto_backend.controller.api.IVéhiculeApi;
-import com.sosauto_backend.model.Dto.VehiculeDTO;
+import com.sosauto_backend.controller.api.IVehiculeApi;
+import com.sosauto_backend.model.dto.VehiculeDTO;
 import com.sosauto_backend.service.VehiculeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class VehiculeController implements IVéhiculeApi {
+public class VehiculeController implements IVehiculeApi {
 
     @Autowired
     private VehiculeService service;

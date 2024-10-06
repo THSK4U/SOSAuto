@@ -129,7 +129,9 @@ export class MapComponent implements OnInit, OnDestroy {
 loadDemandes(): Observable<any> {
   return this.apiService.getAllDemande().pipe(
     tap((demandes) => {
-      this.demandes = demandes.filter(demande => demande.etat === 'A_FAIRE');
+      this.demandes = demandes
+        .filter(demande => demande.etat === 'A_FAIRE');
+
       console.log('Loaded demandes:', this.demandes);
       this.addDemandeMarkers();
       return this.demandes;

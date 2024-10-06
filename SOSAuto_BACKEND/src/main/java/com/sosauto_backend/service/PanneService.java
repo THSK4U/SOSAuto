@@ -1,8 +1,8 @@
 package com.sosauto_backend.service;
 
-import com.sosauto_backend.model.Dto.PanneDTO;
-import com.sosauto_backend.model.Entity.Panne;
-import com.sosauto_backend.model.Mapper.PanneMapper;
+import com.sosauto_backend.model.dto.PanneDTO;
+import com.sosauto_backend.model.entity.Panne;
+import com.sosauto_backend.model.mapper.PanneMapper;
 import com.sosauto_backend.respository.PanneRepository;
 import com.sosauto_backend.service.Interface.IPanneService;
 import org.springframework.beans.factory.annotation.Autowired;

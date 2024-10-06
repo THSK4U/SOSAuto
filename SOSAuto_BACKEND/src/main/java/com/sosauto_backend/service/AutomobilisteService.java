@@ -1,9 +1,9 @@
 package com.sosauto_backend.service;
 
-import com.sosauto_backend.model.Dto.AutomobilisteDTO;
-import com.sosauto_backend.model.Entity.AuthResponse;
-import com.sosauto_backend.model.Entity.Automobiliste;
-import com.sosauto_backend.model.Mapper.AutomobilisteMapper;
+import com.sosauto_backend.model.dto.AutomobilisteDTO;
+import com.sosauto_backend.model.entity.AuthResponse;
+import com.sosauto_backend.model.entity.Automobiliste;
+import com.sosauto_backend.model.mapper.AutomobilisteMapper;
 import com.sosauto_backend.respository.AutomobilisteRepository;
 import com.sosauto_backend.service.Interface.IAuthenticationService;
 import com.sosauto_backend.service.Interface.IAutomobilisteService;

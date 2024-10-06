@@ -1,7 +1,7 @@
 package com.sosauto_backend.controller;
 
 import com.sosauto_backend.controller.api.IParticipationApi;
-import com.sosauto_backend.model.Dto.ParticipationDTO;
+import com.sosauto_backend.model.dto.ParticipationDTO;
 import com.sosauto_backend.service.ParticipationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

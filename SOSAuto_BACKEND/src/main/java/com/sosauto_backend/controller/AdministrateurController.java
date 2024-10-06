@@ -1,8 +1,8 @@
 package com.sosauto_backend.controller;
 
 import com.sosauto_backend.controller.api.IAdministrateurApi;
-import com.sosauto_backend.model.Dto.AdministrateurDTO;
-import com.sosauto_backend.model.Entity.AuthResponse;
+import com.sosauto_backend.model.dto.AdministrateurDTO;
+import com.sosauto_backend.model.entity.AuthResponse;
 import com.sosauto_backend.service.Interface.IAdministrateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;

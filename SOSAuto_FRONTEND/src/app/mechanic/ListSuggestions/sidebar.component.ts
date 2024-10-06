@@ -26,7 +26,9 @@ export class SidebarComponent implements OnInit {
     this.service.getAllDemande()
       .subscribe({
         next: (demande) => {
-          this.Demandes = demande.sort((a, b) => {
+          this.Demandes = demande
+            .filter(demande => demande.etat === 'A_FAIRE')
+            .sort((a, b) => {
             const dateA = a.dateTime ? new Date(a.dateTime).getTime() : 0;
             const dateB = b.dateTime ? new Date(b.dateTime).getTime() : 0;
             return dateB - dateA;

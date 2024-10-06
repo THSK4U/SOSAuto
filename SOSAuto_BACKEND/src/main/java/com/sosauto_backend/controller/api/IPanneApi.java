@@ -1,7 +1,7 @@
 package com.sosauto_backend.controller.api;
 
 
-import com.sosauto_backend.model.Dto.PanneDTO;
+import com.sosauto_backend.model.dto.PanneDTO;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 

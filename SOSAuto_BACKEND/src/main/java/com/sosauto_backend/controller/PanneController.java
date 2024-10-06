@@ -1,7 +1,7 @@
 package com.sosauto_backend.controller;
 
 import com.sosauto_backend.controller.api.IPanneApi;
-import com.sosauto_backend.model.Dto.PanneDTO;
+import com.sosauto_backend.model.dto.PanneDTO;
 import com.sosauto_backend.service.PanneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;

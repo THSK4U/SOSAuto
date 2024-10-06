@@ -1,11 +1,9 @@
 package com.sosauto_backend.service;
 
-import com.sosauto_backend.model.Dto.DemandeDepannageDTO;
-import com.sosauto_backend.model.Entity.DemandeDepannage;
-import com.sosauto_backend.model.Entity.Participation;
-import com.sosauto_backend.model.Enum.EtatPanne;
-import com.sosauto_backend.model.Enum.StatutParticipation;
-import com.sosauto_backend.model.Mapper.DemandeDepannageMapper;
+import com.sosauto_backend.model.dto.DemandeDepannageDTO;
+import com.sosauto_backend.model.entity.DemandeDepannage;
+import com.sosauto_backend.model.enums.EtatPanne;
+import com.sosauto_backend.model.mapper.DemandeDepannageMapper;
 import com.sosauto_backend.respository.DemandeDepannageRepository;
 import com.sosauto_backend.service.Interface.IDemandeService;
 import jakarta.persistence.EntityNotFoundException;

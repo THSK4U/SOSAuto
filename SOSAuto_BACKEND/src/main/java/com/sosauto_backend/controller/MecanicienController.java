@@ -2,8 +2,8 @@ package com.sosauto_backend.controller;
 
 
 import com.sosauto_backend.controller.api.IMecanicienApi;
-import com.sosauto_backend.model.Dto.MecanicienDTO;
-import com.sosauto_backend.model.Entity.AuthResponse;
+import com.sosauto_backend.model.dto.MecanicienDTO;
+import com.sosauto_backend.model.entity.AuthResponse;
 import com.sosauto_backend.service.Interface.IMecanicienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
