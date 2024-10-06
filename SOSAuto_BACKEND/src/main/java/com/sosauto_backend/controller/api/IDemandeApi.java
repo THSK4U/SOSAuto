@@ -33,4 +33,8 @@ public interface IDemandeApi {
     //Tous BY Automobiliste
     @GetMapping(value = APP_AUTO + "/DemandeDepannage/Automobiliste/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     List<DemandeDepannageDTO> getAllDemandeByAutomobiliste(@PathVariable("id") Long id);
+
+    //Términer Demande
+    @PutMapping(value = APP_ADMIN_MECH + "/DemandeDepannage/Terminer/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    DemandeDepannageDTO terminerDemande(@PathVariable("id") Long demandeid);
 }

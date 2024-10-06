@@ -2,7 +2,9 @@ package com.sosauto_backend.service;
 
 import com.sosauto_backend.model.Dto.DemandeDepannageDTO;
 import com.sosauto_backend.model.Entity.DemandeDepannage;
+import com.sosauto_backend.model.Entity.Participation;
 import com.sosauto_backend.model.Enum.EtatPanne;
+import com.sosauto_backend.model.Enum.StatutParticipation;
 import com.sosauto_backend.model.Mapper.DemandeDepannageMapper;
 import com.sosauto_backend.respository.DemandeDepannageRepository;
 import com.sosauto_backend.service.Interface.IDemandeService;
@@ -56,6 +58,20 @@ public class DemandeService implements IDemandeService {
                     .collect(Collectors.toList());
         } catch (Exception e) {
             System.err.println("Error getting breakdown requests by automobilist ID: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public DemandeDepannageDTO terminerDemande(Long demandeid) {
+        try {
+            DemandeDepannage demande = repository.findById(demandeid)
+                    .orElseThrow(() -> new EntityNotFoundException("Demande de panne non trouvée avec l'ID : " + demandeid));
+            demande.setEtat(EtatPanne.TERMINE);
+            DemandeDepannage updated = repository.save(demande);
+            return mapper.toDTO(updated);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la terminaison de la demande : " + e.getMessage());
             throw e;
         }
     }

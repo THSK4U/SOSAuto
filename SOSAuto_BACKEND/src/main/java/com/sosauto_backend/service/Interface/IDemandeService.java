@@ -22,4 +22,7 @@ public interface IDemandeService {
 
     //Get ALL By Automobiliste
     List<DemandeDepannageDTO> getALLByAutomobiliste(Long id);
+
+    //Demande terminer
+    DemandeDepannageDTO terminerDemande(Long demandeid);
 }
