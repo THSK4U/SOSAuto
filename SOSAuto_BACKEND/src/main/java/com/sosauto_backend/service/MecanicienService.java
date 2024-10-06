@@ -34,8 +34,7 @@ public class MecanicienService implements IMecanicienService {
             mecanicien.setDisponible(Disponibilite.INDISPONIBLE);
             return authenticationservice.registerMecanicien(mecanicien);
         } catch (Exception e) {
-            String errorMessage = String.format("Erreur lors de la création du mécanicien");
-            throw new CustomServiceException(errorMessage, e);
+            throw new CustomServiceException("Erreur lors de la création du mécanicien", e);
         }
     }
 
@@ -45,8 +44,7 @@ public class MecanicienService implements IMecanicienService {
             Optional<Mecanicien> mecanicien = repository.findById(id);
             return mecanicien.map(mapper::toDTO).orElse(null);
         } catch (Exception e) {
-            String errorMessage = String.format("Erreur lors de la récupération du mécanicien par ID");
-            throw new CustomServiceException(errorMessage, e);
+            throw new CustomServiceException("Erreur lors de la récupération du mécanicien par ID", e);
         }
     }
 
@@ -62,8 +60,7 @@ public class MecanicienService implements IMecanicienService {
                 return null; // Mecanicien nonTrouvé
             }
         } catch (Exception e) {
-            String errorMessage = String.format("Erreur lors de la mise à jour de la disponibilité du mécanicien");
-            throw new CustomServiceException(errorMessage, e);
+            throw new CustomServiceException("Erreur lors de la mise à jour de la disponibilité du mécanicien", e);
         }
     }
 
@@ -75,8 +72,7 @@ public class MecanicienService implements IMecanicienService {
                     .map(mapper::toDTO)
                     .toList();
         } catch (Exception e) {
-            String errorMessage = String.format("Erreur lors de la récupération des mécaniciens disponibles");
-            throw new CustomServiceException(errorMessage, e);
+            throw new CustomServiceException("Erreur lors de la récupération des mécaniciens disponibles", e);
         }
     }
 
@@ -96,8 +92,7 @@ public class MecanicienService implements IMecanicienService {
                 return null;
             }
         } catch (Exception e) {
-            String errorMessage = String.format("Erreur lors de la mise à jour de la notation du mécanicien avec l'ID : {}", mecanicienId);
-            throw new CustomServiceException(errorMessage, e);
+            throw new CustomServiceException("Erreur lors de la mise à jour de la notation du mécanicien avec l'ID", e);
         }
     }
 
@@ -109,8 +104,7 @@ public class MecanicienService implements IMecanicienService {
                     .map(mapper::toDTO)
                     .toList();
         } catch (Exception e) {
-            String errorMessage = String.format("Erreur lors de la récupération de tous les mécaniciens");
-            throw new CustomServiceException(errorMessage, e);
+            throw new CustomServiceException("Erreur lors de la récupération de tous les mécaniciens", e);
         }
     }
 
@@ -131,8 +125,7 @@ public class MecanicienService implements IMecanicienService {
                 return null; // Or throw an exception for mechanic not found
             }
         } catch (Exception e) {
-            String errorMessage = String.format("Erreur lors de la mise à jour du mécanicien : %d", id);
-            throw new CustomServiceException(errorMessage, e);
+            throw new CustomServiceException("Erreur lors de la mise à jour du mécanicien :", e);
         }
     }
 
@@ -141,8 +134,7 @@ public class MecanicienService implements IMecanicienService {
         try {
             repository.deleteById(id);
         } catch (Exception e) {
-            String errorMessage = String.format("Erreur lors de la suppression du mécanicien : %d", id);
-            throw new CustomServiceException(errorMessage, e);
+            throw new CustomServiceException("Erreur lors de la suppression du mécanicien :", e);
         }
     }
 }

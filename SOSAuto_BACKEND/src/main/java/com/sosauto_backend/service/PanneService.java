@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class PanneService implements IPanneService {
@@ -30,8 +29,7 @@ public class PanneService implements IPanneService {
             Panne saved = repository.save(pannes);
             return mapper.toDTO(saved);
         } catch (Exception e) {
-            String errorMessage = "Erreur lors de la création de la panne : " + e.getMessage();
-            throw new CustomServiceException(errorMessage, e);
+            throw new CustomServiceException("Erreur lors de la création de la panne : ", e);
         }
     }
 
@@ -52,10 +50,9 @@ public class PanneService implements IPanneService {
             List<Panne> panne = repository.findAll();
             return panne.stream()
                     .map(mapper::toDTO)
-                    .collect(Collectors.toList());
+                    .toList();
         } catch (Exception e) {
-            String errorMessage = "Erreur lors de la récupération de toutes les pannes : " + e.getMessage();
-            throw new CustomServiceException(errorMessage, e);
+            throw new CustomServiceException("Erreur lors de la récupération de toutes les pannes : ", e);
         }
     }
 
@@ -74,8 +71,7 @@ public class PanneService implements IPanneService {
                 throw new CustomServiceException("Panne with ID " + id + " not found.", null);
             }
         } catch (Exception e) {
-            String errorMessage = "Erreur lors de la mise à jour de la panne : " + e.getMessage();
-            throw new CustomServiceException(errorMessage, e);
+            throw new CustomServiceException("Erreur lors de la mise à jour de la panne : ", e);
         }
     }
 
@@ -84,8 +80,7 @@ public class PanneService implements IPanneService {
         try {
             repository.deleteById(id);
         } catch (Exception e) {
-            String errorMessage = "Erreur lors de la suppression de la panne : " + e.getMessage();
-            throw new CustomServiceException(errorMessage, e);
+            throw new CustomServiceException("Erreur lors de la suppression de la panne : ", e);
         }
     }
 }

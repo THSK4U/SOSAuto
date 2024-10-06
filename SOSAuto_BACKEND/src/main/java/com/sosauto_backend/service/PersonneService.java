@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -53,7 +52,7 @@ public class PersonneService implements IPersonneService, UserDetailsService {
             List<Personne> personne = repository.findAll();
             return personne.stream()
                     .map(mapper::toDTO)
-                    .collect(Collectors.toList());
+                    .toList();
         } catch (Exception e) {
             throw new CustomServiceException("Erreur lors de la récupération de toutes les personnes : " + e.getMessage(), e);
 
