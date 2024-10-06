@@ -9,6 +9,9 @@ import com.sosauto_backend.service.Interface.IDemandeService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +26,8 @@ public class DemandeService implements IDemandeService {
     @Autowired
     private DemandeDepannageRepository repository;
 
+    private static final Logger logger = LoggerFactory.getLogger(DemandeService.class);
+
     @Override
     public DemandeDepannageDTO creer(DemandeDepannageDTO demandedepannage) {
         try {
@@ -31,7 +36,7 @@ public class DemandeService implements IDemandeService {
             DemandeDepannage saved = repository.save(demandedepannages);
             return mapper.toDTO(saved);
         } catch (Exception e) {
-            System.err.println("Error creating breakdown request: " + e.getMessage());
+            logger.error("Error creating breakdown request: {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -42,7 +47,7 @@ public class DemandeService implements IDemandeService {
             Optional<DemandeDepannage> demandedepannage = repository.findById(id);
             return demandedepannage.map(mapper::toDTO).orElse(null);
         } catch (Exception e) {
-            System.err.println("Error getting breakdown request by ID: " + e.getMessage());
+            logger.error("Error getting breakdown request by ID: {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -55,7 +60,7 @@ public class DemandeService implements IDemandeService {
                     .map(mapper::toDTO)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            System.err.println("Error getting breakdown requests by automobilist ID: " + e.getMessage());
+            logger.error("Error getting breakdown requests by automobilist ID: {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -69,7 +74,7 @@ public class DemandeService implements IDemandeService {
             DemandeDepannage updated = repository.save(demande);
             return mapper.toDTO(updated);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la terminaison de la demande : " + e.getMessage());
+            logger.error("Erreur lors de la terminaison de la demande : {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -82,7 +87,7 @@ public class DemandeService implements IDemandeService {
                     .map(mapper::toDTO)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            System.err.println("Error getting all breakdown requests: " + e.getMessage());
+            logger.error("Error getting all breakdown requests: {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -106,7 +111,7 @@ public class DemandeService implements IDemandeService {
                 throw new EntityNotFoundException("DemandeDepannage with ID " + id + " not found");
             }
         } catch (Exception e) {
-            System.err.println("Error updating breakdown request: " + e.getMessage());
+            logger.error("Error updating breakdown request: {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -116,7 +121,7 @@ public class DemandeService implements IDemandeService {
         try {
             repository.deleteById(id);
         } catch (Exception e) {
-            System.err.println("Error deleting breakdown request: " + e.getMessage());
+            logger.error("Error deleting breakdown request: {}", e.getMessage(), e);
             throw e;
         }
     }

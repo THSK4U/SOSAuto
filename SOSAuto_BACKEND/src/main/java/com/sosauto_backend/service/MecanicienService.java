@@ -11,7 +11,8 @@ import com.sosauto_backend.service.Interface.IAuthenticationService;
 import com.sosauto_backend.service.Interface.IMecanicienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class MecanicienService implements IMecanicienService {
     @Autowired
     private IAuthenticationService authenticationservice;
 
-
+    private static final Logger logger = LoggerFactory.getLogger(MecanicienService.class);
 
     @Override
     public AuthResponse creer(MecanicienDTO mecanicien) {
@@ -35,7 +36,7 @@ public class MecanicienService implements IMecanicienService {
             mecanicien.setDisponible(Disponibilite.INDISPONIBLE);
             return authenticationservice.registerMecanicien(mecanicien);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la création du mécanicien : " + e.getMessage());
+            logger.error("Erreur lors de la création du mécanicien : {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -46,7 +47,7 @@ public class MecanicienService implements IMecanicienService {
             Optional<Mecanicien> mecanicien = repository.findById(id);
             return mecanicien.map(mapper::toDTO).orElse(null);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération du mécanicien par ID : " + e.getMessage());
+            logger.error("Erreur lors de la récupération du mécanicien par ID : {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -60,10 +61,10 @@ public class MecanicienService implements IMecanicienService {
                 mecanicien.setDisponible(dto.getDisponible());
                 return mapper.toDTO(repository.save(mecanicien));
             } else {
-                return null; // Or throw an exception for mechanic not found
+                return null; // Mecanicien nonTrouvé
             }
         } catch (Exception e) {
-            System.err.println("Erreur lors de la mise à jour de la disponibilité du mécanicien : " + e.getMessage());
+            logger.error("Erreur lors de la mise à jour de la disponibilité du mécanicien : {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -76,7 +77,7 @@ public class MecanicienService implements IMecanicienService {
                     .map(mapper::toDTO)
                     .toList();
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération des mécaniciens disponibles : " + e.getMessage());
+            logger.error("Erreur lors de la récupération des mécaniciens disponibles : {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -97,7 +98,7 @@ public class MecanicienService implements IMecanicienService {
                 return null;
             }
         } catch (Exception e) {
-            System.err.println("Erreur lors de la mise à jour de la notation du mécanicien : " + e.getMessage());
+            logger.error("Erreur lors de la mise à jour de la notation du mécanicien : {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -110,7 +111,7 @@ public class MecanicienService implements IMecanicienService {
                     .map(mapper::toDTO)
                     .toList();
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération de tous les mécaniciens : " + e.getMessage());
+            logger.error("Erreur lors de la récupération de tous les mécaniciens : {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -132,7 +133,7 @@ public class MecanicienService implements IMecanicienService {
                 return null; // Or throw an exception for mechanic not found
             }
         } catch (Exception e) {
-            System.err.println("Erreur lors de la mise à jour du mécanicien : " + e.getMessage());
+            logger.error("Erreur lors de la mise à jour du mécanicien : {}", e.getMessage(), e);
             throw e;
         }
     }
@@ -142,7 +143,7 @@ public class MecanicienService implements IMecanicienService {
         try {
             repository.deleteById(id);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la suppression du mécanicien : " + e.getMessage());
+            logger.error("Erreur lors de la suppression du mécanicien : {}", e.getMessage(), e);
             throw e;
         }
     }
