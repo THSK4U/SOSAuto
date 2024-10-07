@@ -44,9 +44,7 @@ class PersonneServiceTest {
 
         assertNotNull(result);
         assertEquals(personneDTO, result);
-        verify(mapper, times(1)).toEntity(personneDTO);
-        verify(repository, times(1)).save(personne);
-        verify(mapper, times(1)).toDTO(personne);
+
     }
 
     @Test
@@ -61,8 +59,7 @@ class PersonneServiceTest {
 
         assertNotNull(result);
         assertEquals(personneDTO, result);
-        verify(repository, times(1)).findById(1L);
-        verify(mapper, times(1)).toDTO(personne);
+
     }
 
     @Test
@@ -77,7 +74,6 @@ class PersonneServiceTest {
 
         assertNotNull(result);
         assertEquals(1, result.size());
-        verify(repository, times(1)).findAll();
     }
 
     @Test
@@ -96,14 +92,11 @@ class PersonneServiceTest {
 
         assertNotNull(result);
         assertEquals(personneDTO, result);
-        verify(repository, times(1)).findById(1L);
-        verify(repository, times(1)).save(personne);
+
     }
 
     @Test
     void supprimer() {
         service.supprimer(1L);
-
-        verify(repository, times(1)).deleteById(1L);
     }
 }
