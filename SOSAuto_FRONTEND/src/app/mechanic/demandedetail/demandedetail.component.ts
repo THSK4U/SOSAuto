@@ -65,6 +65,10 @@ export class DemandedetailComponent implements OnInit, OnDestroy {
         this.demandes = [response.body] || [];
         const bodydemande = response.body;
 
+        if (bodydemande.etat === 'TERMINE') {
+          this.toastr.success('Merci beaucoup pour votre aide ! Le problème a été résolu avec succès. Nous vous sommes reconnaissants pour votre intervention rapide.', 'Succès !');
+          this.router.navigate(['/mecanicien']);
+        }
         this.addDemandeMarkers();
         console.log('Détails de la demande:', this.demandes);
 
@@ -72,11 +76,6 @@ export class DemandedetailComponent implements OnInit, OnDestroy {
           this.toastr.error('Participation non trouvée', 'Erreur!');
           this.router.navigate(['/mecanicien']);
           return [];
-        }
-
-        if (bodydemande.etat === 'TERMINE') {
-          this.toastr.success('Merci beaucoup pour votre aide ! Le problème a été résolu avec succès. Nous vous sommes reconnaissants pour votre intervention rapide.', 'Succès !');
-          this.router.navigate(['/mecanicien']);
         }
         return [];
 

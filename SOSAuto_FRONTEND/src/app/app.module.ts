@@ -28,6 +28,11 @@ import { MecanicienComponent } from './authentication/signup/mecanicien/mecanici
 import { AutomobilisteComponent } from './authentication/signup/automobiliste/automobiliste.component';
 import {AuthInterceptor} from "./services/token/interceptor/auth.interceptor";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { HeaderComponent } from './home/header/header.component';
+import { HeroComponent } from './home/hero/hero.component';
+import { AboutComponent } from './home/about/about.component';
+import { FooterComponent } from './home/footer/footer.component';
+import { FeaturesComponent } from './home/features/features.component';
 
 registerLocaleData(localeFr);
 
@@ -39,6 +44,11 @@ registerLocaleData(localeFr);
     HomeComponent,
     MecanicienComponent,
     AutomobilisteComponent,
+    HeaderComponent,
+    HeroComponent,
+    AboutComponent,
+    FooterComponent,
+    FeaturesComponent,
   ],
   imports: [
     BrowserModule,

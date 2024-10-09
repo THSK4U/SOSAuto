@@ -10,13 +10,25 @@
       </div>
 
       <div class="profile-name">
-        <h3>{{ mecanicien.nom }} {{ mecanicien.prenom }}</h3>
+        <h3>{{ mecanicien.nom }} {{ mecanicien.prenom }} {{mecanicien.notation}}<i class="star-icon">★</i></h3>
       </div>
     </div>
   </div>
 </div>
 
 <div class="row" *ngIf="mecanicien">
+  <div class="col-sm-12 col-md-4">
+    <div class="card stat-widget">
+      <div class="card-body">
+        <h5 id="contact-info" class="card-title">Informations de contact</h5>
+        <ul class="list-unstyled profile-about-list">
+          <li><i class="far fa-envelope m-r-xxs"></i><span>{{ mecanicien.email }}</span></li>
+          <li><i  class="far fa-address-book m-r-xxs"></i><span>{{ mecanicien.numTelephone || 'Non disponible' }}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <div class="col-sm-12 col-md-8">
     <div class="card">
       <div class="card-body">
@@ -31,15 +43,4 @@
     </div>
   </div>
 
-  <div class="col-sm-12 col-md-4">
-    <div class="card stat-widget">
-      <div class="card-body">
-        <h5 id="contact-info" class="card-title">Informations de contact</h5>
-        <ul class="list-unstyled profile-about-list">
-          <li><i class="far fa-envelope m-r-xxs"></i><span>{{ mecanicien.email }}</span></li>
-          <li><i  class="far fa-address-book m-r-xxs"></i><span>{{ mecanicien.numTelephone || 'Non disponible' }}</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
 </div>

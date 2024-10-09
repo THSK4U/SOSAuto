@@ -138,13 +138,13 @@ export class MapMotoristComponent {
           .setPopup(new mapboxgl.Popup().setHTML(`
             <div class="card-body-mark text-center d-flex flex-column align-items-center">
               <h5 class="card-title mb-2">
-                ${List.nom?.toUpperCase() || 'Unknown'} ${List.prenom?.toUpperCase() || 'Unknown'}
+                ${List.nom?.toUpperCase() || 'Unknown'} ${List.prenom?.toUpperCase() || 'Unknown'}<i class="fs-6 text-warning"> ${List.notation || 0}★</i>
               </h5>
               <h6>
                 <span class="text-muted" style="font-size: 12px;">à ${distance.toFixed(1)}KM</span>
               </h6>
+                <p class="card-text">${List.numTelephone || 'Unknown'}</p>
               <h6 class="card-subtitle mb-2 text-danger">${List.disponible || 'Unknown'}</h6>
-              <p class="card-text">${List.numTelephone || 'Unknown'}</p>
             </div>
           `))
           .addTo(this.map);

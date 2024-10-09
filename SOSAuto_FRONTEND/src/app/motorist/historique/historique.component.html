@@ -1,28 +1,32 @@
-<div class="bee-container">
-  <h2>Liste des Demandes</h2>
+<div class="container">
+  <div class="white-box">
+    <h2>Liste des Demandes</h2>
 
-  <table class="bee-table">
-    <thead>
-    <tr>
-      <th>Description</th>
-      <th>Panne</th>
-      <th>Statut</th>
-      <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let demande of demandes">
-      <td>{{ demande.description }}</td>
-      <td>{{ demande.panne?.nom }}</td>
-      <td>{{ demande.etat }}</td>
-      <td>
-        <button class="btn btn-danger" >Annuler</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Description</th>
+        <th>Panne</th>
+        <th>Statut</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let demande of demandes">
+        <td>{{ demande.description }}</td>
+        <td>{{ demande.panne?.nom }}</td>
+        <td>{{ demande.etat }}</td>
+        <td>
+          <ng-container *ngIf="demande.etat !== 'TERMINE'">
+            <button class="btn btn-danger">Annuler</button>
+          </ng-container>
+        </td>
+      </tr>
+      </tbody>
+    </table>
 
-  <div *ngIf="demandes.length === 0">
-    Aucune demande trouvée.
+    <div *ngIf="demandes.length === 0">
+      Aucune demande trouvée.
+    </div>
   </div>
 </div>

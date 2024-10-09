@@ -3,7 +3,7 @@
 import {Role} from "./Role";
 
 export interface Mecanicien {
-  Notation?: number;
+  notation?: number;
   disponible?: 'INDISPONIBLE' | 'DISPONIBLE';
   email?: string;
   latitude?: number;

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MecanicienDto} from "../../services/models/mecanicien-dto";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ApiService} from "../../services/services/api.service";
 import {GetMecanicienById$Params} from "../../services/fn/operations/get-mecanicien-by-id";
 import {AddNotation$Params} from "../../services/fn/operations/add-notation";
@@ -20,6 +20,7 @@ export class NotationPageComponent implements OnInit {
     private route: ActivatedRoute,
     private Service: ApiService,
     private toastr: ToastrService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +55,7 @@ export class NotationPageComponent implements OnInit {
     this.Service.addNotation$Response(paramRes).subscribe(
       response => {
         this.toastr.success('Votre évaluation a été soumise avec succès', 'Succès!');
+        this.router.navigate(['/automobiliste']);
         console.log('Notation submitted successfully:', response);
       },
       error => {

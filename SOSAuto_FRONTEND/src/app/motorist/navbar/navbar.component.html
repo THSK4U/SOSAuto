@@ -1,69 +1,39 @@
 <div class="logo">
   <a routerLink="/profile">
-    <img class="navbar-brand" src="assets/images/logo.png">
+    <img class="navbar-brand" src="assets/images/logo.png" alt="Logo">
   </a>
 </div>
 <div class="page-header">
-
   <nav class="navbar navbar-expand-lg d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon">
+        <i class="iconsax icon" data-icon="text-align-left"></i>
+      </span>
+    </button>
 
-
-    <div class="" id="navbarNav">
-
-
+    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav" id="leftNav">
-
-
-
         <li class="nav-item">
-          <button class="navbar-toggler" id="dropdownMenuButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
+          <a class="nav-link" routerLink="/automobiliste">
+            <mat-icon>home</mat-icon> Home
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/automobiliste">Home</a>
+          <a class="nav-link" routerLink="historique">
+            <mat-icon>history</mat-icon> Historique
+          </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="historique">Historique</a>
-        </li>
-        <li class="nav-item">
-        </li>
-
-
       </ul>
     </div>
 
-
-
     <div class="" id="headerNav">
       <ul class="navbar-nav">
-        <!--        <li class="nav-item dropdown">-->
-        <!--          <a class="nav-link notifications-dropdown" href="#" id="notificationsDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false">0</a>-->
-        <!--          <div class="dropdown-menu dropdown-menu-end notif-drop-menu" aria-labelledby="notificationsDropDown">-->
-        <!--            <h6 class="dropdown-header">Notifications</h6>-->
-
-        <!--            <a href="#">-->
-        <!--              <div class="header-notif">-->
-        <!--                <div class="notif-image">-->
-        <!--                                  <span class="notification-badge bg-success text-white">-->
-        <!--                                    <i class="fas fa-at"></i>-->
-        <!--                                  </span>-->
-        <!--                </div>-->
-        <!--                <div class="notif-text">-->
-        <!--                  <p>faucibus dolor in commodo lectus mattis</p>-->
-        <!--                  <small>yesterday</small>-->
-        <!--                </div>-->
-        <!--              </div>-->
-        <!--            </a>-->
-        <!--          </div>-->
-        <!--        </li>-->
         <li>
           <button mat-button class="btn btn-danger text-danger" (click)="logout()">
             <mat-icon>logout</mat-icon> Déconnexion
           </button>
         </li>
-
       </ul>
     </div>
   </nav>

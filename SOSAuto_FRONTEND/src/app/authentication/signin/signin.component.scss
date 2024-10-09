@@ -1,15 +1,12 @@
 .logo {
   position: absolute;
-  width: 100%;
   margin-top: 10vh;
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  font-weight: bold;
-  color: #a52834;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 
-  span {
-    color: #000000;
+  img {
+    height: 80px;
   }
 }
 .login-container {
