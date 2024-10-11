@@ -2,10 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import * as mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-import axios from 'axios'
 import {ApiService} from "../../../services/services/api.service";
-import {MecanicienDto} from "../../../services/models/mecanicien-dto";
-import {CreerMecanicien$Params} from "../../../services/fn/operations/creer-mecanicien";
 import {Router} from "@angular/router";
 import {UploadImage} from "../../../services/services/UploadImage";
 @Component({
