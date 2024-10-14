@@ -46,7 +46,7 @@ class MecanicienServiceTest {
 
         assertNotNull(result);
         assertEquals(authResponse, result);
-        assertEquals(Disponibilite.INDISPONIBLE, mecanicienDTO.getDisponible()); // التحقق من حالة التوفر
+        assertEquals(Disponibilite.INDISPONIBLE, mecanicienDTO.getDisponible());
     }
 
     @Test

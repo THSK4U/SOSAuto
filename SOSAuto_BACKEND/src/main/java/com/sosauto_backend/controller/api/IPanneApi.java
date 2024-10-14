@@ -20,7 +20,7 @@ public interface IPanneApi {
     void supprimerPanne(@PathVariable("id") Long id);
 
     //Tous
-    @GetMapping(value = "mecani/Panne", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ADMIN_AUTO + "/Panne", produces = MediaType.APPLICATION_JSON_VALUE)
     List<PanneDTO> getAllPanne();
 
     //mettre A Jour

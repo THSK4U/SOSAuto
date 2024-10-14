@@ -31,14 +31,19 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    // Admin
-                    auth.requestMatchers(Constants.APP_ADMIN+"/**", Constants.APP_ADMIN_AUTO+"/**", Constants.APP_ADMIN_MECH+"/**").hasRole("ADMIN")
 
-                    // Automobiliste
-                    .requestMatchers(Constants.APP_AUTO+"/**", Constants.APP_ADMIN_AUTO+"/**").hasRole("AUTO")
+                    auth
+                            // Automobiliste
+                            .requestMatchers(Constants.APP_AUTO+"/**").hasAnyAuthority("AUTO")
 
-                    // Mechanic
-                    .requestMatchers(Constants.APP_MECH+"/**", Constants.APP_ADMIN_MECH+"/**").hasRole("MECA")
+                            // Mechanic
+                            .requestMatchers(Constants.APP_MECH+"/**").hasAnyAuthority("MECA")
+
+                            // Admin
+                            .requestMatchers(Constants.APP_ADMIN+"/**", Constants.APP_ADMIN_MECH+"/**").hasAuthority("ADMIN")
+
+                            .requestMatchers(Constants.APP_ADMIN_AUTO+"/**").hasAnyAuthority("ADMIN", "AUTO")
+                            .requestMatchers(Constants.APP_ADMIN_MECH + "/**").hasAnyAuthority("ADMIN", "MECA")
 
                     // Permit authenticated
                     .requestMatchers(Constants.APP_PERMITALL_AUTH+"/**").authenticated()

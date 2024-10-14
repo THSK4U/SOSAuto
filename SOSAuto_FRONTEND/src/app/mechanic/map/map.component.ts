@@ -3,8 +3,6 @@ import * as mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { DemandeDepannageDto } from "../../services/models/demande-depannage-dto";
 import { ApiService } from "../../services/services/api.service";
-// @ts-ignore
-import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
 import {Router} from "@angular/router";
 import {interval, Observable, Subscription, throwError} from "rxjs";
 import {catchError, switchMap, tap} from "rxjs/operators";

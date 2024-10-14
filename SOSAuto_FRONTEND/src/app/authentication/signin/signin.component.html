@@ -1,8 +1,8 @@
 <div class="logo">
   <img class="navbar-brand" src="assets/images/logo.png">
 </div>
-<div class="login-container" fxLayout="row" fxLayoutAlign="center center">
-  <mat-card class="login-card" fxFlex="400px" fxFlex.lt-md="100%">
+<div class="login-container">
+  <mat-card class="login-card">
     <h2>Connectez-vous à votre compte</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline">
@@ -12,7 +12,7 @@
           Le numéro de téléphone est requis
         </mat-error>
         <mat-error *ngIf="loginForm.get('numTelephone')?.hasError('pattern')">
-          Le numéro de téléphone doit contenir 13 chiffres
+          Le numéro de téléphone doit contenir 10 chiffres
         </mat-error>
       </mat-form-field>
 

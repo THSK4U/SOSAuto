@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as mapboxgl from 'mapbox-gl';
 import { ApiService } from '../../services/services/api.service';
-import { SharedDataService } from '../../services/token/share-data.service';
 import {GetMecanicienById$Params} from "../../services/fn/operations/get-mecanicien-by-id";
-import {TokenService} from "../../services/token/token.service";
 import {MecanicienDto} from "../../services/models/mecanicien-dto";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TerminerDemande$Params} from "../../services/fn/operations/terminer-demande";

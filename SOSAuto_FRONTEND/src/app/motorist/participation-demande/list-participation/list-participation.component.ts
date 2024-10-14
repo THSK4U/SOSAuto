@@ -1,17 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from "../../../services/services/api.service";
 import { TokenService } from "../../../services/token/token.service";
-import { GetAllParticipationByIdAutomobilist$Params } from "../../../services/fn/operations/get-all-participation-by-id-automobilist";
 import { interval, Subscription } from "rxjs";
 import { switchMap, tap, catchError } from "rxjs/operators";
 import { Observable } from 'rxjs';
-import {
-  GetAllParticipationByIdDemande$Params
-} from "../../../services/fn/operations/get-all-participation-by-id-demande";
+import {GetAllParticipationByIdDemande$Params} from "../../../services/fn/operations/get-all-participation-by-id-demande";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ParticipationDto} from "../../../services/models/participation-dto";
 import {AcceptParticipation$Params} from "../../../services/fn/operations/accept-participation";
-import {RejectParticipation$Params} from "../../../services/fn/operations/reject-participation";
 import {AnnulerParticipation$Params} from "../../../services/fn/operations/annuler-participation";
 import {ToastrService} from "ngx-toastr";
 
@@ -27,7 +23,6 @@ export class ListParticipationComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: ApiService,
-    private tokenService: TokenService,
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,

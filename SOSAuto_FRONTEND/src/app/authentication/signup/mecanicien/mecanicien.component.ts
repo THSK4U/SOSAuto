@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import * as mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
@@ -72,7 +72,7 @@ export class MecanicienComponent implements OnInit {
       if (formData.nationalIdCardUrl) {
         formData.nationalIdCardUrl = await this.uploadService.uploadImageToCloudinary(formData.nationalIdCardUrl);
       }
-      if (formData.nationalIdCardUrl) {
+      if (formData.proofOfProfessionUrl) {
         formData.proofOfProfessionUrl = await this.uploadService.uploadImageToCloudinary(formData.proofOfProfessionUrl);
       }
       console.log('Form Data after:', formData);

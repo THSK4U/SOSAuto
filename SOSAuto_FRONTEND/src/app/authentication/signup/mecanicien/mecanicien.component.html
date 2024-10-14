@@ -85,15 +85,7 @@
 
     <ng-container *ngIf="currentStep === 3">
       <div class="form-group">
-    <mat-form-field appearance="outline">
-      <mat-label>Latitude</mat-label>
-      <input matInput formControlName="latitude" type="number" placeholder="Entrer la latitude" readonly>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Longitude</mat-label>
-      <input matInput formControlName="longitude" type="number" placeholder="Entrer la longitude" readonly>
-    </mat-form-field>
+        <label>Entré votre position sur la carte :</label>
       </div>
       <div id="map" style="height: 400px; width: 100%;"></div>
 

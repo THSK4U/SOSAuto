@@ -26,12 +26,12 @@ services:
       - MYSQL_ROOT_PASSWORD=TAHAtaha
       - MYSQL_DATABASE=SOSAuto
     volumes:
-      - mysql-data:/var/lib/mysql
+      - mysqldb-data:/var/lib/mysql
     networks:
       - backend-network
 
 volumes:
-  mysql-data:
+  mysqldb-data:
 
 networks:
   backend-network:

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {MechanicComponent} from './mechanic.component'
-import {MapComponent} from "./map/map.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {HomeComponent} from "./home/home.component";
 import {ParticipationComponent} from "./participation/participation.component";

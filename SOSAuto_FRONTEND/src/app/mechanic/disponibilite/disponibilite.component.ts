@@ -15,7 +15,6 @@ export class DisponibiliteComponent implements OnInit{
   mecanicien: MecanicienDto = {};
 
   constructor(
-    private router: Router,
     private Service: ApiService,
     private Token : TokenService,
     private toastr: ToastrService

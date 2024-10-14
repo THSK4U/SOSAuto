@@ -15,8 +15,6 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
 
     List<Participation> getAllByMecanicien_Personneid(Long personneId);
 
-    @Transactional
-    @Modifying
     @Query("Select p from Participation p Inner join DemandeDepannage dd on dd.demandeid = p.demande.demandeid where dd.automobiliste.personneid = :automobiliste_id")
     List<Participation> findParticipationsByautomobiliste_id(@Param("automobiliste_id") Long automobiliste_id);
 

@@ -13,7 +13,6 @@ export class ParticipationDemandeComponent {
 
 constructor(
       private service: ApiService,
-      private tokenService: TokenService,
       private route: ActivatedRoute,
       private router: Router
 ) {

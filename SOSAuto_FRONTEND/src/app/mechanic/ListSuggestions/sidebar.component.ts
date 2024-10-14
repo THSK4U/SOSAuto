@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../../services/services/api.service";
-import {Router} from "@angular/router";
 import {DemandeDepannageDto} from "../../services/models/demande-depannage-dto";
 
 @Component({
@@ -14,7 +13,6 @@ export class SidebarComponent implements OnInit {
 
   constructor(
     private service: ApiService,
-    private router: Router
   ) {
   }
 

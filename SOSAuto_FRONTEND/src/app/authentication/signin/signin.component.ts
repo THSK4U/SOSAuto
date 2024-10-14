@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { TokenService } from "../../services/token/token.service";
 import { ApiService } from "../../services/services/api.service";
-import {PersonneDto} from "../../services/models/personne-dto";
 
 @Component({
   selector: 'app-signin',

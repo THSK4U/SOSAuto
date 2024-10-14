@@ -4,7 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TokenService} from "../../services/token/token.service";
 import {ParticipationDto} from "../../services/models/participation-dto";
-import {CreerDemande$Params} from "../../services/fn/operations/creer-demande";
 import {CreerParticipation$Params} from "../../services/fn/operations/creer-participation";
 import {AnnulerParticipation$Params} from "../../services/fn/operations/annuler-participation";
 import {ToastrService} from "ngx-toastr";

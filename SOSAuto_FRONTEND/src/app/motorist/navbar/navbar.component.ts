@@ -9,7 +9,6 @@ import {TokenService} from "../../services/token/token.service";
 })
 export class NavbarComponent {
   constructor(
-    private router: Router,
     private service:TokenService
   ){}
   logout() {

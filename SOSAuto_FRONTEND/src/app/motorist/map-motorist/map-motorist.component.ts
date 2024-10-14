@@ -10,7 +10,7 @@ import {SharedDataService} from "../../services/token/share-data.service";
   templateUrl: './map-motorist.component.html',
   styleUrls: ['./map-motorist.component.scss']
 })
-export class MapMotoristComponent {
+export class MapMotoristComponent implements OnInit {
 
   private readonly mapboxAccessToken = 'pk.eyJ1Ijoic29zYXV0byIsImEiOiJjbTBlZmhudTkwNm16MmpzN3RkZDJiZ2MzIn0.NCq9laQd2WA2o0fdBKhfOw';
   private map!: mapboxgl.Map;

@@ -8,7 +8,6 @@ import { DemandeDepannageDto } from '../../services/models/demande-depannage-dto
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import {interval, Subscription} from "rxjs";
 import {switchMap} from "rxjs/operators";
-import {GetParticipationById$Params} from "../../services/fn/operations/get-participation-by-id";
 
 @Component({
   selector: 'app-demandedetail',
