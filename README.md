@@ -1,4 +1,4 @@
-<h1 align="center"> 🚗 <b>SOSAuto</b> 🔧</h1>
+<h1 align="center"> 🚗 <b>SOSAuto</b> 🔧</h1> 
 
 <h5 align="center"> Description du projet </h5>
 
